@@ -11,7 +11,7 @@ spec:
   storageClassName: recommendation-storage
   hostPath:
     path: /data/volumes/recommendation-pv   # Where all the hard drives are mounted
-    type: Directory
+    type: DirectoryOrCreate
   nodeAffinity:     # Use nodeAffinity to ensure it will only be mounted on the node with harddrives.
     required:
       nodeSelectorTerms:
