@@ -17,6 +17,7 @@
 run `kubectl apply -f <path-of-repo>/hotelReservation/kubernetes/`
 and wait for `kubectl get pods` to show all pods with status `Running`.
 
+- make sure that all node names (pvc and deployment) are replaced
 
 ### Prepare HTTP workload generator
 
