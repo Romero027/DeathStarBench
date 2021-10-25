@@ -14,8 +14,12 @@
   if you intend to change it, remember to change the username in the build script and also all deployments as well.
 ### Deploy services
 
-run `kubectl apply -f <path-of-repo>/hotelReservation/kubernetes/`
-and wait for `kubectl get pods` to show all pods with status `Running`.
+- `kubectl apply -f service`
+- `kubectl apply -f pv`
+- `kubectl apply -f pvc`
+- `kubectl apply -f mongodb`
+- `kubectl apply -f memcached`
+- `kubectl apply -f deployment`
 
 
 ### Prepare HTTP workload generator
