@@ -6,7 +6,7 @@ The application implements a hotel reservation service, build with Go and gRPC, 
 
 <!-- ![Social Network Architecture](socialNet_arch.png) -->
 
-Supported actions: 
+Supported actions(80 hotels and 500 users): 
 * Get profile and rates of nearby hotels available during given time periods
 * Recommend hotels based on user provided metrics
 * Place reservations
@@ -39,9 +39,12 @@ Check if TLS is enabled or not: `docker-compose logs <service> | grep TLS`.
 Read the Readme file in Openshift directory.
 
 ##### Kubernetes
-Read the Readme file in Kubernetes directory.
+Read the Readme file in Kubernetes directory. (Note that the ports in default images are incorrect)
 
 #### workload generation
+
+ - Install luarocks (`apt-get install luarocks`) and luasocket (`luarocks install luasocket`). run `make` in /wrk. 
+
 ```bash
 ./wrk2/wrk -D exp -t <num-threads> -c <num-conns> -d <duration> -L -s ./wrk2/scripts/hotel-reservation/mixed-workload_type_1.lua http://x.x.x.x:5000 -R <reqs-per-sec>
 ```
