@@ -2,11 +2,11 @@
 
 The application implements a hotel reservation service, build with Go and gRPC, and starting from the open-source project https://github.com/harlow/go-micro-services. The initial project is extended in several ways, including adding back-end in-memory and persistent databases, adding a recommender system for obtaining hotel recommendations, and adding the functionality to place a hotel reservation. 
 
-<!-- ## Application Structure -->
+## Application Structure
 
-<!-- ![Social Network Architecture](socialNet_arch.png) -->
+![hotel](hotel_arch.png)
 
-Supported actions(80 hotels and 500 users): 
+Supported actions (80 hotels and 500 users): 
 * Get profile and rates of nearby hotels available during given time periods
 * Recommend hotels based on user provided metrics
 * Place reservations
