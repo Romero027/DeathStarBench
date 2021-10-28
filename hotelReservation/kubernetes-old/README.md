@@ -14,13 +14,10 @@
   if you intend to change it, remember to change the username in the build script and also all deployments as well.
 ### Deploy services
 
-- `kubectl apply -f service`
-- `kubectl apply -f pv`
-- `kubectl apply -f pvc`
-- `kubectl apply -f mongodb`
-- `kubectl apply -f memcached`
-- `kubectl apply -f deployment`
+run `kubectl apply -f <path-of-repo>/hotelReservation/kubernetes/`
+and wait for `kubectl get pods` to show all pods with status `Running`.
 
+- make sure that all node names (pvc and deployment) are replaced
 
 ### Prepare HTTP workload generator
 
@@ -62,6 +59,3 @@ View Jaeger traces by accessing:
 e.g., to copy the results directory from the on-cluster client to the local machine:
   - `hrclient=$(oc get pod | grep hr-client- | cut -f 1 -d " ")`
   - `oc cp hotel-res/${hrclient}:/root/DeathStarBench/hotelReservation/openshift/results /tmp`
-
-
-kubectl apply -f <(istioctl kube-inject -f deployment/user-deployment.yaml)
