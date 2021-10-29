@@ -25,7 +25,7 @@ spec:
       labels:
         io.kompose.service: memcached-profile
     spec:
-      # nodeName: minikube
+      nodeName: h3.istio.gaia-pg0.clemson.cloudlab.us
       containers:
         - env:
             - name: MEMCACHED_CACHE_SIZE

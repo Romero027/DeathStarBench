@@ -25,7 +25,7 @@ spec:
       labels:
         io.kompose.service: recommendation
     spec:
-      #nodeName: minikube
+      nodeName: h4.istio.gaia-pg0.clemson.cloudlab.us
       containers:
         - command:
             - recommendation
