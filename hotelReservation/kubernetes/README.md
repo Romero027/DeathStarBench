@@ -32,6 +32,7 @@
 - Disable auto injection: `kubectl label namespace default istio-injection-`
 - Config proxies:
   - Change protocol prefix in service yaml files [Reference](https://istio.io/latest/docs/ops/configuration/traffic-management/protocol-selection/)
+  - Get proxy config: `istioctl proxy-config listeners [pod-name] --port [15006(inbound)/15001(outbound)] -o json`
 
 
 ### Prepare HTTP workload generator
