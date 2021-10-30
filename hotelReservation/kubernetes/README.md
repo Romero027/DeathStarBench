@@ -9,9 +9,11 @@
 
 ### Before you start
 
-- Ensure that the necessary local images have been made.
-  - `<path-of-repo>/hotelReservation/kubernetes/scripts/build-docker-images.sh`, currently all images exists in the `salehsedghpour/<image-name>`.
+- [OPTIONAL] Build and push docker images if you made changes.
+  - `<path-of-repo>/hotelReservation/kubernetes/scripts/build-docker-images.sh`, currently all images exists in the `xzhu0027/<image-name>`.
   if you intend to change it, remember to change the username in the build script and also all deployments as well.
+- [Kubernetes] Change the Nodename of all deployment and persistent volume. 
+  
 ### Deploy services
 
 - `kubectl apply -f service`
@@ -44,6 +46,12 @@ cd <path-of-repo>/hotelReservation
 ```bash
 cd /root/DeathStarBench/hotelReservation
 ./wrk -D exp -t 2 -c 2 -d 30 -L -s ./wrk2_lua_scripts/mixed-workload_type_1.lua http://frontend.hotel-res.svc.cluster.local:5000 -R 2 
+```
+
+- for wrk
+
+```
+./wrk/wrk -t1 -c1 -d60s -s ./wrk2/scripts/hotel-reservation/mixed-workload_type_1.lua http://x.x.x.x:5000 --latency
 ```
 
 
