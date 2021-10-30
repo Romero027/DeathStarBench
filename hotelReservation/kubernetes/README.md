@@ -13,6 +13,7 @@
   - `<path-of-repo>/hotelReservation/kubernetes/scripts/build-docker-images.sh`, currently all images exists in the `xzhu0027/<image-name>`.
   if you intend to change it, remember to change the username in the build script and also all deployments as well.
 - [Kubernetes] Change the Nodename of all deployment and persistent volume. 
+- [Istio] Install [istioctl](https://istio.io/latest/docs/setup/getting-started/)
   
 ### Deploy services
 
@@ -22,6 +23,15 @@
 - `kubectl apply -f mongodb`
 - `kubectl apply -f memcached`
 - `kubectl apply -f deployment`
+
+
+### Istio Configs
+
+- Install: `istioctl install --set profile=demo -y`
+- Enable auto injection: `kubectl label namespace default istio-injection=enabled`
+- Disable auto injection: `kubectl label namespace default istio-injection-`
+- Config proxies:
+  - Change protocol prefix in service yaml files [Reference](https://istio.io/latest/docs/ops/configuration/traffic-management/protocol-selection/)
 
 
 ### Prepare HTTP workload generator
