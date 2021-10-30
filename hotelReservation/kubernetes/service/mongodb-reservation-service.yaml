@@ -10,7 +10,7 @@ metadata:
   name: mongodb-reservation
 spec:
   ports:
-    - name: "mongodb-reservation"
+    - name: mongo-reservation
       port: 27017
       targetPort: 27017
   selector:

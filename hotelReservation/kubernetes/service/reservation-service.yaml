@@ -10,7 +10,7 @@ metadata:
   name: reservation
 spec:
   ports:
-    - name: "8087"
+    - name: grpc-reservation
       port: 8087
       targetPort: 8087
   selector:

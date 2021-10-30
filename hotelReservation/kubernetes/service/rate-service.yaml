@@ -10,7 +10,7 @@ metadata:
   name: rate
 spec:
   ports:
-    - name: "8084"
+    - name: grpc-rate
       port: 8084
       targetPort: 8084
   selector:

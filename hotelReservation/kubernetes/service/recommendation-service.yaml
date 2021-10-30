@@ -10,7 +10,7 @@ metadata:
   name: recommendation
 spec:
   ports:
-    - name: "8085"
+    - name: grpc-recommendation
       port: 8085
       targetPort: 8085
   selector:

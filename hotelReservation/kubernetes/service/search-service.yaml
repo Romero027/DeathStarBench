@@ -10,7 +10,7 @@ metadata:
   name: search
 spec:
   ports:
-    - name: "8082"
+    - name: grpc-search
       port: 8082
       targetPort: 8082
   selector:

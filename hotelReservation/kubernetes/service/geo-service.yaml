@@ -10,7 +10,7 @@ metadata:
   name: geo
 spec:
   ports:
-    - name: "8083"
+    - name: grpc-geo
       port: 8083
       targetPort: 8083
   selector:
