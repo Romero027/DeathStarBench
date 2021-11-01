@@ -47,22 +47,26 @@
 
 ### Running HTTP workload generator
 
+### wrk2
+ 
 ##### Template
 ```bash
 cd <path-of-repo>/hotelReservation
-./wrk -D exp -t <num-threads> -c <num-conns> -d <duration> -L -s ./wrk2_lua_scripts/mixed-workload_type_1.lua http://frontend.hotel-res.svc.cluster.local:5000 -R <reqs-per-sec>
+./wrk2/wrk -D exp -t <num-threads> -c <num-conns> -d <duration> -L -s ./wrk2/scripts/hotel-reservation/mixed-workload_type_1.lua http://[cluster-ip]:5000 -R <reqs-per-sec><reqs-per-sec>
 ```
 
 ##### Example
 ```bash
 cd /root/DeathStarBench/hotelReservation
-./wrk -D exp -t 2 -c 2 -d 30 -L -s ./wrk2_lua_scripts/mixed-workload_type_1.lua http://frontend.hotel-res.svc.cluster.local:5000 -R 2 
+./wrk -D exp -t 2 -c 2 -d 30 -L -s ./wrk2/scripts/hotel-reservation/mixed-workload_type_1.lua http://[cluster-ip]:5000 -R 2 
 ```
 
-- for wrk
+### wrk
 
-```
-./wrk/wrk -t1 -c1 -d60s -s ./wrk2/scripts/hotel-reservation/mixed-workload_type_1.lua http://x.x.x.x:5000 --latency
+
+```bash
+git clone https://github.com/wg/wrk # run make
+./wrk/wrk -t1 -c1 -d60s -s ./wrk2/scripts/hotel-reservation/mixed-workload_type_1.lua http://[cluster-ip]:5000 --latency
 ```
 
 
