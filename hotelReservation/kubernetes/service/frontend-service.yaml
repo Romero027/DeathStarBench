@@ -10,7 +10,7 @@ metadata:
   name: frontend
 spec:
   ports:
-    - name: grpc-frontend
+    - name: http-frontend
       port: 5000
       targetPort: 5000
   selector:
