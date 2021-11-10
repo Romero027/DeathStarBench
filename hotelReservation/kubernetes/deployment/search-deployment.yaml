@@ -25,7 +25,7 @@ spec:
       labels:
         io.kompose.service: search
     spec:
-      nodeName: h3.istio.gaia-pg0.clemson.cloudlab.us
+      nodeName: h2.istio.gaia-pg0.clemson.cloudlab.us
       containers:
         - command:
             - search
