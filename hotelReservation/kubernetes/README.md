@@ -27,7 +27,7 @@
 
 ### Istio Configs
 
-- Install: `istioctl install --set profile=demo -y`
+- Install: `istioctl install --set profile=default -y`
 - Enable auto injection: `kubectl label namespace default istio-injection=enabled`
 - Disable auto injection: `kubectl label namespace default istio-injection-`
 - Config proxies:
