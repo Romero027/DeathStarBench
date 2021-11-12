@@ -109,5 +109,4 @@ end
 
 request = function()
     return user_login()
-  end
 end
