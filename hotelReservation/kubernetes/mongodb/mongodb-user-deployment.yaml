@@ -26,7 +26,7 @@ spec:
       labels:
         io.kompose.service: mongodb-user
     spec:
-      nodeName: h3.istio.gaia-pg0.clemson.cloudlab.us
+      nodeName: h3.mesh.gaia-pg0.clemson.cloudlab.us
       containers:
         - image: mongo
           name: hotel-reserv-user-mongo
