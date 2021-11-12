@@ -43,11 +43,21 @@ Read the Readme file in Kubernetes directory. (Note that the ports in default im
 
 #### workload generation
 
- - Install luarocks (`apt-get install luarocks`) and luasocket (`luarocks install luasocket`). run `make` in /wrk. 
+ - Install luarocks (`sudo apt-get install luarocks`) and luasocket (`sudo luarocks install luasocket`). run `make` in /wrk. 
 
 ```bash
 ./wrk2/wrk -D exp -t <num-threads> -c <num-conns> -d <duration> -L -s ./wrk2/scripts/hotel-reservation/mixed-workload_type_1.lua http://x.x.x.x:5000 -R <reqs-per-sec>
 ```
+
+- Use wrk 
+```bash
+git clone https://github.com/wg/wrk.git
+cd wrk
+make
+wrk -t12 -c400 -d30s -s ./wrk2/scripts/hotel-reservation/mixed-workload_type_1.lua http://x.x.x.x:5000
+```
+
+
 
 ### Questions and contact
 
