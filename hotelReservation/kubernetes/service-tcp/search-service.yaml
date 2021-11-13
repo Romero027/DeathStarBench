@@ -10,7 +10,7 @@ metadata:
   name: search
 spec:
   ports:
-    - name: search
+    - name: tcp-search
       port: 8082
       targetPort: 8082
   selector:

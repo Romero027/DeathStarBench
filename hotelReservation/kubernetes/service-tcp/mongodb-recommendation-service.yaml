@@ -10,7 +10,7 @@ metadata:
   name: mongodb-recommendation
 spec:
   ports:
-    - name: recommendation
+    - name: tcp-recommendation
       port: 27017
       targetPort: 27017
   selector:

@@ -10,7 +10,7 @@ metadata:
   name: memcached-reserve
 spec:
   ports:
-    - name: "memcached-reserve"
+    - name: tcp-memcached-reserve
       port: 11211
       targetPort: 11211
   selector:

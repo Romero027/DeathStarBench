@@ -10,7 +10,7 @@ metadata:
   name: mongodb-rate
 spec:
   ports:
-    - name: rate
+    - name: tcp-rate
       port: 27017
       targetPort: 27017
   selector:

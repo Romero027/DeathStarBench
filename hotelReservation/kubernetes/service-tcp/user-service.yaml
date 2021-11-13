@@ -10,7 +10,7 @@ metadata:
   name: user
 spec:
   ports:
-    - name: user
+    - name: tcp-user
       port: 8086
       targetPort: 8086
   selector:
