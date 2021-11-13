@@ -36,7 +36,7 @@ spec:
             limits:
               cpu: 1000m
           volumeMounts:
-            - mountPath: /data/db
+            - mountPath: /mnt/data/db
               name: profile
       hostname: profile-db
       restartPolicy: Always
