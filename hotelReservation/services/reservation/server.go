@@ -227,6 +227,7 @@ func (s *Server) MakeReservation(ctx context.Context, req *pb.Request) (*pb.Resu
 
 // CheckAvailability checks if given information is available
 func (s *Server) CheckAvailability(ctx context.Context, req *pb.Request) (*pb.Result, error) {
+	fmt.Printf("-----------------------------------\n")
 	res := new(pb.Result)
 	res.HotelId = make([]string, 0)
 

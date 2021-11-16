@@ -132,6 +132,7 @@ func (s *Server) initRateClient(name string) error {
 // Nearby returns ids of nearby hotels ordered by ranking algo
 func (s *Server) Nearby(ctx context.Context, req *pb.NearbyRequest) (*pb.SearchResult, error) {
 	// find nearby hotels
+	fmt.Printf("-----------------------------------\n")
 	fmt.Printf("in Search Nearby\n")
 
 	fmt.Printf("nearby lat = %f\n, and lon = %f\n", req.Lat, req.Lon)

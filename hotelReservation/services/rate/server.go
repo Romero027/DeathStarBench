@@ -100,6 +100,7 @@ func (s *Server) Shutdown() {
 
 // GetRates gets rates for hotels for specific date range.
 func (s *Server) GetRates(ctx context.Context, req *pb.Request) (*pb.Result, error) {
+	fmt.Printf("-----------------------------------\n")
 	res := new(pb.Result)
 	// session, err := mgo.Dial("mongodb-rate")
 	// if err != nil {

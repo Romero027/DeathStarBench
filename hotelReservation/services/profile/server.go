@@ -107,8 +107,8 @@ func (s *Server) GetProfiles(ctx context.Context, req *pb.Request) (*pb.Result, 
 	// }
 	// defer session.Close()
 	// fmt.Printf("In GetProfiles\n")
-
-	// fmt.Printf("In GetProfiles after setting c\n")
+	fmt.Printf("-----------------------------------\n")
+	fmt.Printf("In GetProfiles after setting c\n")
 
 	res := new(pb.Result)
 	hotels := make([]*pb.Hotel, 0)

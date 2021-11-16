@@ -127,6 +127,7 @@ func (s *Server) Nearby(ctx context.Context, req *pb.Request) (*pb.Result, error
 	for _, p := range points {
 		fmt.Printf("In geo Nearby return hotelId = %s\n", p.Id())
 		res.HotelIds = append(res.HotelIds, p.Id())
+		break // !!!!!!!
 	}
 
 	fmt.Printf("-----------------------------------\n")

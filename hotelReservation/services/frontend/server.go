@@ -136,6 +136,7 @@ func (s *Server) initReservation(name string) error {
 }
 
 func (s *Server) searchHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Printf("-----------------------------------\n")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	ctx := r.Context()
 
