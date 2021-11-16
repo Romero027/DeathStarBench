@@ -147,8 +147,8 @@ func (s *Server) GetProfiles(ctx context.Context, req *pb.Request) (*pb.Result, 
 			// }
 			hotels = append(hotels, hotel_prof)
 
-			prof_json, err := json.Marshal(hotel_prof)
-			memc_str := string(prof_json)
+			// prof_json, err := json.Marshal(hotel_prof)
+			// memc_str := string(prof_json)
 
 			// write to memcached
 			//s.MemcClient.Set(&memcache.Item{Key: i, Value: []byte(memc_str)})
@@ -161,6 +161,6 @@ func (s *Server) GetProfiles(ctx context.Context, req *pb.Request) (*pb.Result, 
 
 	res.Hotels = hotels
 	fmt.Printf("In GetProfiles after getting resp\n")
-	fmt.Printf("-----------------------------------")
+	fmt.Printf("-----------------------------------\n")
 	return res, nil
 }

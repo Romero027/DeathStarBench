@@ -325,7 +325,7 @@ func (s *Server) CheckAvailability(ctx context.Context, req *pb.Request) (*pb.Re
 		}
 	}
 
-	fmt.Printf("-----------------------------------")
+	fmt.Printf("-----------------------------------\n")
 	return res, nil
 }
 

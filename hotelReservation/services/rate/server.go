@@ -164,7 +164,7 @@ func (s *Server) GetRates(ctx context.Context, req *pb.Request) (*pb.Result, err
 	sort.Sort(ratePlans)
 	res.RatePlans = ratePlans
 
-	fmt.Printf("-----------------------------------")
+	fmt.Printf("-----------------------------------\n")
 	return res, nil
 }
 

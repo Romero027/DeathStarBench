@@ -129,7 +129,7 @@ func (s *Server) Nearby(ctx context.Context, req *pb.Request) (*pb.Result, error
 		res.HotelIds = append(res.HotelIds, p.Id())
 	}
 
-	fmt.Printf("-----------------------------------")
+	fmt.Printf("-----------------------------------\n")
 	return res, nil
 }
 
