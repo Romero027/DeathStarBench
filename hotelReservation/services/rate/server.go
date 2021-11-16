@@ -130,7 +130,7 @@ func (s *Server) GetRates(ctx context.Context, req *pb.Request) (*pb.Result, err
 			}
 		} else if err == memcache.ErrCacheMiss {
 
-			fmt.Printf("memcached miss, hotelId = %s\n, searching in mongoDB", hotelID)
+			fmt.Printf("memcached miss, hotelId = %s, searching in mongoDB\n", hotelID)
 
 			// memcached miss, set up mongo connection
 			session := s.MongoSession.Copy()

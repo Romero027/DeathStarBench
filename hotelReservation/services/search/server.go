@@ -135,7 +135,7 @@ func (s *Server) Nearby(ctx context.Context, req *pb.NearbyRequest) (*pb.SearchR
 	fmt.Printf("-----------------------------------\n")
 	fmt.Printf("in Search Nearby\n")
 
-	fmt.Printf("nearby lat = %f\n, and lon = %f\n", req.Lat, req.Lon)
+	fmt.Printf("nearby lat = %f, and lon = %f\n", req.Lat, req.Lon)
 
 	nearby, err := s.geoClient.Nearby(ctx, &geo.Request{
 		Lat: req.Lat,
@@ -173,7 +173,6 @@ func (s *Server) Nearby(ctx context.Context, req *pb.NearbyRequest) (*pb.SearchR
 	for _, ratePlan := range rates.RatePlans {
 		fmt.Printf("get RatePlan HotelId = %s, Code = %s\n", ratePlan.HotelId, ratePlan.Code)
 		res.HotelIds = append(res.HotelIds, ratePlan.HotelId)
-		break
 	}
 
 	fmt.Printf("-----------------------------------\n")

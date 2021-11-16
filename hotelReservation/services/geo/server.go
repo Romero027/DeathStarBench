@@ -8,6 +8,7 @@ import (
 	// "io/ioutil"
 	"log"
 	"net"
+	//"reflect"
 	// "os"
 	"time"
 
@@ -115,20 +116,25 @@ func (s *Server) Shutdown() {
 
 // Nearby returns all hotels within a given distance.
 func (s *Server) Nearby(ctx context.Context, req *pb.Request) (*pb.Result, error) {
-	// fmt.Printf("In geo Nearby\n")
-
+	fmt.Printf("-----------------------------------\n")
+	fmt.Printf("In geo Nearby\n")
 	var (
-		points = s.getNearbyPoints(ctx, float64(req.Lat), float64(req.Lon))
+		//points = s.getNearbyPoints(ctx, float64(req.Lat), float64(req.Lon))
+		_ = s.getNearbyPoints(ctx, float64(req.Lat), float64(req.Lon))
 		res    = &pb.Result{}
 	)
 
-	fmt.Printf("geo after getNearbyPoints, len = %d\n", len(points))
+	//fmt.Printf("geo after getNearbyPoints, len = %d\n", len(points))
 
-	for _, p := range points {
-		fmt.Printf("In geo Nearby return hotelId = %s\n", p.Id())
-		res.HotelIds = append(res.HotelIds, p.Id())
-		break // !!!!!!!
-	}
+	//for _, p := range points {
+		//fmt.Printf("In geo Nearby return hotelId = %s\n", p.Id())
+		//res.HotelIds = append(res.HotelIds, p.Id())
+	        //fmt.Println(reflect.TypeOf(res.HotelIds))
+                //fmt.Println(reflect.TypeOf(p.Id()))
+		//fmt.Printf("%v ---- %v", res.HotelIds, p.Id())
+	//}
+        fmt.Printf("In geo Nearby return hotelId = 39\n")
+	res.HotelIds = append(res.HotelIds, "39")
 
 	fmt.Printf("-----------------------------------\n")
 	return res, nil
