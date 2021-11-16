@@ -111,7 +111,7 @@ func (s *Server) GetRates(ctx context.Context, req *pb.Request) (*pb.Result, err
 
 	for _, hotelID := range req.HotelIds {
 		// first check memcached
-		fmt.Printf("Sending a request to Memcached!")
+		fmt.Printf("Sending a request to Memcached!\n")
 		item, err := s.MemcClient.Get(hotelID)
 		if err == nil {
 			// memcached hit
@@ -139,7 +139,7 @@ func (s *Server) GetRates(ctx context.Context, req *pb.Request) (*pb.Result, err
 			memc_str := ""
 
 			tmpRatePlans := make(RatePlans, 0)
-			fmt.Printf("Sending a request to MongoDB!")
+			fmt.Printf("Sending a request to MongoDB!\n")
 			err := c.Find(&bson.M{"hotelId": hotelID}).All(&tmpRatePlans)
 			if err != nil {
 				panic(err)
