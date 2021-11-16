@@ -117,6 +117,7 @@ func (s *Server) GetProfiles(ctx context.Context, req *pb.Request) (*pb.Result, 
 
 	for _, i := range req.HotelIds {
 		// first check memcached
+		fmt.Printf("Sending a request to Memcached!")
 		item, err := s.MemcClient.Get(i)
 		if err == nil {
 			// memcached hit
@@ -136,6 +137,7 @@ func (s *Server) GetProfiles(ctx context.Context, req *pb.Request) (*pb.Result, 
 			c := session.DB("profile-db").C("hotels")
 
 			hotel_prof := new(pb.Hotel)
+			fmt.Printf("Sending a request to MongoDB!")
 			err := c.Find(bson.M{"id": i}).One(&hotel_prof)
 
 			if err != nil {

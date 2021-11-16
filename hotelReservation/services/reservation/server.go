@@ -263,6 +263,7 @@ func (s *Server) CheckAvailability(ctx context.Context, req *pb.Request) (*pb.Re
 
 			// first check memc
 			memc_key := hotelId + "_" + inDate.String()[0:10] + "_" + outdate
+			fmt.Printf("Sending a request to Memcached!")
 			item, err := s.MemcClient.Get(memc_key)
 
 			if err == nil {
@@ -273,6 +274,7 @@ func (s *Server) CheckAvailability(ctx context.Context, req *pb.Request) (*pb.Re
 			} else if err == memcache.ErrCacheMiss {
 				// memcached miss
 				reserve := make([]reservation, 0)
+				fmt.Printf("Sending a request to MongoDB!")
 				err := c.Find(&bson.M{"hotelId": hotelId, "inDate": indate, "outDate": outdate}).All(&reserve)
 				if err != nil {
 					panic(err)
@@ -292,6 +294,7 @@ func (s *Server) CheckAvailability(ctx context.Context, req *pb.Request) (*pb.Re
 			// check capacity
 			// check memc capacity
 			memc_cap_key := hotelId + "_cap"
+			fmt.Printf("Sending a request to Memcached!")
 			item, err = s.MemcClient.Get(memc_cap_key)
 			hotel_cap := 0
 
@@ -302,6 +305,7 @@ func (s *Server) CheckAvailability(ctx context.Context, req *pb.Request) (*pb.Re
 				// fmt.Printf("memcached hit %s = %d\n", memc_cap_key, hotel_cap)
 			} else if err == memcache.ErrCacheMiss { 
 				var num number
+				fmt.Printf("Sending a request to MongoDB!")
 				err = c1.Find(&bson.M{"hotelId": hotelId}).One(&num)
 				if err != nil {
 					panic(err)
