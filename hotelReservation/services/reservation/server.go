@@ -182,7 +182,7 @@ func (s *Server) MakeReservation(ctx context.Context, req *pb.Request) (*pb.Resu
 			hotel_cap = int(num.Number)
 
 			// write to memcache
-			s.MemcClient.Set(&memcache.Item{Key: memc_cap_key, Value: []byte(strconv.Itoa(hotel_cap))})
+			//s.MemcClient.Set(&memcache.Item{Key: memc_cap_key, Value: []byte(strconv.Itoa(hotel_cap))})
 		} else {
 			fmt.Printf("Memmcached error = %s\n", err)
 			panic(err)
@@ -257,7 +257,8 @@ func (s *Server) CheckAvailability(ctx context.Context, req *pb.Request) (*pb.Re
 			// check reservations
 			count := 0
 			inDate = inDate.AddDate(0, 0, 1)
-			// fmt.Printf("reservation check date %s\n", inDate.String()[0:10])
+			fmt.Printf("reservation check hotel %s\n", hotelId)
+			fmt.Printf("reservation check date %s\n", inDate.String()[0:10])
 			outdate := inDate.String()[0:10]
 
 			// first check memc
@@ -267,6 +268,7 @@ func (s *Server) CheckAvailability(ctx context.Context, req *pb.Request) (*pb.Re
 			if err == nil {
 				// memcached hit
 				count, _ = strconv.Atoi(string(item.Value))
+				fmt.Printf("Memcached hit!!! Should not go here!!!!!!!!\n")
 				// fmt.Printf("memcached hit %s = %d\n", memc_key, count)
 			} else if err == memcache.ErrCacheMiss {
 				// memcached miss
@@ -276,14 +278,14 @@ func (s *Server) CheckAvailability(ctx context.Context, req *pb.Request) (*pb.Re
 					panic(err)
 				}
 				for _, r := range reserve {
-					// fmt.Printf("reservation check reservation number = %d\n", hotelId)
+					fmt.Printf("reservation check reservation number = %d\n", hotelId)
 					count += r.Number
 				}
 
 				// update memcached
-				s.MemcClient.Set(&memcache.Item{Key: memc_key, Value: []byte(strconv.Itoa(count))})
+				//s.MemcClient.Set(&memcache.Item{Key: memc_key, Value: []byte(strconv.Itoa(count))})
 			} else {
-				fmt.Printf("Memmcached error = %s\n", err)
+				fmt.Printf("Memcached error = %s\n", err)
 				panic(err)
 			}
 
@@ -296,6 +298,7 @@ func (s *Server) CheckAvailability(ctx context.Context, req *pb.Request) (*pb.Re
 			if err == nil {
 				// memcached hit
 				hotel_cap, _ = strconv.Atoi(string(item.Value))
+				fmt.Printf("Memcached hit!!! Should not go here!!!!!!!!\n")
 				// fmt.Printf("memcached hit %s = %d\n", memc_cap_key, hotel_cap)
 			} else if err == memcache.ErrCacheMiss { 
 				var num number
@@ -305,9 +308,9 @@ func (s *Server) CheckAvailability(ctx context.Context, req *pb.Request) (*pb.Re
 				}
 				hotel_cap = int(num.Number)
 				// update memcached
-				s.MemcClient.Set(&memcache.Item{Key: memc_cap_key, Value: []byte(strconv.Itoa(hotel_cap))})
+				//s.MemcClient.Set(&memcache.Item{Key: memc_cap_key, Value: []byte(strconv.Itoa(hotel_cap))})
 			} else {
-				fmt.Printf("Memmcached error = %s\n", err)
+				fmt.Printf("Memcached error = %s\n", err)
 				panic(err)
 			}
 
@@ -322,6 +325,7 @@ func (s *Server) CheckAvailability(ctx context.Context, req *pb.Request) (*pb.Re
 		}
 	}
 
+	fmt.Printf("-----------------------------------")
 	return res, nil
 }
 

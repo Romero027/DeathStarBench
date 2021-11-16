@@ -122,7 +122,7 @@ func (s *Server) GetProfiles(ctx context.Context, req *pb.Request) (*pb.Result, 
 			// memcached hit
 			// profile_str := string(item.Value)
 
-			// fmt.Printf("memc hit\n")
+			fmt.Printf("Memcached hit!!! Should not go here!!!!!!!!\n")
 			// fmt.Println(profile_str)
 
 			hotel_prof := new(pb.Hotel)
@@ -151,7 +151,7 @@ func (s *Server) GetProfiles(ctx context.Context, req *pb.Request) (*pb.Result, 
 			memc_str := string(prof_json)
 
 			// write to memcached
-			s.MemcClient.Set(&memcache.Item{Key: i, Value: []byte(memc_str)})
+			//s.MemcClient.Set(&memcache.Item{Key: i, Value: []byte(memc_str)})
 
 		} else {
 			fmt.Printf("Memmcached error = %s\n", err)
@@ -160,6 +160,7 @@ func (s *Server) GetProfiles(ctx context.Context, req *pb.Request) (*pb.Result, 
 	}
 
 	res.Hotels = hotels
-	// fmt.Printf("In GetProfiles after getting resp\n")
+	fmt.Printf("In GetProfiles after getting resp\n")
+	fmt.Printf("-----------------------------------")
 	return res, nil
 }

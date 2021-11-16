@@ -115,7 +115,7 @@ func (s *Server) GetRates(ctx context.Context, req *pb.Request) (*pb.Result, err
 		if err == nil {
 			// memcached hit
 			rate_strs := strings.Split(string(item.Value), "\n")
-
+			fmt.Printf("Memcached hit!!! Should not go here!!!!!!!!\n")
 			// fmt.Printf("memc hit, hotelId = %s\n", hotelID)
 			// fmt.Println(rate_strs)
 
@@ -128,7 +128,7 @@ func (s *Server) GetRates(ctx context.Context, req *pb.Request) (*pb.Result, err
 			}
 		} else if err == memcache.ErrCacheMiss {
 
-			// fmt.Printf("memc miss, hotelId = %s\n", hotelID)
+			fmt.Printf("memcached miss, hotelId = %s\n, searching in mongoDB", hotelID)
 
 			// memcached miss, set up mongo connection
 			session := s.MongoSession.Copy()
@@ -153,7 +153,7 @@ func (s *Server) GetRates(ctx context.Context, req *pb.Request) (*pb.Result, err
 			}
 
 			// write to memcached
-			s.MemcClient.Set(&memcache.Item{Key: hotelID, Value: []byte(memc_str)})
+			//s.MemcClient.Set(&memcache.Item{Key: hotelID, Value: []byte(memc_str)})
 
 		} else {
 			fmt.Printf("Memmcached error = %s\n", err)
@@ -164,6 +164,7 @@ func (s *Server) GetRates(ctx context.Context, req *pb.Request) (*pb.Result, err
 	sort.Sort(ratePlans)
 	res.RatePlans = ratePlans
 
+	fmt.Printf("-----------------------------------")
 	return res, nil
 }
 

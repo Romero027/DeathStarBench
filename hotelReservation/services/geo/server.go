@@ -122,18 +122,19 @@ func (s *Server) Nearby(ctx context.Context, req *pb.Request) (*pb.Result, error
 		res    = &pb.Result{}
 	)
 
-	// fmt.Printf("geo after getNearbyPoints, len = %d\n", len(points))
+	fmt.Printf("geo after getNearbyPoints, len = %d\n", len(points))
 
 	for _, p := range points {
-		// fmt.Printf("In geo Nearby return hotelId = %s\n", p.Id())
+		fmt.Printf("In geo Nearby return hotelId = %s\n", p.Id())
 		res.HotelIds = append(res.HotelIds, p.Id())
 	}
 
+	fmt.Printf("-----------------------------------")
 	return res, nil
 }
 
 func (s *Server) getNearbyPoints(ctx context.Context, lat, lon float64) []geoindex.Point {
-	// fmt.Printf("In geo getNearbyPoints, lat = %f, lon = %f\n", lat, lon)
+	fmt.Printf("In geo getNearbyPoints, lat = %f, lon = %f\n", lat, lon)
 
 	center := &geoindex.GeoPoint{
 		Pid:  "",

@@ -132,10 +132,10 @@ func (s *Server) initRateClient(name string) error {
 // Nearby returns ids of nearby hotels ordered by ranking algo
 func (s *Server) Nearby(ctx context.Context, req *pb.NearbyRequest) (*pb.SearchResult, error) {
 	// find nearby hotels
-	// fmt.Printf("in Search Nearby\n")
+	fmt.Printf("in Search Nearby\n")
 
-	// fmt.Printf("nearby lat = %f\n", req.Lat)
-	// fmt.Printf("nearby lon = %f\n", req.Lon)
+	fmt.Printf("nearby lat = %f\n", req.Lat)
+	fmt.Printf("nearby lon = %f\n", req.Lon)
 
 	nearby, err := s.geoClient.Nearby(ctx, &geo.Request{
 		Lat: req.Lat,
@@ -146,9 +146,11 @@ func (s *Server) Nearby(ctx context.Context, req *pb.NearbyRequest) (*pb.SearchR
 		return nil, err
 	}
 
-	// for _, hid := range nearby.HotelIds {
-	// 	fmt.Printf("get Nearby hotelId = %s\n", hid)
-	// }
+	fmt.Printf("printing Nearby request result\n")
+	for _, hid := range nearby.HotelIds {
+		fmt.Printf("get Nearby hotelId = %s\n", hid)
+	}
+	fmt.Printf("finish printing Nearby request result\n")
 
 	// find rates for hotels
 	rates, err := s.rateClient.GetRates(ctx, &rate.Request{
@@ -172,5 +174,7 @@ func (s *Server) Nearby(ctx context.Context, req *pb.NearbyRequest) (*pb.SearchR
 		// fmt.Printf("get RatePlan HotelId = %s, Code = %s\n", ratePlan.HotelId, ratePlan.Code)
 		res.HotelIds = append(res.HotelIds, ratePlan.HotelId)
 	}
+
+	fmt.Printf("-----------------------------------")
 	return res, nil
 }
