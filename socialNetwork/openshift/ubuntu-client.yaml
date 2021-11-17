@@ -23,6 +23,9 @@ spec:
       containers:
       - name: ubuntu-client
         image: ubuntu
+        env:
+          - name: DEBIAN_FRONTEND
+            value: noninteractive
         command:  ["/bin/sh", "-c"]
         args:
           - apt-get -y update &&
