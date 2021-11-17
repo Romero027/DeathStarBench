@@ -136,10 +136,11 @@ func (s *Server) initReservation(name string) error {
 }
 
 func (s *Server) searchHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Printf("-----------------------------------\n")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	ctx := r.Context()
 
-	// fmt.Printf("starts searchHandler\n")
+	fmt.Printf("starts searchHandler\n")
 
 	// in/out dates from query params
 	inDate, outDate := r.URL.Query().Get("inDate"), r.URL.Query().Get("outDate")
@@ -174,10 +175,10 @@ func (s *Server) searchHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// fmt.Printf("searchHandler gets searchResp\n")
-	// for _, hid := range searchResp.HotelIds {
-	// 	fmt.Printf("search Handler hotelId = %s\n", hid)
-	// }
+	fmt.Printf("searchHandler gets searchResp\n")
+	for _, hid := range searchResp.HotelIds {
+		fmt.Printf("search Handler hotelId = %s\n", hid)
+	}
 
 	// grab locale from query params or default to en
 	locale := r.URL.Query().Get("locale")
@@ -198,8 +199,8 @@ func (s *Server) searchHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// fmt.Printf("searchHandler gets reserveResp\n")
-	// fmt.Printf("searchHandler gets reserveResp.HotelId = %s\n", reservationResp.HotelId)
+	//fmt.Printf("searchHandler gets reserveResp\n")
+	fmt.Printf("searchHandler gets reserveResp.HotelId = %s\n", reservationResp.HotelId)
 
 	// hotel profiles
 	profileResp, err := s.profileClient.GetProfiles(ctx, &profile.Request{
@@ -212,7 +213,8 @@ func (s *Server) searchHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// fmt.Printf("searchHandler gets profileResp\n")
+	fmt.Printf("searchHandler gets profileResp\n")
+	fmt.Printf("-----------------------------------\n")
 
 	json.NewEncoder(w).Encode(geoJSONResponse(profileResp.Hotels))
 }

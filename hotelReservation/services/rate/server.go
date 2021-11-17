@@ -100,6 +100,7 @@ func (s *Server) Shutdown() {
 
 // GetRates gets rates for hotels for specific date range.
 func (s *Server) GetRates(ctx context.Context, req *pb.Request) (*pb.Result, error) {
+	fmt.Printf("-----------------------------------\n")
 	res := new(pb.Result)
 	// session, err := mgo.Dial("mongodb-rate")
 	// if err != nil {
@@ -111,11 +112,12 @@ func (s *Server) GetRates(ctx context.Context, req *pb.Request) (*pb.Result, err
 
 	for _, hotelID := range req.HotelIds {
 		// first check memcached
+		fmt.Printf("Sending a request to Memcached!\n")
 		item, err := s.MemcClient.Get(hotelID)
 		if err == nil {
 			// memcached hit
 			rate_strs := strings.Split(string(item.Value), "\n")
-
+			fmt.Printf("Memcached hit!!! Should not go here!!!!!!!!\n")
 			// fmt.Printf("memc hit, hotelId = %s\n", hotelID)
 			// fmt.Println(rate_strs)
 
@@ -128,7 +130,7 @@ func (s *Server) GetRates(ctx context.Context, req *pb.Request) (*pb.Result, err
 			}
 		} else if err == memcache.ErrCacheMiss {
 
-			// fmt.Printf("memc miss, hotelId = %s\n", hotelID)
+			fmt.Printf("memcached miss, hotelId = %s, searching in mongoDB\n", hotelID)
 
 			// memcached miss, set up mongo connection
 			session := s.MongoSession.Copy()
@@ -138,6 +140,7 @@ func (s *Server) GetRates(ctx context.Context, req *pb.Request) (*pb.Result, err
 			memc_str := ""
 
 			tmpRatePlans := make(RatePlans, 0)
+			fmt.Printf("Sending a request to MongoDB!\n")
 			err := c.Find(&bson.M{"hotelId": hotelID}).All(&tmpRatePlans)
 			if err != nil {
 				panic(err)
@@ -153,7 +156,7 @@ func (s *Server) GetRates(ctx context.Context, req *pb.Request) (*pb.Result, err
 			}
 
 			// write to memcached
-			s.MemcClient.Set(&memcache.Item{Key: hotelID, Value: []byte(memc_str)})
+			//s.MemcClient.Set(&memcache.Item{Key: hotelID, Value: []byte(memc_str)})
 
 		} else {
 			fmt.Printf("Memmcached error = %s\n", err)
@@ -164,6 +167,7 @@ func (s *Server) GetRates(ctx context.Context, req *pb.Request) (*pb.Result, err
 	sort.Sort(ratePlans)
 	res.RatePlans = ratePlans
 
+	fmt.Printf("-----------------------------------\n")
 	return res, nil
 }
 

@@ -107,8 +107,8 @@ func (s *Server) GetProfiles(ctx context.Context, req *pb.Request) (*pb.Result, 
 	// }
 	// defer session.Close()
 	// fmt.Printf("In GetProfiles\n")
-
-	// fmt.Printf("In GetProfiles after setting c\n")
+	fmt.Printf("-----------------------------------\n")
+	fmt.Printf("In GetProfiles\n")
 
 	res := new(pb.Result)
 	hotels := make([]*pb.Hotel, 0)
@@ -117,12 +117,13 @@ func (s *Server) GetProfiles(ctx context.Context, req *pb.Request) (*pb.Result, 
 
 	for _, i := range req.HotelIds {
 		// first check memcached
+		fmt.Printf("Sending a request to Memcached!\n")
 		item, err := s.MemcClient.Get(i)
 		if err == nil {
 			// memcached hit
 			// profile_str := string(item.Value)
 
-			// fmt.Printf("memc hit\n")
+			fmt.Printf("Memcached hit!!! Should not go here!!!!!!!!\n")
 			// fmt.Println(profile_str)
 
 			hotel_prof := new(pb.Hotel)
@@ -136,6 +137,7 @@ func (s *Server) GetProfiles(ctx context.Context, req *pb.Request) (*pb.Result, 
 			c := session.DB("profile-db").C("hotels")
 
 			hotel_prof := new(pb.Hotel)
+			fmt.Printf("Sending a request to MongoDB!\n")
 			err := c.Find(bson.M{"id": i}).One(&hotel_prof)
 
 			if err != nil {
@@ -147,11 +149,11 @@ func (s *Server) GetProfiles(ctx context.Context, req *pb.Request) (*pb.Result, 
 			// }
 			hotels = append(hotels, hotel_prof)
 
-			prof_json, err := json.Marshal(hotel_prof)
-			memc_str := string(prof_json)
+			// prof_json, err := json.Marshal(hotel_prof)
+			// memc_str := string(prof_json)
 
 			// write to memcached
-			s.MemcClient.Set(&memcache.Item{Key: i, Value: []byte(memc_str)})
+			//s.MemcClient.Set(&memcache.Item{Key: i, Value: []byte(memc_str)})
 
 		} else {
 			fmt.Printf("Memmcached error = %s\n", err)
@@ -160,6 +162,7 @@ func (s *Server) GetProfiles(ctx context.Context, req *pb.Request) (*pb.Result, 
 	}
 
 	res.Hotels = hotels
-	// fmt.Printf("In GetProfiles after getting resp\n")
+	fmt.Printf("In GetProfiles after getting resp\n")
+	fmt.Printf("-----------------------------------\n")
 	return res, nil
 }
