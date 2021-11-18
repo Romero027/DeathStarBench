@@ -7,7 +7,7 @@
 4. kubectl get svc
 5. look for ip for service: nginx-thrift replace it to ../scripts/init\_social\_graph.py line 137
 6. ubuntuclient=$(kubectl -n social-network get pod | grep ubuntu-client- | cut -f 1 -d " ")
-7. kubectl cp <abs path of DeathStarBench> social-network/"${ubuntuclient}":/root
+7. kubectl cp 'abs path of DeathStarBench' social-network/"${ubuntuclient}":/root
 8. log into ubuntuclient pod, then inside pods running the rest of commands
 9. cd /root/DeathStarBench/kube-socialNetwork
 10. python scripts/init\_social\_graph.py
