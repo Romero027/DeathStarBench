@@ -9,12 +9,12 @@ function showTimeline(type) {
         var params = "start=" + start + "&stop=" + stop;
         const Http = new XMLHttpRequest();
         // const url = 'http://' + window.location.hostname + ':8080/api/user-timeline/read';
-        const url = 'http://' + window.location.hostname + ':8080/api/' + type + '/read';
+        const url = 'http://' + window.location.hostname + ':18080/api/' + type + '/read';
         Http.open("GET", url + "?" + params, true);
         Http.onreadystatechange = function () {
             if (this.readyState == 2 && this.status == 401) {
                 console.log("unauthorized user login")
-                window.location.href = 'http://' + window.location.hostname + ":8080/index.html";
+                window.location.href = 'http://' + window.location.hostname + ":18080/index.html";
                 localStorage.clear();
             }
             else if (this.readyState == 4 && this.status == 200) {
@@ -84,12 +84,12 @@ function show_Mentioned_User_Timeline(mentioned_user) {
     if (start !== "" && stop !== "") {
         var params = "start=" + start + "&stop=" + stop;
         const Http = new XMLHttpRequest();
-        const url = 'http://' + window.location.hostname + ':8080/api/home-timeline/read';
+        const url = 'http://' + window.location.hostname + ':18080/api/home-timeline/read';
         Http.open("GET", url + "?" + params, true);
         Http.onreadystatechange = function () {
             if (this.readyState == 2 && this.status == 401) {
                 console.log("unauthorized user login")
-                window.location.href = 'http://' + window.location.hostname + ":8080/index.html";
+                window.location.href = 'http://' + window.location.hostname + ":18080/index.html";
                 localStorage.clear();
             }
             else if (this.readyState == 4 && this.status == 200) {
@@ -171,7 +171,7 @@ function replaceMentionWithHTMLLinks(text) {
 function get_follower() {
     username = document.getElementById("username");
     const Http = new XMLHttpRequest();
-    const url = 'http://' + window.location.hostname + ':8080/api/user/get_follower';
+    const url = 'http://' + window.location.hostname + ':18080/api/user/get_follower';
     Http.open("GET", url, true);
     Http.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {

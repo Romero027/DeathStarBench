@@ -10,8 +10,8 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-  - port: 8080
-    targetPort: 8080
+  - port: 18080
+    targetPort: 18080
   selector:
     death-star-project: social-network
     app: media-frontend
@@ -41,7 +41,7 @@ spec:
       - name: media-frontend
         image: yg397/media-frontend:xenial
         ports:
-        - containerPort: 8080
+        - containerPort: 18080
         volumeMounts:
         - mountPath: /usr/local/openresty/nginx/lua-scripts
           name: lua-conf

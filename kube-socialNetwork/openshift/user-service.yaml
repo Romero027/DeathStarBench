@@ -9,7 +9,7 @@ metadata:
   namespace: social-network
 spec:
   ports:
-  - port: 9090
+  - port: 19090
   selector:
     death-star-project: social-network
     app: user-service
@@ -43,8 +43,14 @@ spec:
           - mountPath: /social-network-microservices/config/jaeger-config.yml
             subPath: jaeger-config.yml
             name: jaeger-conf-yaml
+          - mountPath: /social-network-microservices/config/service-config.json
+            subPath: service-config.json
+            name: service-config-json
       restartPolicy: Always
       volumes:
         - name: jaeger-conf-yaml
           configMap:
             name: jaeger-config-yaml
+        - name: service-config-json
+          configMap:
+            name: service-config-json
