@@ -13,6 +13,9 @@
 10. python scripts/init\_social\_graph.py
 11. cd wrk2
 12. make clean && make
-13. ./wrk -D exp -t 2 -c 4 -d 60 -L -s ./scripts/social-network/compose-post.lua http://nginx-thrift.social-network.svc.cluster.local:8080/wrk2-api/post/compose -R 5
+13. ./wrk -D exp -t 2 -c 4 -d 60 -L -s ./scripts/social-network/compose-post.lua http://nginx-thrift.social-network.svc.cluster.local:18080/wrk2-api/post/compose -R 5
 14. kubectl port-forward jaeger-agent-<pod id> 16686:16686 # for viewing traces
 15. on host with browser, ssh -L 16686:localhost:16686 hostIPAddress	
+  
+16. For Istio, simply allow auto-injection to namespace social-network
+17. make sure ubuntuclient is not injected, user does not need a proxy
