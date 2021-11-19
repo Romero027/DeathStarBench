@@ -172,13 +172,14 @@ func (s *Server) searchHandler(w http.ResponseWriter, r *http.Request) {
 		InDate:  inDate,
 		OutDate: outDate,
 	})
+	searchLatency := time.Now().Sub(timestamp)
+	fmt.Println("searchClient.Nearby took ", searchLatency.String())
+
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	searchLatency := time.Now().Sub(timestamp)
 
-	fmt.Printf("searchClient.Nearby took ", searchLatency.String())
 	for _, hid := range searchResp.HotelIds {
 		fmt.Printf("search Handler hotelId = %s\n", hid)
 	}
@@ -197,14 +198,16 @@ func (s *Server) searchHandler(w http.ResponseWriter, r *http.Request) {
 		OutDate:      outDate,
 		RoomNumber:   1,
 	})
+	reservationLatency := time.Now().Sub(timestamp)
+	fmt.Println("reservationClient.CheckAvailability took ", reservationLatency.String())
+
+
 	if err != nil {
 		fmt.Println("searchHandler CheckAvailability failed")
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	reservationLatency := time.Now().Sub(timestamp)
 
-	fmt.Printf("reservationClient.CheckAvailability took ", reservationLatency.String())
 	fmt.Printf("searchHandler gets reserveResp.HotelId = %s\n", reservationResp.HotelId)
 
 	// hotel profiles
@@ -213,14 +216,15 @@ func (s *Server) searchHandler(w http.ResponseWriter, r *http.Request) {
 		HotelIds: reservationResp.HotelId,
 		Locale:   locale,
 	})
+	profileLatency := time.Now().Sub(timestamp)
 	if err != nil {
 		fmt.Println("searchHandler GetProfiles failed")
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	profileLatency := time.Now().Sub(timestamp)
 
-	fmt.Printf("profileClient.GetProfiles took ", profileLatency.String())
+
+	fmt.Println("profileClient.GetProfiles took ", profileLatency.String())
 	// fmt.Printf("searchHandler gets profileResp in: ", profileLatency,"\n")
 	fmt.Printf("-----------------------------------\n")
 

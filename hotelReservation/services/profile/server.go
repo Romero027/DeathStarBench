@@ -118,7 +118,12 @@ func (s *Server) GetProfiles(ctx context.Context, req *pb.Request) (*pb.Result, 
 	for _, i := range req.HotelIds {
 		// first check memcached
 		fmt.Printf("Sending a request to Memcached!\n")
+
+		timestamp := time.Now()
 		item, err := s.MemcClient.Get(i)
+		memLatency := time.Now().Sub(timestamp)
+		fmt.Println("MemcClient.Get took", memLatency)
+
 		if err == nil {
 			// memcached hit
 			// profile_str := string(item.Value)
@@ -138,7 +143,11 @@ func (s *Server) GetProfiles(ctx context.Context, req *pb.Request) (*pb.Result, 
 
 			hotel_prof := new(pb.Hotel)
 			fmt.Printf("Sending a request to MongoDB!\n")
+			
+			timestamp = time.Now()
 			err := c.Find(bson.M{"id": i}).One(&hotel_prof)
+			mongoLatency := time.Now().Sub(timestamp)
+			fmt.Println("Mongo took", mongoLatency)
 
 			if err != nil {
 				log.Println("Failed get hotels data: ", err)
