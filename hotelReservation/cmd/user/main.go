@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"github.com/harlow/go-micro-services/registry"
 	"github.com/harlow/go-micro-services/services/user"
-	"github.com/harlow/go-micro-services/tracing"
+	//"github.com/harlow/go-micro-services/tracing"
 	"io/ioutil"
 	"log"
 	"os"
