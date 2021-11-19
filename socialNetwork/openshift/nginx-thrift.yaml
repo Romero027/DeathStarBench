@@ -40,6 +40,8 @@ spec:
       containers:
       - name: nginx-thrift
         image: yg397/openresty-thrift:xenial
+        #command: ["tail"]
+        #args: ["-f", "/dev/null"]
         ports:
         - containerPort: 8080
         volumeMounts:

@@ -20,6 +20,7 @@ function _M.ComposePost()
   local req_id = tonumber(string.sub(ngx.var.request_id, 0, 15), 16)
   local tracer = bridge_tracer.new_from_global()
   local parent_span_context = tracer:binary_extract(ngx.var.opentracing_binary_context)
+  ngx.log(ngx.ERR, "nginx SEND ComposePost")
 
   ngx.req.read_body()
   local post = ngx.req.get_post_args()
@@ -59,7 +60,7 @@ function _M.ComposePost()
   else
     local status, ret
     local client = GenericObjectPool:connection(
-      ComposePostServiceClient, "compose-post-service.social-network.svc.cluster.local", 9090)
+      ComposePostServiceClient, "compose-post-service.social-network.svc.cluster.local", 19090)
 
     local span = tracer:start_span("compose_post_client",
       { ["references"] = { { "child_of", parent_span_context } } })

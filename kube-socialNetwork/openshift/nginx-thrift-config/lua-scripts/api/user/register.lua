@@ -19,6 +19,8 @@ function _M.RegisterUser()
   local carrier = {}
   tracer:text_map_inject(span:context(), carrier)
 
+  ngx.log(ngx.STDERR, "Register User")
+
   ngx.req.read_body()
   local post = ngx.req.get_post_args()
 
@@ -30,7 +32,7 @@ function _M.RegisterUser()
     ngx.exit(ngx.HTTP_BAD_REQUEST)
   end
 
-  local client = GenericObjectPool:connection(UserServiceClient, "user-service.social-network.svc.cluster.local", 9090)
+  local client = GenericObjectPool:connection(UserServiceClient, "user-service.social-network.svc.cluster.local", 19090)
 
   local status, err = pcall(client.RegisterUser, client, req_id, post.first_name,
       post.last_name, post.username, post.password, carrier)

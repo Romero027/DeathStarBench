@@ -73,7 +73,7 @@ function _M.ReadHomeTimeline()
 
 
   local client = GenericObjectPool:connection(
-      HomeTimelineServiceClient, "home-timeline-service.social-network.svc.cluster.local", 9090)
+      HomeTimelineServiceClient, "home-timeline-service.social-network.svc.cluster.local", 19090)
   local status, ret = pcall(client.ReadHomeTimeline, client, req_id,
       tonumber(args.user_id), tonumber(args.start), tonumber(args.stop), carrier)
   if not status then

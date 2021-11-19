@@ -33,7 +33,7 @@
         function uploadPost(media_json) {
             if (document.getElementById('post_text').value !== "") {
                 const Http = new XMLHttpRequest();
-                const url = 'http://' + window.location.hostname + ':8080/api/post/compose';
+                const url = 'http://' + window.location.hostname + ':18080/api/post/compose';
                 Http.open("POST", url, true);
                 var body = "post_type=0&text=" + document.getElementById('post_text').value
                 Http.onreadystatechange = function () {

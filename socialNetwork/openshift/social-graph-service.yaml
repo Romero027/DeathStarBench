@@ -37,14 +37,20 @@ spec:
     spec:
       containers:
       - name: social-graph-service
-        image: yg397/social-network-microservices
+        image: bx33/social-network-microservices
         command: ["SocialGraphService"]
         volumeMounts:
           - mountPath: /social-network-microservices/config/jaeger-config.yml
             subPath: jaeger-config.yml
             name: jaeger-conf-yaml
+          - mountPath: /social-network-microservices/config/service-config.json
+            subPath: service-config.json
+            name: service-config-json
       restartPolicy: Always
       volumes:
         - name: jaeger-conf-yaml
           configMap:
             name: jaeger-config-yaml
+        - name: service-config-json
+          configMap:
+            name: service-config-json
