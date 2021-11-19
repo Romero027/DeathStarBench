@@ -13,8 +13,8 @@ import (
 	"github.com/harlow/go-micro-services/registry"
 	"github.com/harlow/go-micro-services/services/profile/proto"
 	"github.com/harlow/go-micro-services/services/search/proto"
-	"github.com/harlow/go-micro-services/tracing"
-	"github.com/opentracing/opentracing-go"
+	//"github.com/harlow/go-micro-services/tracing"
+	//"github.com/opentracing/opentracing-go"
 )
 
 // Server implements frontend service
@@ -26,7 +26,7 @@ type Server struct {
 	reservationClient    reservation.ReservationClient
 	IpAddr	 string
 	Port     int
-	Tracer   opentracing.Tracer
+	//Tracer   opentracing.Tracer
 	Registry *registry.Client
 }
 
@@ -58,7 +58,7 @@ func (s *Server) Run() error {
 
 	// fmt.Printf("frontend before mux\n")
 
-	mux := tracing.NewServeMux(s.Tracer)
+	mux := http.NewServeMux()
 	mux.Handle("/", http.FileServer(http.Dir("services/frontend/static")))
 	mux.Handle("/hotels", http.HandlerFunc(s.searchHandler))
 	mux.Handle("/recommendations", http.HandlerFunc(s.recommendHandler))
@@ -73,7 +73,7 @@ func (s *Server) Run() error {
 func (s *Server) initSearchClient(name string) error {
 	conn, err := dialer.Dial(
 		name,
-		dialer.WithTracer(s.Tracer),
+		//dialer.WithTracer(s.Tracer),
 		dialer.WithBalancer(s.Registry.Client),
 	)
 	if err != nil {
@@ -86,7 +86,7 @@ func (s *Server) initSearchClient(name string) error {
 func (s *Server) initProfileClient(name string) error {
 	conn, err := dialer.Dial(
 		name,
-		dialer.WithTracer(s.Tracer),
+		//dialer.WithTracer(s.Tracer),
 		dialer.WithBalancer(s.Registry.Client),
 	)
 	if err != nil {
@@ -99,7 +99,7 @@ func (s *Server) initProfileClient(name string) error {
 func (s *Server) initRecommendationClient(name string) error {
 	conn, err := dialer.Dial(
 		name,
-		dialer.WithTracer(s.Tracer),
+		//dialer.WithTracer(s.Tracer),
 		dialer.WithBalancer(s.Registry.Client),
 	)
 	if err != nil {
@@ -112,7 +112,7 @@ func (s *Server) initRecommendationClient(name string) error {
 func (s *Server) initUserClient(name string) error {
 	conn, err := dialer.Dial(
 		name,
-		dialer.WithTracer(s.Tracer),
+		//dialer.WithTracer(s.Tracer),
 		dialer.WithBalancer(s.Registry.Client),
 	)
 	if err != nil {
@@ -125,7 +125,7 @@ func (s *Server) initUserClient(name string) error {
 func (s *Server) initReservation(name string) error {
 	conn, err := dialer.Dial(
 		name,
-		dialer.WithTracer(s.Tracer),
+		//dialer.WithTracer(s.Tracer),
 		dialer.WithBalancer(s.Registry.Client),
 	)
 	if err != nil {
