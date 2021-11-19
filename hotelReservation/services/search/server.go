@@ -106,7 +106,7 @@ func (s *Server) Shutdown() {
 func (s *Server) initGeoClient(name string) error {
 	conn, err := dialer.Dial(
 		name,
-		dialer.WithTracer(s.Tracer),
+		//dialer.WithTracer(s.Tracer),
 		dialer.WithBalancer(s.Registry.Client),
 	)
 	if err != nil {
@@ -119,7 +119,7 @@ func (s *Server) initGeoClient(name string) error {
 func (s *Server) initRateClient(name string) error {
 	conn, err := dialer.Dial(
 		name,
-		dialer.WithTracer(s.Tracer),
+		//dialer.WithTracer(s.Tracer),
 		dialer.WithBalancer(s.Registry.Client),
 	)
 	if err != nil {

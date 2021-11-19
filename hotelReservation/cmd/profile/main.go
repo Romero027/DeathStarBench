@@ -61,7 +61,7 @@ func main() {
 	}
 
 	srv := profile.Server{
-		Tracer:   tracer,
+		//Tracer:   tracer,
 		// Port:     *port,
 		Registry: registry,
 		Port:     serv_port,
