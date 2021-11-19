@@ -147,7 +147,7 @@ func (s *Server) Nearby(ctx context.Context, req *pb.NearbyRequest) (*pb.SearchR
 		return nil, err
 	}
 	geoLatency := time.Now().Sub(timestamp)
-	fmt.Printf("geoClient.Nearby took", geoLatency, "\n")
+	fmt.Println("geoClient.Nearby took ", geoLatency.String())
 
 	fmt.Printf("printing Nearby request result\n")
 	for _, hid := range nearby.HotelIds {
@@ -156,7 +156,7 @@ func (s *Server) Nearby(ctx context.Context, req *pb.NearbyRequest) (*pb.SearchR
 	fmt.Printf("finish printing Nearby request result\n")
 
 	// find rates for hotels
-	timestamp := time.Now()
+	timestamp = time.Now()
 	rates, err := s.rateClient.GetRates(ctx, &rate.Request{
 		HotelIds: nearby.HotelIds,
 		InDate:   req.InDate,
@@ -167,7 +167,7 @@ func (s *Server) Nearby(ctx context.Context, req *pb.NearbyRequest) (*pb.SearchR
 		return nil, err
 	}
 	rateLatency := time.Now().Sub(timestamp)
-	fmt.Printf("rateClient.GetRates took", rateLatency, "\n")
+	fmt.Println("rateClient.GetRates took ", rateLatency.String())
 
 	// TODO(hw): add simple ranking algo to order hotel ids:
 	// * geo distance
