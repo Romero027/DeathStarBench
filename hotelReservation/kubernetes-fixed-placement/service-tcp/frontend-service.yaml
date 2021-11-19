@@ -9,6 +9,7 @@ metadata:
     io.kompose.service: frontend
   name: frontend
 spec:
+  clusterIP: 10.96.7.56
   ports:
     - name: tcp-frontend
       port: 5000
