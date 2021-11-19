@@ -8,6 +8,7 @@ import (
 	"github.com/harlow/go-micro-services/services/user/proto"
 	"net/http"
 	"strconv"
+	"time"
 
 	"github.com/harlow/go-micro-services/dialer"
 	"github.com/harlow/go-micro-services/registry"
@@ -164,6 +165,7 @@ func (s *Server) searchHandler(w http.ResponseWriter, r *http.Request) {
 	// fmt.Printf("starts searchHandler querying downstream\n")
 
 	// search for best hotels
+	timestamp := time.Now()
 	searchResp, err := s.searchClient.Nearby(ctx, &search.NearbyRequest{
 		Lat:     lat,
 		Lon:     lon,
@@ -174,8 +176,9 @@ func (s *Server) searchHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+	searchLatency := time.Now().Sub(timestamp)
 
-	fmt.Printf("searchHandler gets searchResp\n")
+	fmt.Printf("searchClient.Nearby took", reservationLatency, "\n")
 	for _, hid := range searchResp.HotelIds {
 		fmt.Printf("search Handler hotelId = %s\n", hid)
 	}
@@ -186,6 +189,7 @@ func (s *Server) searchHandler(w http.ResponseWriter, r *http.Request) {
 		locale = "en"
 	}
 
+	timestamp := time.Now()
 	reservationResp, err := s.reservationClient.CheckAvailability(ctx, &reservation.Request{
 		CustomerName: "",
 		HotelId:      searchResp.HotelIds,
@@ -198,11 +202,13 @@ func (s *Server) searchHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+	reservationLatency := time.Now().Sub(timestamp)
 
-	//fmt.Printf("searchHandler gets reserveResp\n")
+	fmt.Printf("reservationClient.CheckAvailability took", reservationLatency, "\n")
 	fmt.Printf("searchHandler gets reserveResp.HotelId = %s\n", reservationResp.HotelId)
 
 	// hotel profiles
+	timestamp := time.Now()
 	profileResp, err := s.profileClient.GetProfiles(ctx, &profile.Request{
 		HotelIds: reservationResp.HotelId,
 		Locale:   locale,
@@ -212,8 +218,10 @@ func (s *Server) searchHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+	profileLatency := time.Now().Sub(timestamp)
 
-	fmt.Printf("searchHandler gets profileResp\n")
+	fmt.Printf("profileClient.GetProfiles took", profileLatency, "\n")
+	// fmt.Printf("searchHandler gets profileResp in: ", profileLatency,"\n")
 	fmt.Printf("-----------------------------------\n")
 
 	json.NewEncoder(w).Encode(geoJSONResponse(profileResp.Hotels))
