@@ -283,8 +283,8 @@ func (s *Server) CheckAvailability(ctx context.Context, req *pb.Request) (*pb.Re
 
 				timestamp = time.Now()
 				err := c.Find(&bson.M{"hotelId": hotelId, "inDate": indate, "outDate": outdate}).All(&reserve)
-				mongoLatency := time.Now().Sub(timestamp)
-				fmt.Println("Mongo took", mongoLatency)
+				mongoLatency1 := time.Now().Sub(timestamp)
+				fmt.Println("Mongo took", mongoLatency1)
 				if err != nil {
 					panic(err)
 				}
@@ -306,7 +306,7 @@ func (s *Server) CheckAvailability(ctx context.Context, req *pb.Request) (*pb.Re
 			fmt.Printf("Sending a request to Memcached!\n")
 			timestamp = time.Now()
 			item, err = s.MemcClient.Get(memc_cap_key)
-			memLatency := time.Now().Sub(timestamp)
+			memLatency = time.Now().Sub(timestamp)
 			fmt.Println("MemcClient.Get took", memLatency)
 
 			hotel_cap := 0
@@ -321,8 +321,8 @@ func (s *Server) CheckAvailability(ctx context.Context, req *pb.Request) (*pb.Re
 				fmt.Printf("Sending a request to MongoDB!\n")
 				timestamp = time.Now()
 				err = c1.Find(&bson.M{"hotelId": hotelId}).One(&num)
-				mongoLatency := time.Now().Sub(timestamp)
-				fmt.Println("Mongo took", mongoLatency)
+				mongoLatency2 := time.Now().Sub(timestamp)
+				fmt.Println("Mongo took", mongoLatency2)
 				if err != nil {
 					panic(err)
 				}

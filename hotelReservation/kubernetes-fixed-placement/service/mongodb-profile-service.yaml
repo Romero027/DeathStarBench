@@ -10,7 +10,7 @@ metadata:
   name: mongodb-profile
 spec:
   ports:
-    - name: mongo-profile
+    - name: tcp-profile
       port: 27017
       targetPort: 27017
   selector:
