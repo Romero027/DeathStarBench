@@ -1,4 +1,5 @@
 import os
+import re
 import docker
 import argparse
 import subprocess
@@ -37,9 +38,14 @@ def run_funclatency(func, duration, pid=None):
         result = subprocess.run(['python3', '/mnt/bcc/tools/funclatency.py', '-p '+str(pid), func, '-d '+str(duration)], stdout=subprocess.PIPE)
     else:
         result = subprocess.run(['python3', '/mnt/bcc/tools/funclatency.py', func, '-d '+str(duration)], stdout=subprocess.PIPE)
-    result = result.stdout.decode("utf-8").split('\n')[-4]
 
-    return result
+    # extract avg latency from output    
+    result = result.stdout.decode("utf-8").split('\n')[-4]
+    
+    # parse avg latency string
+    avg_latency = re.findall(r'\d+', result)[0]
+
+    return avg_latency
 
 # write, read, loopback, epoll, and Envoy userspace
 def run_latency_breakdown(app, envoy_process, duration):

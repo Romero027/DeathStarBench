@@ -292,10 +292,14 @@ func (s *Server) userHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Check username and password
+	timestamp := time.Now()
 	recResp, err := s.userClient.CheckUser(ctx, &user.Request{
 		Username: username,
 		Password: password,
 	})
+	userLatency := time.Now().Sub(timestamp)
+	fmt.Println("userClient.CheckUser took ", userLatency.String())
+	
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
