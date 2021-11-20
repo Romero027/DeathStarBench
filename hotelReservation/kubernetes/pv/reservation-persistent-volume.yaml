@@ -12,11 +12,11 @@ spec:
   hostPath:
     path: /mnt/volumes/reservation-pv   # Where all the hard drives are mounted
     type: DirectoryOrCreate
-  # nodeAffinity:     # Use nodeAffinity to ensure it will only be mounted on the node with harddrives.
-  #   required:
-  #     nodeSelectorTerms:
-  #       - matchExpressions:
-  #           - key: kubernetes.io/hostname
-  #             operator: In
-  #             values:
-  #               - h3.mesh.gaia-pg0.clemson.cloudlab.us
+  nodeAffinity:     # Use nodeAffinity to ensure it will only be mounted on the node with harddrives.
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - h3.mesh.gaia-pg0.clemson.cloudlab.us
