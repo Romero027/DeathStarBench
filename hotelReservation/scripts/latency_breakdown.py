@@ -45,17 +45,30 @@ def run_funclatency(func, duration, pid=None):
     # parse avg latency string
     avg_latency = re.findall(r'\d+', result)[0]
 
-    return avg_latency
+    return float(avg_latency)
 
 # write, read, loopback, epoll, and Envoy userspace
-def run_latency_breakdown(app, envoy_process, duration):
+def run_tcp_proxy_latency_breakdown(app, envoy_process, duration):
     print("Running " + str(app) + " latency breakdown...")
     breakdown = {}
     breakdown['loopback_latency'] = run_funclatency('process_backlog', duration, envoy_process['envoy_pid'])
     breakdown['read_latency'] = run_funclatency('do_readv', duration, envoy_process['envoy_pid'])
-    breakdown['write_latency'] = run_funclatency('do_writev', duration, envoy_process['envoy_pid'])
+    breakdown['write_latency'] = run_funclatency('do_writev', duration, envoy_process['envoy_pid']) - breakdown['loopback_latency']
     breakdown['epoll_latency'] = run_funclatency('ep_send_events_proc', duration, envoy_process['envoy_pid'])
-    breakdown['envoy_latency'] = run_funclatency(envoy_process['envoy_binary_path']+':*onReadReady*', duration)
+    breakdown['envoy_latency'] = run_funclatency(envoy_process['envoy_binary_path']+':*onReadReady*', duration) - breakdown['read_latency']
+
+    return breakdown
+
+def run_http_proxy_latency_breakdown(app, envoy_process, duration):
+    print("Running " + str(app) + " latency breakdown...")
+    breakdown = {}
+    breakdown['loopback_latency'] = run_funclatency('process_backlog', duration, envoy_process['envoy_pid'])
+    breakdown['read_latency'] = run_funclatency('do_readv', duration, envoy_process['envoy_pid'])
+    breakdown['write_latency'] = run_funclatency('do_writev', duration, envoy_process['envoy_pid']) - breakdown['loopback_latency']
+    breakdown['epoll_latency'] = run_funclatency('ep_send_events_proc', duration, envoy_process['envoy_pid'])
+    breakdown['envoy_latency'] = run_funclatency(envoy_process['envoy_binary_path']+':*onReadReady*', duration) - breakdown['read_latency']
+    breakdown['envoy_latency'] += run_funclatency(envoy_process['envoy_binary_path']+':*reserveForRead*', duration) 
+    breakdown['envoy_latency'] += run_funclatency(envoy_process['envoy_binary_path']+':*commit*', duration) 
 
     return breakdown
 
@@ -67,5 +80,10 @@ if __name__ == '__main__':
 
     result = {}
     for app, envoy_process in envoy_info.items():
-        result[app] = run_latency_breakdown(app, envoy_process, 45)
+        if args.proxy == "tcp":
+            print("Running TCP proxy latency breakdown")
+            result[app] = run_tcp_proxy_latency_breakdown(app, envoy_process, 30)
+        elif args.proxy == "http":
+            print("Running HTTP+ proxy latency breakdown")
+            result[app] = run_http_proxy_latency_breakdown(app, envoy_process, 30)
     print(result)

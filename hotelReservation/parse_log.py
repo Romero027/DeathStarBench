@@ -9,7 +9,8 @@ with open(file_name, 'r') as fin:
     lines = fin.readlines()
     for l in lines:
         if target in l:
-            result.append(float(re.findall(r"\d+\.\d+", l)[0]))
+            if re.findall(r"\d+\.\d+", l):
+                result.append(float(re.findall(r"\d+\.\d+", l)[0]))
 
 latency = np.array(result)
 print(np.percentile(latency, 50))
