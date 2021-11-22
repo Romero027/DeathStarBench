@@ -36,7 +36,7 @@ def run_funclatency(func, duration, pid=None, delta_min=0):
     funclatency_path = "./funclatency.py"
 
     cmd = ['python3', funclatency_path, '-p '+str(pid), func, '-d '+str(duration), '-t '+str(delta_min)]
-    print("Running cmd " + " ".join(cmd))
+    print("Running cmd: " + " ".join(cmd))
     result = subprocess.run(cmd, stdout=subprocess.PIPE)
 
     # extract avg latency from output    
