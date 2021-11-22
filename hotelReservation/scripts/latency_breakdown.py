@@ -8,6 +8,7 @@ import subprocess
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--proxy', type=str, default='tcp', help='proxy type (tcp, http or grpc')
+    parser.add_argument("-v", "--verbose", action="store_true", help="print the command executed (for debugging purposes)")
     return parser.parse_args()
 
 
