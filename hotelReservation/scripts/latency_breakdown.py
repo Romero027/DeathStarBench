@@ -22,7 +22,7 @@ def get_envoy_info():
         container_name = container.attrs['Name']
         if 'istio-proxy' in container_name:
 
-            if "memcached" or "mongodb" in container_name:
+            if "memcached" in container_name or "mongodb" in container_name:
                 temp = container_name.split('_')[2].split('-')
                 app_name = "-".join(temp[:2])
             else:
@@ -82,7 +82,7 @@ def run_http_proxy_latency_breakdown(app, envoy_process, duration):
     http2_latency = breakdown['envoy_latency'] = run_funclatency(envoy_process['envoy_binary_path']+':*nghttp2_session_mem_recv*', duration, envoy_process['envoy_pid'])
     http_latency = breakdown['envoy_latency'] = run_funclatency(envoy_process['envoy_binary_path']+':*http_parser_execute*', duration, envoy_process['envoy_pid'])
     breakdown['envoy_latency'] = run_funclatency(envoy_process['envoy_binary_path']+':*onReadReady*', 
-                        duration, envoy_process['envoy_pid'], delta_min=max(http_latency, http2_latency)) - breakdown['read_latency']
+                        duration, envoy_process['envoy_pid'], delta_min=min(http_latency, http2_latency)) - breakdown['read_latency']
     breakdown['envoy_latency'] += run_funclatency(envoy_process['envoy_binary_path']+':*onWriteReady*', 
                         duration, envoy_process['envoy_pid'], delta_min=breakdown['write_latency']) - breakdown['write_latency']
     return breakdown
