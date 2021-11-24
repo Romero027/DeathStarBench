@@ -21,9 +21,16 @@ def get_envoy_info():
         container = client.containers.get(c.short_id)
         container_name = container.attrs['Name']
         if 'istio-proxy' in container_name:
-            app_name = container_name.split('_')[2].split('-')[0]
-            if app_name == "istio":
+            
+            if "memcached" or "mongodb" in container_name:
+                temp = container_name.split('_')[2].split('-')
+                app_name = "-".join(temp[:2])
+            else:
+                app_name = container_name.split('_')[2].split('-')[0]
+
+            if "istio" in app_name:
                 continue
+
             proxy_dict[app_name] = {}
             proxy_dict[app_name]['id'] = container.short_id
             processes = container.top()['Processes']
