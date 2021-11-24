@@ -21,7 +21,7 @@ def get_envoy_info():
         container = client.containers.get(c.short_id)
         container_name = container.attrs['Name']
         if 'istio-proxy' in container_name:
-            
+
             if "memcached" or "mongodb" in container_name:
                 temp = container_name.split('_')[2].split('-')
                 app_name = "-".join(temp[:2])
@@ -85,6 +85,7 @@ def run_http_proxy_latency_breakdown(app, envoy_process, duration):
                         duration, envoy_process['envoy_pid'], delta_min=max(http_latency, http2_latency)) - breakdown['read_latency']
     breakdown['envoy_latency'] += run_funclatency(envoy_process['envoy_binary_path']+':*onWriteReady*', 
                         duration, envoy_process['envoy_pid'], delta_min=breakdown['write_latency']) - breakdown['write_latency']
+    return breakdown
 
 if __name__ == '__main__':
     args = parse_args()
