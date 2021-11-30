@@ -79,10 +79,10 @@ def run_http_proxy_latency_breakdown(app, envoy_process, duration):
     breakdown['read_latency'] = run_funclatency('do_readv', duration, envoy_process['envoy_pid'])
     breakdown['write_latency'] = run_funclatency('do_writev', duration, envoy_process['envoy_pid']) - breakdown['loopback_latency']
     breakdown['epoll_latency'] = run_funclatency('ep_send_events_proc', duration, envoy_process['envoy_pid'])
-    http2_latency = breakdown['envoy_latency'] = run_funclatency(envoy_process['envoy_binary_path']+':*nghttp2_session_mem_recv*', duration, envoy_process['envoy_pid'])
-    http_latency = breakdown['envoy_latency'] = run_funclatency(envoy_process['envoy_binary_path']+':*http_parser_execute*', duration, envoy_process['envoy_pid'])
+    breakdown['http2_latency'] = breakdown['envoy_latency'] = run_funclatency(envoy_process['envoy_binary_path']+':*nghttp2_session_mem_recv*', duration, envoy_process['envoy_pid'])
+    breakdown['http_latency'] = breakdown['envoy_latency'] = run_funclatency(envoy_process['envoy_binary_path']+':*http_parser_execute*', duration, envoy_process['envoy_pid'])
     breakdown['envoy_latency'] = run_funclatency(envoy_process['envoy_binary_path']+':*onReadReady*', 
-                        duration, envoy_process['envoy_pid'], delta_min=min(http_latency, http2_latency)) - breakdown['read_latency']
+                        duration, envoy_process['envoy_pid'], delta_min=min(breakdown['http_latency'], breakdown['http2_latency'])) - breakdown['read_latency']
     breakdown['envoy_latency'] += run_funclatency(envoy_process['envoy_binary_path']+':*onWriteReady*', 
                         duration, envoy_process['envoy_pid'], delta_min=breakdown['write_latency']) - breakdown['write_latency']
     return breakdown

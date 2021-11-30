@@ -28,7 +28,7 @@ minikube start # or minikube start --memory 8192 --cpus 2 if you need more cpu&m
 
 # install istio
 curl -k -L https://istio.io/downloadIstio | sh -
-cd istio-1.11.4
+cd istio-1.12.0
 export PATH=$PWD/bin:$PATH
 istioctl x precheck
 istioctl install --set profile=default -y
@@ -83,3 +83,5 @@ cd FlameGraph
 perf record -F 99 -a -g -- sleep 40
 perf script | ./stackcollapse-perf.pl | ./flamegraph.pl > perf.svg
 
+./wrk/wrk -t1 -c1 -d400s -s ./wrk2/scripts/hotel-reservation/search_hotel_workload.lua http://10.96.7.56:5000 --latency
+k apply -f mongodb/mongodb-user-deployment.yaml;k apply -f deployment/consul-deployment.yaml; k apply -f deployment/frontend-deployment.yaml;k apply -f deployment/user-deployment.yaml
