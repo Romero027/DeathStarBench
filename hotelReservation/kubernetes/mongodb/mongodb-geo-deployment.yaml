@@ -27,7 +27,7 @@ spec:
       labels:
         io.kompose.service: mongodb-geo
     spec:
-      nodeName: h3.baremental.gaia-pg0.clemson.cloudlab.us
+      nodeName: h3.baremental.meshbench-pg0..clemson.cloudlab.us
       containers:
         - image: mongo
           name: hotel-reserv-geo-mongo

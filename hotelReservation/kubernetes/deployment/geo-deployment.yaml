@@ -26,7 +26,7 @@ spec:
       labels:
         io.kompose.service: geo
     spec:
-      nodeName: h2.baremental.gaia-pg0.clemson.cloudlab.us
+      nodeName: h2.baremental.meshbench-pg0..clemson.cloudlab.us
       containers:
         - command:
             - geo
