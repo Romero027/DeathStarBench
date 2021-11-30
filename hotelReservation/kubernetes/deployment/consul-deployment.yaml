@@ -26,7 +26,7 @@ spec:
       labels:
         io.kompose.service: consul
     spec:
-      nodeName: h2.baremental.meshbench-pg0..clemson.cloudlab.us
+      nodeName: h2.baremental.meshbench-pg0.clemson.cloudlab.us
       containers:
         - image: consul:latest
           name: consul
