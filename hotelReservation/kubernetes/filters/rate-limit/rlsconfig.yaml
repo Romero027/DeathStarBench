@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: catalog-ratelimit-config
+  namespace: istioinaction
+data:
+  config.yaml: |
+    domain: catalog-ratelimit
+    descriptors:
+      - key: header_match
+        value: no_headermatch
+        rate_limit:
+          unit: MINUTE
+          requests_per_unit: 1
