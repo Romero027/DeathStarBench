@@ -10,7 +10,7 @@ import (
 
 	"github.com/harlow/go-micro-services/registry"
 	"github.com/harlow/go-micro-services/services/search"
-	"github.com/harlow/go-micro-services/tracing"
+	// "github.com/harlow/go-micro-services/tracing"
 	"strconv"
 )
 
@@ -34,15 +34,15 @@ func main() {
 
 	var (
 		// port       = flag.Int("port", 8082, "The server port")
-		jaegeraddr = flag.String("jaegeraddr", result["jaegerAddress"], "Jaeger address")
+		// jaegeraddr = flag.String("jaegeraddr", result["jaegerAddress"], "Jaeger address")
 		consuladdr = flag.String("consuladdr", result["consulAddress"], "Consul address")
 	)
 	flag.Parse()
 
-	tracer, err := tracing.Init("search", *jaegeraddr)
-	if err != nil {
-		panic(err)
-	}
+	// tracer, err := tracing.Init("search", *jaegeraddr)
+	// if err != nil {
+	// 	panic(err)
+	// }
 
 	registry, err := registry.NewClient(*consuladdr)
 	if err != nil {
@@ -50,7 +50,7 @@ func main() {
 	}
 
 	srv := &search.Server{
-		Tracer:   tracer,
+		// Tracer:   tracer,
 		// Port:     *port,
 		Port:     serv_port,
 		IpAddr:	  serv_ip,

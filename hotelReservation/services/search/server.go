@@ -10,14 +10,14 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/grpc-ecosystem/grpc-opentracing/go/otgrpc"
+	// "github.com/grpc-ecosystem/grpc-opentracing/go/otgrpc"
 	"github.com/harlow/go-micro-services/dialer"
 	"github.com/harlow/go-micro-services/registry"
 	"github.com/harlow/go-micro-services/tls"
 	geo "github.com/harlow/go-micro-services/services/geo/proto"
 	rate "github.com/harlow/go-micro-services/services/rate/proto"
 	pb "github.com/harlow/go-micro-services/services/search/proto"
-	opentracing "github.com/opentracing/opentracing-go"
+	// opentracing "github.com/opentracing/opentracing-go"
 	context "golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/keepalive"
@@ -30,7 +30,7 @@ type Server struct {
 	geoClient  geo.GeoClient
 	rateClient rate.RateClient
 
-	Tracer   opentracing.Tracer
+	// Tracer   opentracing.Tracer
 	Port     int
 	IpAddr	 string
 	Registry *registry.Client
@@ -52,9 +52,9 @@ func (s *Server) Run() error {
 		grpc.KeepaliveEnforcementPolicy(keepalive.EnforcementPolicy{
 			PermitWithoutStream: true,
 		}),
-		grpc.UnaryInterceptor(
-			otgrpc.OpenTracingServerInterceptor(s.Tracer),
-		),
+		// grpc.UnaryInterceptor(
+		// 	otgrpc.OpenTracingServerInterceptor(s.Tracer),
+		// ),
 	}
 
 	if tlsopt := tls.GetServerOpt(); tlsopt != nil {
@@ -106,7 +106,7 @@ func (s *Server) Shutdown() {
 func (s *Server) initGeoClient(name string) error {
 	conn, err := dialer.Dial(
 		name,
-		dialer.WithTracer(s.Tracer),
+		//dialer.WithTracer(s.Tracer),
 		dialer.WithBalancer(s.Registry.Client),
 	)
 	if err != nil {
@@ -119,7 +119,7 @@ func (s *Server) initGeoClient(name string) error {
 func (s *Server) initRateClient(name string) error {
 	conn, err := dialer.Dial(
 		name,
-		dialer.WithTracer(s.Tracer),
+		//dialer.WithTracer(s.Tracer),
 		dialer.WithBalancer(s.Registry.Client),
 	)
 	if err != nil {
@@ -137,10 +137,14 @@ func (s *Server) Nearby(ctx context.Context, req *pb.NearbyRequest) (*pb.SearchR
 
 	fmt.Printf("nearby lat = %f, and lon = %f\n", req.Lat, req.Lon)
 
+	timestamp := time.Now()
 	nearby, err := s.geoClient.Nearby(ctx, &geo.Request{
 		Lat: req.Lat,
 		Lon: req.Lon,
 	})
+	geoLatency := time.Now().Sub(timestamp)
+	fmt.Println("geoClient.Nearby took ", geoLatency.String())
+	
 	if err != nil {
 		fmt.Printf("nearby error: %v", err)
 		return nil, err
@@ -153,15 +157,20 @@ func (s *Server) Nearby(ctx context.Context, req *pb.NearbyRequest) (*pb.SearchR
 	fmt.Printf("finish printing Nearby request result\n")
 
 	// find rates for hotels
+	timestamp = time.Now()
 	rates, err := s.rateClient.GetRates(ctx, &rate.Request{
 		HotelIds: nearby.HotelIds,
 		InDate:   req.InDate,
 		OutDate:  req.OutDate,
 	})
+	rateLatency := time.Now().Sub(timestamp)
+	fmt.Println("rateClient.GetRates took ", rateLatency.String())
+
 	if err != nil {
 		fmt.Printf("rates error: %v", err)
 		return nil, err
 	}
+
 
 	// TODO(hw): add simple ranking algo to order hotel ids:
 	// * geo distance

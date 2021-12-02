@@ -19,13 +19,14 @@ spec:
       annotations:
         kompose.cmd: kompose convert
         kompose.version: 1.22.0 (955b78124)
+        sidecar.istio.io/inject: "false"
         # sidecar.istio.io/statsInclusionPrefixes: cluster.outbound,cluster_manager,listener_manager,http_mixer_filter,tcp_mixer_filter,server,cluster.xds-grp,listener,connection_manager
         # sidecar.istio.io/statsInclusionRegexps: http.*
       creationTimestamp: null
       labels:
         io.kompose.service: memcached-rate
     spec:
-      # nodeName: h3.mesh.gaia-pg0.clemson.cloudlab.us
+      nodeName: h3.baremental.meshbench-pg0.clemson.cloudlab.us
       containers:
         - env:
             - name: MEMCACHED_CACHE_SIZE

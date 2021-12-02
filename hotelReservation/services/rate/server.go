@@ -13,11 +13,11 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/grpc-ecosystem/grpc-opentracing/go/otgrpc"
+	// "github.com/grpc-ecosystem/grpc-opentracing/go/otgrpc"
 	"github.com/harlow/go-micro-services/registry"
 	"github.com/harlow/go-micro-services/tls"
 	pb "github.com/harlow/go-micro-services/services/rate/proto"
-	"github.com/opentracing/opentracing-go"
+	// "github.com/opentracing/opentracing-go"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/keepalive"
@@ -30,7 +30,7 @@ const name = "srv-rate"
 
 // Server implements the rate service
 type Server struct {
-	Tracer    opentracing.Tracer
+	// Tracer    opentracing.Tracer
 	Port      int
 	IpAddr	 string
 	MongoSession 	*mgo.Session
@@ -54,9 +54,9 @@ func (s *Server) Run() error {
 		grpc.KeepaliveEnforcementPolicy(keepalive.EnforcementPolicy{
 			PermitWithoutStream: true,
 		}),
-		grpc.UnaryInterceptor(
-			otgrpc.OpenTracingServerInterceptor(s.Tracer),
-		),
+		// grpc.UnaryInterceptor(
+		// 	otgrpc.OpenTracingServerInterceptor(s.Tracer),
+		// ),
 	}
 
 	if tlsopt := tls.GetServerOpt(); tlsopt != nil {
@@ -113,7 +113,10 @@ func (s *Server) GetRates(ctx context.Context, req *pb.Request) (*pb.Result, err
 	for _, hotelID := range req.HotelIds {
 		// first check memcached
 		fmt.Printf("Sending a request to Memcached!\n")
+		timestamp := time.Now()
 		item, err := s.MemcClient.Get(hotelID)
+		memLatency := time.Now().Sub(timestamp)
+		fmt.Println("MemcClient.Get took", memLatency)
 		if err == nil {
 			// memcached hit
 			rate_strs := strings.Split(string(item.Value), "\n")
@@ -141,7 +144,10 @@ func (s *Server) GetRates(ctx context.Context, req *pb.Request) (*pb.Result, err
 
 			tmpRatePlans := make(RatePlans, 0)
 			fmt.Printf("Sending a request to MongoDB!\n")
+			timestamp = time.Now()
 			err := c.Find(&bson.M{"hotelId": hotelID}).All(&tmpRatePlans)
+			mongoLatency := time.Now().Sub(timestamp)
+			fmt.Println("Mongo took", mongoLatency)
 			if err != nil {
 				panic(err)
 			} else {

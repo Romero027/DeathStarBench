@@ -8,13 +8,14 @@ import (
 	"github.com/harlow/go-micro-services/services/user/proto"
 	"net/http"
 	"strconv"
+	"time"
 
 	"github.com/harlow/go-micro-services/dialer"
 	"github.com/harlow/go-micro-services/registry"
 	"github.com/harlow/go-micro-services/services/profile/proto"
 	"github.com/harlow/go-micro-services/services/search/proto"
-	"github.com/harlow/go-micro-services/tracing"
-	"github.com/opentracing/opentracing-go"
+	//"github.com/harlow/go-micro-services/tracing"
+	//"github.com/opentracing/opentracing-go"
 )
 
 // Server implements frontend service
@@ -26,7 +27,7 @@ type Server struct {
 	reservationClient    reservation.ReservationClient
 	IpAddr	 string
 	Port     int
-	Tracer   opentracing.Tracer
+	//Tracer   opentracing.Tracer
 	Registry *registry.Client
 }
 
@@ -58,7 +59,7 @@ func (s *Server) Run() error {
 
 	// fmt.Printf("frontend before mux\n")
 
-	mux := tracing.NewServeMux(s.Tracer)
+	mux := http.NewServeMux()
 	mux.Handle("/", http.FileServer(http.Dir("services/frontend/static")))
 	mux.Handle("/hotels", http.HandlerFunc(s.searchHandler))
 	mux.Handle("/recommendations", http.HandlerFunc(s.recommendHandler))
@@ -73,7 +74,7 @@ func (s *Server) Run() error {
 func (s *Server) initSearchClient(name string) error {
 	conn, err := dialer.Dial(
 		name,
-		dialer.WithTracer(s.Tracer),
+		//dialer.WithTracer(s.Tracer),
 		dialer.WithBalancer(s.Registry.Client),
 	)
 	if err != nil {
@@ -86,7 +87,7 @@ func (s *Server) initSearchClient(name string) error {
 func (s *Server) initProfileClient(name string) error {
 	conn, err := dialer.Dial(
 		name,
-		dialer.WithTracer(s.Tracer),
+		//dialer.WithTracer(s.Tracer),
 		dialer.WithBalancer(s.Registry.Client),
 	)
 	if err != nil {
@@ -99,7 +100,7 @@ func (s *Server) initProfileClient(name string) error {
 func (s *Server) initRecommendationClient(name string) error {
 	conn, err := dialer.Dial(
 		name,
-		dialer.WithTracer(s.Tracer),
+		//dialer.WithTracer(s.Tracer),
 		dialer.WithBalancer(s.Registry.Client),
 	)
 	if err != nil {
@@ -112,7 +113,7 @@ func (s *Server) initRecommendationClient(name string) error {
 func (s *Server) initUserClient(name string) error {
 	conn, err := dialer.Dial(
 		name,
-		dialer.WithTracer(s.Tracer),
+		//dialer.WithTracer(s.Tracer),
 		dialer.WithBalancer(s.Registry.Client),
 	)
 	if err != nil {
@@ -125,7 +126,7 @@ func (s *Server) initUserClient(name string) error {
 func (s *Server) initReservation(name string) error {
 	conn, err := dialer.Dial(
 		name,
-		dialer.WithTracer(s.Tracer),
+		//dialer.WithTracer(s.Tracer),
 		dialer.WithBalancer(s.Registry.Client),
 	)
 	if err != nil {
@@ -164,18 +165,21 @@ func (s *Server) searchHandler(w http.ResponseWriter, r *http.Request) {
 	// fmt.Printf("starts searchHandler querying downstream\n")
 
 	// search for best hotels
+	timestamp := time.Now()
 	searchResp, err := s.searchClient.Nearby(ctx, &search.NearbyRequest{
 		Lat:     lat,
 		Lon:     lon,
 		InDate:  inDate,
 		OutDate: outDate,
 	})
+	searchLatency := time.Now().Sub(timestamp)
+	fmt.Println("searchClient.Nearby took ", searchLatency.String())
+
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	fmt.Printf("searchHandler gets searchResp\n")
 	for _, hid := range searchResp.HotelIds {
 		fmt.Printf("search Handler hotelId = %s\n", hid)
 	}
@@ -186,6 +190,7 @@ func (s *Server) searchHandler(w http.ResponseWriter, r *http.Request) {
 		locale = "en"
 	}
 
+	timestamp = time.Now()
 	reservationResp, err := s.reservationClient.CheckAvailability(ctx, &reservation.Request{
 		CustomerName: "",
 		HotelId:      searchResp.HotelIds,
@@ -193,27 +198,34 @@ func (s *Server) searchHandler(w http.ResponseWriter, r *http.Request) {
 		OutDate:      outDate,
 		RoomNumber:   1,
 	})
+	reservationLatency := time.Now().Sub(timestamp)
+	fmt.Println("reservationClient.CheckAvailability took ", reservationLatency.String())
+
+
 	if err != nil {
 		fmt.Println("searchHandler CheckAvailability failed")
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	//fmt.Printf("searchHandler gets reserveResp\n")
 	fmt.Printf("searchHandler gets reserveResp.HotelId = %s\n", reservationResp.HotelId)
 
 	// hotel profiles
+	timestamp = time.Now()
 	profileResp, err := s.profileClient.GetProfiles(ctx, &profile.Request{
 		HotelIds: reservationResp.HotelId,
 		Locale:   locale,
 	})
+	profileLatency := time.Now().Sub(timestamp)
 	if err != nil {
 		fmt.Println("searchHandler GetProfiles failed")
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	fmt.Printf("searchHandler gets profileResp\n")
+
+	fmt.Println("profileClient.GetProfiles took ", profileLatency.String())
+	// fmt.Printf("searchHandler gets profileResp in: ", profileLatency,"\n")
 	fmt.Printf("-----------------------------------\n")
 
 	json.NewEncoder(w).Encode(geoJSONResponse(profileResp.Hotels))
@@ -280,10 +292,14 @@ func (s *Server) userHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Check username and password
+	timestamp := time.Now()
 	recResp, err := s.userClient.CheckUser(ctx, &user.Request{
 		Username: username,
 		Password: password,
 	})
+	userLatency := time.Now().Sub(timestamp)
+	fmt.Println("userClient.CheckUser took ", userLatency.String())
+	
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

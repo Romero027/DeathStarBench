@@ -10,7 +10,7 @@ import (
 
 	"github.com/harlow/go-micro-services/registry"
 	"github.com/harlow/go-micro-services/services/recommendation"
-	"github.com/harlow/go-micro-services/tracing"
+	// "github.com/harlow/go-micro-services/tracing"
 	"strconv"
 	// "github.com/bradfitz/gomemcache/memcache"
 )
@@ -38,15 +38,15 @@ func main() {
 
 	var (
 		// port       = flag.Int("port", 8085, "The server port")
-		jaegeraddr = flag.String("jaegeraddr", result["jaegerAddress"], "Jaeger server addr")
+		// jaegeraddr = flag.String("jaegeraddr", result["jaegerAddress"], "Jaeger server addr")
 		consuladdr = flag.String("consuladdr", result["consulAddress"], "Consul address")
 	)
 	flag.Parse()
 
-	tracer, err := tracing.Init("recommendation", *jaegeraddr)
-	if err != nil {
-		panic(err)
-	}
+	// tracer, err := tracing.Init("recommendation", *jaegeraddr)
+	// if err != nil {
+	// 	panic(err)
+	// }
 
 	registry, err := registry.NewClient(*consuladdr)
 	if err != nil {
@@ -54,7 +54,7 @@ func main() {
 	}
 
 	srv := &recommendation.Server{
-		Tracer:   tracer,
+		// Tracer:   tracer,
 		// Port:     *port,
 		Registry: registry,
 		Port:     serv_port,

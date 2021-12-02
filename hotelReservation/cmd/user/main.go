@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"github.com/harlow/go-micro-services/registry"
 	"github.com/harlow/go-micro-services/services/user"
-	"github.com/harlow/go-micro-services/tracing"
+	//"github.com/harlow/go-micro-services/tracing"
 	"io/ioutil"
 	"log"
 	"os"
@@ -36,15 +36,15 @@ func main() {
 
 	var (
 		// port       = flag.Int("port", 8086, "The server port")
-		jaegeraddr = flag.String("jaegeraddr", result["jaegerAddress"], "Jaeger server addr")
+		// jaegeraddr = flag.String("jaegeraddr", result["jaegerAddress"], "Jaeger server addr")
 		consuladdr = flag.String("consuladdr", result["consulAddress"], "Consul address")
 	)
 	flag.Parse()
 
-	tracer, err := tracing.Init("user", *jaegeraddr)
-	if err != nil {
-		panic(err)
-	}
+	// tracer, err := tracing.Init("user", *jaegeraddr)
+	// if err != nil {
+	// 	panic(err)
+	// }
 
 	registry, err := registry.NewClient(*consuladdr)
 	if err != nil {
@@ -52,7 +52,7 @@ func main() {
 	}
 
 	srv := &user.Server{
-		Tracer:   tracer,
+		// Tracer:   tracer,
 		// Port:     *port,
 		Registry: registry,
 		Port:     serv_port,

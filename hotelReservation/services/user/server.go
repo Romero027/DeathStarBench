@@ -5,11 +5,11 @@ import (
 	// "encoding/json"
 	"fmt"
 	"github.com/google/uuid"
-	"github.com/grpc-ecosystem/grpc-opentracing/go/otgrpc"
+	//"github.com/grpc-ecosystem/grpc-opentracing/go/otgrpc"
 	"github.com/harlow/go-micro-services/registry"
 	"github.com/harlow/go-micro-services/tls"
 	pb "github.com/harlow/go-micro-services/services/user/proto"
-	"github.com/opentracing/opentracing-go"
+	//"github.com/opentracing/opentracing-go"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/keepalive"
@@ -28,7 +28,7 @@ const name = "srv-user"
 type Server struct {
 	users map[string]string
 
-	Tracer   opentracing.Tracer
+	// Tracer   opentracing.Tracer
 	Registry *registry.Client
 	Port     int
 	IpAddr	 string
@@ -55,9 +55,9 @@ func (s *Server) Run() error {
 		grpc.KeepaliveEnforcementPolicy(keepalive.EnforcementPolicy{
 			PermitWithoutStream: true,
 		}),
-		grpc.UnaryInterceptor(
-			otgrpc.OpenTracingServerInterceptor(s.Tracer),
-		),
+		// grpc.UnaryInterceptor(
+		// 	otgrpc.OpenTracingServerInterceptor(s.Tracer),
+		// ),
 	}
 
 	if tlsopt := tls.GetServerOpt(); tlsopt != nil {

@@ -29,7 +29,7 @@ Supported actions (80 hotels and 500 users):
 
 ### Running the containers
 ##### Docker-compose
-- NOTLS: Start docker containers by running `docker-compose up -d`. All images will be pulled from Docker Hub.
+- NOTLS: Start docker containers by running `docker-compose build` and`docker-compose up -d`. All images will be pulled from Docker Hub. (To stop the containers, run `docker-compose stop`)
 - TLS: Start docker containers by running `TLS=1 docker-compose up -d`. All the gRPC communications will be protected by TLS.
 - TLS with spcified ciphersuite: Start docker containers by running `TLS=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 docker-compose up -d`. The available cipher suite can be find at the file [options.go](tls/options.go#L21).
 
