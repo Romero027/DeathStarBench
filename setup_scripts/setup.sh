@@ -58,7 +58,7 @@ curl "http://localhost:5000/user?username=Cornell_15&password=123654"
 
 # Get envoy config
 istioctl proxy-config listeners recommendationservice-7b57c9bd44-8bb5q --port 15006 -o json > OUTPUT
-istioctl pc listener deploy/user-7b65fcdc7f-6gspl --port 15006 --address 0.0.0.0 -o yaml
+istioctl pc listener deploy/user --port 15006 --address 0.0.0.0 -o yaml
 
 # Update istio envirnoment variable -> update pilot ev
 # Reference: https://github.com/istio/istio/issues/29395
