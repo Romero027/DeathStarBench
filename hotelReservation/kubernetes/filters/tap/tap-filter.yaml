@@ -4,7 +4,8 @@ metadata:
   name: tap-filter
 spec:
   workloadSelector: 
-    io.kompose.service: frontend
+    labels:
+      io.kompose.service: frontend
   configPatches:
   - applyTo: HTTP_FILTER
     match:
