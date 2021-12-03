@@ -24,5 +24,10 @@ spec:
        typed_config:
           "@type": "type.googleapis.com/envoy.extensions.filters.http.tap.v3.Tap"
           commonConfig:
-            adminConfig:
-              configId: tap_config
+            static_config: 
+              match_config: 
+                any_match: true 
+              output_config: 
+                sinks: 
+                  - file_per_tap: 
+                      path_prefix: /var/log/tap # need to add usermountpath in frontend deployment?
