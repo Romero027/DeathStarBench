@@ -1,11 +1,11 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: EnvoyFilter
 metadata:
-  name: hotel-ratelimit-actions
+  name: user-ratelimit-actions
 spec:
   workloadSelector:
     labels:
-      workload: hotel
+      io.kompose.service: user
   configPatches:
     - applyTo: VIRTUAL_HOST
       match:

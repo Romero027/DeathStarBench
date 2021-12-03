@@ -4,10 +4,17 @@ metadata:
   name: hotel-ratelimit-config
 data:
   config.yaml: |
-    domain: hotel-ratelimit
+    domain: frontend-ratelimit
     descriptors:
       - key: header_match
         value: no_headermatch
         rate_limit:
           unit: MINUTE
-          requests_per_unit: 1
+          requests_per_unit: 100000
+    domain: user-ratelimit
+    descriptors:
+      - key: header_match
+        value: no_headermatch
+        rate_limit:
+          unit: MINUTE
+          requests_per_unit: 100000
