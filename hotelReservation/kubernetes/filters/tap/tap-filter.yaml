@@ -2,17 +2,15 @@ apiVersion: networking.istio.io/v1alpha3
 kind: EnvoyFilter
 metadata:
   name: tap-filter
-  namespace: istioinaction
 spec:
-  workloadSelector:
-    labels:
-      app: webapp
+  workloadSelector: 
+    io.kompose.service: frontend
   configPatches:
   - applyTo: HTTP_FILTER
     match:
       context: SIDECAR_INBOUND
       listener:
-        portNumber: 8080
+        portNumber: 5000
         filterChain:
           filter:
             name: "envoy.filters.network.http_connection_manager"
