@@ -28,6 +28,7 @@ spec:
               match_config: 
                 any_match: true 
               output_config: 
-                sinks: 
-                  - file_per_tap: 
-                      path_prefix: /var/log/tap # need to add usermountpath in frontend deployment?
+                sinks:
+                  - format: JSON_BODY_AS_BYTES
+                    file_per_tap: 
+                      path_prefix: /etc/istio/proxy/tap # need to add usermountpath in frontend deployment?
