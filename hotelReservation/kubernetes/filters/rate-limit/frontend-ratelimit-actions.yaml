@@ -5,7 +5,7 @@ metadata:
 spec:
   workloadSelector:
     labels:
-      app: frontend
+      io.kompose.service: frontend
   configPatches:
     - applyTo: VIRTUAL_HOST
       match:

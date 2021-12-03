@@ -5,7 +5,7 @@ metadata:
 spec:
   workloadSelector:
     labels:
-      app: frontend
+      io.kompose.service: frontend
   configPatches:
   - applyTo: HTTP_FILTER
     match:
@@ -24,7 +24,7 @@ spec:
         typed_config:
           "@type": type.googleapis.com/envoy.extensions.filters.http.ratelimit.v3.RateLimit
 
-          domain: catalog-ratelimit
+          domain: frontend-ratelimit
           failure_mode_deny: true
           rate_limit_service:
             grpc_service:
