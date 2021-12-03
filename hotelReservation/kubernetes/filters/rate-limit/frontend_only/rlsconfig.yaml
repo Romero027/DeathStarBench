@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: hotel-ratelimit-config
+  name: frontend-ratelimit-config
 data:
   config.yaml: |
-    domain: hotel-ratelimit
+    domain: frontend-ratelimit
     descriptors:
       - key: header_match
         value: no_headermatch
