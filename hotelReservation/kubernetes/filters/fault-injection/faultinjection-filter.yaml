@@ -26,5 +26,5 @@ spec:
           abort:
             http_status: 418
             percentage:
-              numerator: 90
+              numerator: 0
               denominator: HUNDRED
