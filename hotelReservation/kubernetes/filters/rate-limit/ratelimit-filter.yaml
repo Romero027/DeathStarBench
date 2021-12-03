@@ -3,6 +3,9 @@ kind: EnvoyFilter
 metadata:
   name: hotel-ratelimit-filter
 spec:
+  workloadSelector:
+    labels:
+      workload: hotel
   configPatches:
   - applyTo: HTTP_FILTER
     match:
@@ -21,7 +24,7 @@ spec:
         typed_config:
           "@type": type.googleapis.com/envoy.extensions.filters.http.ratelimit.v3.RateLimit
 
-          domain: frontend-ratelimit
+          domain: hotel-ratelimit
           failure_mode_deny: true
           rate_limit_service:
             grpc_service:

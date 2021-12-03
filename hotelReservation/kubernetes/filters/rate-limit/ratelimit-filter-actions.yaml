@@ -3,6 +3,9 @@ kind: EnvoyFilter
 metadata:
   name: hotel-ratelimit-actions
 spec:
+  workloadSelector:
+    labels:
+      workload: hotel
   configPatches:
     - applyTo: VIRTUAL_HOST
       match:
