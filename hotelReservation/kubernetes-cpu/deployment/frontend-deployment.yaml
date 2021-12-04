@@ -20,7 +20,7 @@ spec:
       annotations:
         kompose.cmd: kompose convert
         kompose.version: 1.22.0 (955b78124)
-        sidecar.istio.io/proxyCPU: 4000m
+        # sidecar.istio.io/proxyCPU: 4000m
         # sidecar.istio.io/inject: "false"
         # sidecar.istio.io/userVolumeMount: '[{"name":"log", "mountPath":"/var/log/tap"}]'
         # sidecar.istio.io/userVolume: '[{"name": "log", "emptyDir":{}}]'
