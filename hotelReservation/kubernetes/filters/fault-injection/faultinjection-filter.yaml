@@ -3,7 +3,7 @@ kind: EnvoyFilter
 metadata:
   name: faultinjection-filter
 spec:
-  workloadSelector: 
+  workloadSelector:
     labels:
       io.kompose.service: frontend
   configPatches:
@@ -28,3 +28,8 @@ spec:
             percentage:
               numerator: 0
               denominator: HUNDRED
+          delay:
+              fixedDelay: 0.05s
+              percentage:
+                numerator: 0
+                denominator: HUNDRED
