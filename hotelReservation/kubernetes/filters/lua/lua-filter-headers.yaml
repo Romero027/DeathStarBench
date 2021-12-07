@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: EnvoyFilter
 metadata:
-  name: faultinjection-filter
+  name: hotel-lua-extension
 spec:
   workloadSelector:
     labels:
@@ -19,17 +19,14 @@ spec:
               name: "envoy.filters.http.router"
     patch:
       operation: INSERT_BEFORE
-      value:
-       name: envoy.filters.http.fault
+      value: 
+       name: envoy.lua
        typed_config:
-          "@type": type.googleapis.com/envoy.extensions.filters.http.fault.v3.HTTPFault
-          abort:
-            http_status: 418
-            percentage:
-              numerator: 0
-              denominator: HUNDRED
-          delay:
-              fixedDelay: 0.02s
-              percentage:
-                numerator: 0
-                denominator: HUNDRED
+          "@type": "type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua"
+          inlineCode: |
+            function envoy_on_request(request_handle)            
+              request_handle:headers():add("x-test-cohort", "dark-release")   
+            end          
+            function envoy_on_response(response_handle)
+            end
+
