@@ -1,6 +1,6 @@
 # run method
 
-0. minikube start
+<!-- 0. minikube start
 1. cd openshift/scripts && ./create-all-configmap.sh
 2. cd ../
 3. kubectl apply -f .
@@ -18,10 +18,16 @@
 15. on host with browser, ssh -L 16686:localhost:16686 hostIPAddress	
   
 16. For Istio, simply allow auto-injection to namespace social-network
-17. make sure ubuntuclient is not injected, user does not need a proxy
+17. make sure ubuntuclient is not injected, user does not need a proxy -->
 
 
 - ` kubectl create namespace social-network && kubectl config set-context --current --namespace=social-network` 
 - `cd openshift/scripts && ./create-all-configmap.sh` 
 - `cd ..`
 - `kubectl apply -f .` 
+- `sudo apt install python3-pip`
+- `pip3 install aiohttp`
+- `python3 scripts/init\_social\_graph.py`
+- `cd wrk2`
+- `make clean && make`
+- `./wrk -D exp -t 2 -c 4 -d 60 -L -s ./scripts/social-network/compose-post.lua http://nginx-thrift.social-network.svc.cluster.local:18080/wrk2-api/post/compose -R 5`
