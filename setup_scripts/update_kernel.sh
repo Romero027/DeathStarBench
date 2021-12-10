@@ -52,6 +52,6 @@ make
 sudo make install
 cmake -DPYTHON_CMD=python3 .. # build python3 binding
 pushd src/python/
-make
+make -j $(nproc)
 sudo make install
 popd
