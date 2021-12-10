@@ -9,6 +9,7 @@ metadata:
   namespace: social-network
 spec:
   type: ClusterIP
+  clusterIP: 10.110.41.107
   ports:
   - port: 18080
     targetPort: 18080

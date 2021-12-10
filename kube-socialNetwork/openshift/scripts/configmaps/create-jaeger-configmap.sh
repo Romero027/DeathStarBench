@@ -5,7 +5,7 @@ cd $(dirname $0)/../..
 # This script creates an OpenShift ConfigMap for all the services
 # built upon the C++ jaeger client, which uses the jaeger-config.yml
 # to find the jaeger end-point URL.
-kubectl create cm jaeger-config-yaml  --from-file=config/jaeger-config.yml               -n social-network
+kubectl create cm jaeger-config-yaml --from-file=config/jaeger-config.yml -n social-network
 
 # Since the nginx-thrift service is not built upon the C++ jaeger client,
 # this service requires the jaeger-config.json in a different format than

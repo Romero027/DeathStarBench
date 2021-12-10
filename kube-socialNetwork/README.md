@@ -19,3 +19,9 @@
   
 16. For Istio, simply allow auto-injection to namespace social-network
 17. make sure ubuntuclient is not injected, user does not need a proxy
+
+
+- ` kubectl create namespace social-network && kubectl config set-context --current --namespace=social-network` 
+- `cd openshift/scripts && ./create-all-configmap.sh` 
+- `cd ..`
+- `kubectl apply -f .` 
