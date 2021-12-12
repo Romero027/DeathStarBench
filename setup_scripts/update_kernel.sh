@@ -48,7 +48,7 @@ sudo apt install -y bison build-essential cmake flex git libedit-dev \
 git clone https://github.com/iovisor/bcc.git
 mkdir bcc/build; cd bcc/build
 cmake ..
-make
+make -j $(nproc)
 sudo make install
 cmake -DPYTHON_CMD=python3 .. # build python3 binding
 pushd src/python/
