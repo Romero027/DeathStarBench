@@ -21,12 +21,12 @@ def get_percentage(target):
 
 def generate_flamegraph():
     print("Generating Flamegraph...")
-    cmd1 = ['python3', './profile.py', '-F 99', '-f 30']
+    cmd1 = ['python3', './profile.py', '-F 99', '-f', '30']
     print("Running cmd: " + " ".join(cmd1))
     with open("./result/out.profile-folded", "wb") as outfile1:
         result = subprocess.run(cmd1, stdout=outfile1)
     
-    cmd2 = ['./flamegraph.pl', 'out.profile-folded']
+    cmd2 = ['./flamegraph.pl', './result/out.profile-folded']
     print("Running cmd: " + " ".join(cmd2))
     with open("./result/profile.svg", "wb") as outfile2:
         result = subprocess.run(cmd2, stdout=outfile2)
