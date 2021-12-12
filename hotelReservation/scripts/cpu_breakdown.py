@@ -1,11 +1,27 @@
 import re
 import subprocess
+import statistics
 from pathlib import Path
 
+def get_virtual_cores():
+    print("Running mpstat...")
+    cpu_util = []
+    for i in range(3):
+        cmd = ['mpstat', '1', '15']
+        # print("Running cmd: " + " ".join(cmd))
+        output = {}
+        result = subprocess.run(cmd, stdout=subprocess.PIPE)
+        result_average = result.stdout.decode("utf-8").split('\n')[-2].split()
+        overall = 100.00 - float(result_average[-1])
+        cpu_util.append(overall)
+
+    virtual_cores = statistics.mean(cpu_util)*64.00
+    print("Virutal Cores Usage: " + str(virtual_cores))
+    return virtual_cores   
 
 
 
-def get_percentage(target):
+def get_cpu_percentage(target):
     with open("./result/profile.svg", 'r') as fp:
         lines = fp.readlines()
 
@@ -31,7 +47,20 @@ def generate_flamegraph():
     with open("./result/profile.svg", "wb") as outfile2:
         result = subprocess.run(cmd2, stdout=outfile2)
 
+def get_cpu_breakdown(virtual_cores):
+    print("Caculating CPU breakdowneuro...")
+    breakdown = {}
+    breakdown['read'] = virtual_cores*get_cpu_percentage(">readv (")
+    breakdown['write'] = virtual_cores*get_cpu_percentage(">writev (")
+    breakdown['loopback'] = virtual_cores*get_cpu_percentage(">process_backlog (")
+    breakdown['epoll'] = virtual_cores*get_cpu_percentage(">epoll_wait (")
+    breakdown['envoy'] = virtual_cores*get_cpu_percentage(">wrk:worker_0 (")+virtual_cores*get_cpu_percentage(">wrk:worker_1 (")
+    breakdown['envoy'] = breakdown['envoy']-(breakdown['read']+breakdown['write']+breakdown['loopback']+breakdown['epoll'])
+    breakdown['app'] = virtual_cores*get_cpu_percentage(">frontend (")
+
 if __name__ == '__main__':
     Path("./result").mkdir(parents=True, exist_ok=True)
+    virtual_cores = get_virtual_cores()
     generate_flamegraph()
-    get_percentage("kubelet (")
+    breakdown = get_cpu_breakdown(virtual_cores)
+    print(breakdown)
