@@ -15,7 +15,7 @@ def get_virtual_cores():
         overall = 100.00 - float(result_average[-1])
         cpu_util.append(overall)
 
-    virtual_cores = statistics.mean(cpu_util)*64.00
+    virtual_cores = statistics.mean(cpu_util)*0.64
     print("Virutal Cores Usage: " + str(virtual_cores))
     return virtual_cores   
 
@@ -28,12 +28,12 @@ def get_cpu_percentage(target):
     sum = 0.0
     for line in lines:
         if target in line:
-            print(line)
+            # print(line)
             l = re.findall(r"\d+\.\d+", line)
-            print(l)
+            # print(l)
             sum += float(l[0])
 
-    print(sum)
+    return sum
 
 def generate_flamegraph():
     print("Generating Flamegraph...")
@@ -48,15 +48,16 @@ def generate_flamegraph():
         result = subprocess.run(cmd2, stdout=outfile2)
 
 def get_cpu_breakdown(virtual_cores):
-    print("Caculating CPU breakdowneuro...")
+    print("Caculating CPU breakdown...")
     breakdown = {}
-    breakdown['read'] = virtual_cores*get_cpu_percentage(">readv (")
-    breakdown['write'] = virtual_cores*get_cpu_percentage(">writev (")
-    breakdown['loopback'] = virtual_cores*get_cpu_percentage(">process_backlog (")
-    breakdown['epoll'] = virtual_cores*get_cpu_percentage(">epoll_wait (")
-    breakdown['envoy'] = virtual_cores*get_cpu_percentage(">wrk:worker_0 (")+virtual_cores*get_cpu_percentage(">wrk:worker_1 (")
+    breakdown['read'] = virtual_cores*get_cpu_percentage(">readv (")*0.01
+    breakdown['write'] = virtual_cores*get_cpu_percentage(">writev (")*0.01
+    breakdown['loopback'] = virtual_cores*get_cpu_percentage(">process_backlog (")*0.01
+    breakdown['epoll'] = virtual_cores*get_cpu_percentage(">epoll_wait (")*0.01
+    breakdown['envoy'] = virtual_cores*get_cpu_percentage(">wrk:worker_0 (")*0.01+virtual_cores*get_cpu_percentage(">wrk:worker_1 (")*0.01
     breakdown['envoy'] = breakdown['envoy']-(breakdown['read']+breakdown['write']+breakdown['loopback']+breakdown['epoll'])
-    breakdown['app'] = virtual_cores*get_cpu_percentage(">frontend (")
+    breakdown['app'] = virtual_cores*get_cpu_percentage(">frontend (")*0.01
+    return breakdown
 
 if __name__ == '__main__':
     Path("./result").mkdir(parents=True, exist_ok=True)
@@ -64,3 +65,5 @@ if __name__ == '__main__':
     generate_flamegraph()
     breakdown = get_cpu_breakdown(virtual_cores)
     print(breakdown)
+
+{'read': 0.5137890133333334, 'write': 1.8791620266666664, 'loopback': 0.6585582933333334, 'epoll': 0.2668296533333333, 'envoy': 12.016424106666667, 'app': 9.20562304}
