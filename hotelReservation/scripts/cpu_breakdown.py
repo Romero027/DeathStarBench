@@ -57,6 +57,7 @@ def get_cpu_breakdown(virtual_cores):
     breakdown['envoy'] = virtual_cores*get_cpu_percentage(">wrk:worker_0 (")*0.01+virtual_cores*get_cpu_percentage(">wrk:worker_1 (")*0.01
     breakdown['envoy'] = breakdown['envoy']-(breakdown['read']+breakdown['write']+breakdown['loopback']+breakdown['epoll'])
     breakdown['app'] = virtual_cores*get_cpu_percentage(">frontend (")*0.01
+    breakdown['others'] = virtual_cores-(breakdown['read']+breakdown['write']+breakdown['loopback']+breakdown['epoll']+breakdown['envoy']+breakdown['app'])
     return breakdown
 
 if __name__ == '__main__':
@@ -66,4 +67,3 @@ if __name__ == '__main__':
     breakdown = get_cpu_breakdown(virtual_cores)
     print(breakdown)
 
-{'read': 0.5137890133333334, 'write': 1.8791620266666664, 'loopback': 0.6585582933333334, 'epoll': 0.2668296533333333, 'envoy': 12.016424106666667, 'app': 9.20562304}
