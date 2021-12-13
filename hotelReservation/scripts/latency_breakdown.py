@@ -27,6 +27,10 @@ def get_envoy_info():
                 app_name = "-".join(temp[:2])
             else:
                 app_name = container_name.split('_')[2].split('-')[0]
+            
+            # for social network
+            # temp = container_name.split('_')[2].split('-')
+            # app_name = "-".join(temp[:-2])
 
             if "istio" in app_name:
                 continue

@@ -26,6 +26,19 @@ Supported actions:
 * luarocks (apt-get install luarocks)
 * luasocket (luarocks install luasocket)
 
+## Steps
+
+- ` kubectl create namespace social-network && kubectl config set-context --current --namespace=social-network` 
+- `cd openshift/scripts && ./create-all-configmap.sh` 
+- `cd ..`
+- `kubectl apply -f .` 
+- `sudo apt install python3-pip`
+- `pip3 install aiohttp`
+- `python3 scripts/init\_social\_graph.py`
+- `cd wrk2`
+- `make clean && make`
+- `./wrk -D exp -t 2 -c 4 -d 60 -L -s ./scripts/social-network/compose-post.lua http://nginx-thrift.social-network.svc.cluster.local:18080/wrk2-api/post/compose -R 5`
+
 ## Running the social network application
 
 ### Before you start

@@ -1,0 +1,37 @@
+{
+	"nginx": 4,
+	"compose-post-service": 16,
+	"text-service": 6,
+	"user-mention-service": 4,
+	"user-mention-service-mongo": 2,
+	"url-shorten-service": 4,
+	"url-shorten-mongodb": 2,
+	"user-service": 2,
+	"media-service": 2,
+	"unique-id-service": 2,
+	"post-storage-service": 4,
+	"post-storage-mongodb": 2,
+	"user-timeline-service": 4,
+	"user-timeline-mongodb": 2,
+	"home-timeline-service": 4,
+	"social-graph-service": 4,
+	"social-graph-mongodb": 2
+}
+
+# modified
+{
+	"compose-post-service": 10,
+	"text-service": 6,
+	"user-mention-service": 4,
+	"user-mention-service-mongo": 2,
+	"url-shorten-service": 4,
+	"url-shorten-mongodb": 2,
+	"user-service": 2,
+	"media-service": 2,
+	"unique-id-service": 2,
+	"user-timeline-service": 4,
+	"user-timeline-mongodb": 2,
+	"home-timeline-service": 4,
+	"social-graph-service": 4,
+	"social-graph-mongodb": 2
+}
