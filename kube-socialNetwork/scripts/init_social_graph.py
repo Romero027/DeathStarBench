@@ -134,7 +134,7 @@ if __name__ == '__main__':
   parser.add_argument(
       '--graph', help='Graph name. (`socfb-Reed98`, `ego-twitter`, or `soc-twitter-follows-mun`)', default='socfb-Reed98')
   parser.add_argument(
-      '--ip', help='IP address of socialNetwork NGINX web server. ', default='10.110.41.107') #'127.0.0.1'
+      '--ip', help='IP address of socialNetwork NGINX web server. ', default='10.107.191.60')
   parser.add_argument(
       '--port', help='IP port of socialNetwork NGINX web server.', default=18080)
   parser.add_argument('--compose', action='store_true',
