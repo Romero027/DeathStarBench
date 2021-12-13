@@ -9,7 +9,8 @@ metadata:
   namespace: social-network
 spec:
   ports:
-  - port: 6379
+    - name: tcp
+      port: 6379
   selector:
     death-star-project: social-network
     app: compose-post-redis
@@ -31,10 +32,12 @@ spec:
   template:
     metadata:
       labels:
+        sidecar.istio.io/inject: "false"
         death-star-project: social-network
         app: compose-post-redis
       name: compose-post-redis
     spec:
+      nodeName: h2.mesh.meshbench-pg0.clemson.cloudlab.us
       containers:
       - name: compose-post-redis
         image: redis

@@ -9,7 +9,8 @@ metadata:
   namespace: social-network
 spec:
   ports:
-  - port: 27017
+    - name: tcp 
+      port: 27017
   selector:
     death-star-project: social-network
     app: media-mongodb
@@ -31,10 +32,12 @@ spec:
   template:
     metadata:
       labels:
+        sidecar.istio.io/inject: "false"
         death-star-project: social-network
         app: media-mongodb
       name: media-mongodb
     spec:
+      nodeName: h2.mesh.meshbench-pg0.clemson.cloudlab.us
       containers:
       - name: media-mongodb
         image: mongo

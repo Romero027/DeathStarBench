@@ -10,8 +10,9 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-  - port: 18080
-    targetPort: 18080
+    - name: tcp
+      port: 18080
+      targetPort: 18080
   selector:
     death-star-project: social-network
     app: media-frontend
@@ -33,10 +34,12 @@ spec:
   template:
     metadata:
       labels:
+        sidecar.istio.io/inject: "false"
         death-star-project: social-network
         app: media-frontend
       name: media-frontend
     spec:
+      nodeName: h2.mesh.meshbench-pg0.clemson.cloudlab.us
       containers:
       - name: media-frontend
         image: yg397/media-frontend:xenial

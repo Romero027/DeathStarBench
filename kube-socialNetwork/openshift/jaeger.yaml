@@ -10,7 +10,8 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - port: 16686
+  - name: tcp 
+    port: 16686
   selector:
     death-star-project: social-network
     app-name: jaeger
@@ -61,10 +62,12 @@ spec:
   template:
     metadata:
       labels:
+        sidecar.istio.io/inject: "false"
         death-star-project: social-network
         app-name: jaeger
       name: jaeger-agent
     spec:
+     nodeName: h2.mesh.meshbench-pg0.clemson.cloudlab.us
       containers:
       - name: jaeger-agent
         image: jaegertracing/all-in-one:latest

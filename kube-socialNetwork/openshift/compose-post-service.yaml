@@ -11,7 +11,8 @@ metadata:
   namespace: social-network
 spec:
   ports:
-  - port: 19090
+    - name: tcp
+      port: 19090
   selector:
     death-star-project: social-network
     app: compose-post-service
@@ -33,10 +34,12 @@ spec:
   template:
     metadata:
       labels:
+        # sidecar.istio.io/inject: "false"
         death-star-project: social-network
         app: compose-post-service
       name: compose-post-service
     spec:
+      nodeName: h3.mesh.meshbench-pg0.clemson.cloudlab.us
       containers:
       - name: compose-post-service
         image: bx33/social-network-microservices

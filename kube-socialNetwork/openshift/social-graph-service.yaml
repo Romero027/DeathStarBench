@@ -9,7 +9,8 @@ metadata:
   namespace: social-network
 spec:
   ports:
-  - port: 19090
+    - name: tcp
+      port: 19090
   selector:
     death-star-project: social-network
     app: social-graph-service
@@ -31,10 +32,12 @@ spec:
   template:
     metadata:
       labels:
+        # sidecar.istio.io/inject: "false"
         death-star-project: social-network
         app: social-graph-service
       name: social-graph-service
     spec:
+      nodeName: h3.mesh.meshbench-pg0.clemson.cloudlab.us
       containers:
       - name: social-graph-service
         image: bx33/social-network-microservices
