@@ -37,7 +37,7 @@ spec:
         app: user-memcached
       name: user-memcached
     spec:
-      nodeName: h3.mesh.meshbench-pg0.clemson.cloudlab.us
+      nodeName: h2.mesh.meshbench-pg0.clemson.cloudlab.us
       containers:
       - name: user-memcached
         image: memcached
