@@ -61,16 +61,16 @@ UniqueIdHandler::UniqueIdHandler(std::mutex *thread_lock,
 int64_t UniqueIdHandler::ComposeUniqueId(
     int64_t req_id, PostType::type post_type,
     const std::map<std::string, std::string> &carrier) {
-  LOG(warning) << "ComposeUniqueId";
+  //LOG(warning) << "ComposeUniqueId";
 
   // Initialize a span
-  TextMapReader reader(carrier);
-  std::map<std::string, std::string> writer_text_map;
-  TextMapWriter writer(writer_text_map);
-  auto parent_span = opentracing::Tracer::Global()->Extract(reader);
-  auto span = opentracing::Tracer::Global()->StartSpan(
-      "compose_unique_id_server", {opentracing::ChildOf(parent_span->get())});
-  opentracing::Tracer::Global()->Inject(span->context(), writer);
+  //TextMapReader reader(carrier);
+  //std::map<std::string, std::string> writer_text_map;
+  //TextMapWriter writer(writer_text_map);
+  //auto parent_span = opentracing::Tracer::Global()->Extract(reader);
+  //auto span = opentracing::Tracer::Global()->StartSpan(
+      //"compose_unique_id_server", {opentracing::ChildOf(parent_span->get())});
+  //opentracing::Tracer::Global()->Inject(span->context(), writer);
 
   _thread_lock->lock();
   int64_t timestamp =
@@ -106,8 +106,8 @@ int64_t UniqueIdHandler::ComposeUniqueId(
   int64_t post_id = stoul(post_id_str, nullptr, 16) & 0x7FFFFFFFFFFFFFFF;
   LOG(debug) << "The post_id of the request " << req_id << " is " << post_id;
 
-  span->Finish();
-  LOG(warning) << "ComposeUniqueId finish";
+  //span->Finish();
+  //LOG(warning) << "ComposeUniqueId finish";
 
   return post_id;
 }
@@ -129,7 +129,7 @@ u_int16_t HashMacAddressPid(const std::string &mac) {
 
 std::string GetMachineId(std::string &netif) {
   std::string mac_hash;
-  LOG(warning) << "GetMachineId";
+  //LOG(warning) << "GetMachineId";
 
   std::string mac_addr_filename = "/sys/class/net/" + netif + "/address";
   std::ifstream mac_addr_file;
@@ -157,7 +157,7 @@ std::string GetMachineId(std::string &netif) {
   } else if (mac_hash.size() < 3) {
     mac_hash = std::string(3 - mac_hash.size(), '0') + mac_hash;
   }
-  LOG(warning) << "GetMachineId Finish";
+  //LOG(warning) << "GetMachineId Finish";
 
   return mac_hash;
 }

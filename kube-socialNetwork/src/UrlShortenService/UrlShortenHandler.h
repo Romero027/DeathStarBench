@@ -70,7 +70,7 @@ void UrlShortenHandler::ComposeUrls(
     int64_t req_id,
     const std::vector<std::string> &urls,
     const std::map<std::string, std::string> &carrier) {
-  LOG(warning) << "ComposeUrls";
+  //LOG(warning) << "ComposeUrls";
 
   // Initialize a span
   //TextMapReader reader(carrier);
@@ -161,7 +161,7 @@ void UrlShortenHandler::ComposeUrls(
       throw;
     }
   }
-  LOG(warning) << "ComposeUrls Finish";
+  //LOG(warning) << "ComposeUrls Finish";
 
   _return = target_urls;
   //span->Finish();

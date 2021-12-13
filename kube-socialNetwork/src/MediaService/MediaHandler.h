@@ -32,16 +32,16 @@ void MediaHandler::ComposeMedia(
     const std::vector<std::string> &media_types,
     const std::vector<int64_t> &media_ids,
     const std::map<std::string, std::string> &carrier) {
-  LOG(warning) << "ComposeMedia";
+  //LOG(warning) << "ComposeMedia";
 
   // Initialize a span
-  TextMapReader reader(carrier);
-  std::map<std::string, std::string> writer_text_map;
-  TextMapWriter writer(writer_text_map);
-  auto parent_span = opentracing::Tracer::Global()->Extract(reader);
-  auto span = opentracing::Tracer::Global()->StartSpan(
-      "compose_media_server", {opentracing::ChildOf(parent_span->get())});
-  opentracing::Tracer::Global()->Inject(span->context(), writer);
+  //TextMapReader reader(carrier);
+  //std::map<std::string, std::string> writer_text_map;
+  //TextMapWriter writer(writer_text_map);
+  //auto parent_span = opentracing::Tracer::Global()->Extract(reader);
+  //auto span = opentracing::Tracer::Global()->StartSpan(
+      //"compose_media_server", {opentracing::ChildOf(parent_span->get())});
+  //opentracing::Tracer::Global()->Inject(span->context(), writer);
 
   if (media_types.size() != media_ids.size()) {
     ServiceException se;
@@ -57,9 +57,9 @@ void MediaHandler::ComposeMedia(
     new_media.media_type = media_types[i];
     _return.emplace_back(new_media);
   }
-  LOG(warning) << "ComposeMedia FInish";
+  //LOG(warning) << "ComposeMedia FInish";
 
-  span->Finish();
+  //span->Finish();
 }
 
 }  // namespace social_network

@@ -40,17 +40,17 @@ void UserMentionHandler::ComposeUserMentions(
     std::vector<UserMention> &_return, int64_t req_id,
     const std::vector<std::string> &usernames,
     const std::map<std::string, std::string> &carrier) {
-  LOG(warning) << "ComposeUserMentions";
+  //LOG(warning) << "ComposeUserMentions";
 
   // Initialize a span
-  TextMapReader reader(carrier);
+  //TextMapReader reader(carrier);
   std::map<std::string, std::string> writer_text_map;
-  TextMapWriter writer(writer_text_map);
-  auto parent_span = opentracing::Tracer::Global()->Extract(reader);
-  auto span = opentracing::Tracer::Global()->StartSpan(
-      "compose_user_mentions_server",
-      {opentracing::ChildOf(parent_span->get())});
-  opentracing::Tracer::Global()->Inject(span->context(), writer);
+  //TextMapWriter writer(writer_text_map);
+  //auto parent_span = opentracing::Tracer::Global()->Extract(reader);
+  //auto span = opentracing::Tracer::Global()->StartSpan(
+      //"compose_user_mentions_server",
+      //{opentracing::ChildOf(parent_span->get())});
+  //opentracing::Tracer::Global()->Inject(span->context(), writer);
 
   std::vector<UserMention> user_mentions;
   if (!usernames.empty()) {
@@ -61,42 +61,42 @@ void UserMentionHandler::ComposeUserMentions(
     }
 
     // Find in Memcached
-    memcached_return_t rc;
-    auto client = memcached_pool_pop(_memcached_client_pool, true, &rc);
-    if (!client) {
-      ServiceException se;
-      se.errorCode = ErrorCode::SE_MEMCACHED_ERROR;
-      se.message = "Failed to pop a client from memcached pool";
-      throw se;
-    }
+    //memcached_return_t rc;
+    //auto client = memcached_pool_pop(_memcached_client_pool, true, &rc);
+    //if (!client) {
+      //ServiceException se;
+      //se.errorCode = ErrorCode::SE_MEMCACHED_ERROR;
+      //se.message = "Failed to pop a client from memcached pool";
+      //throw se;
+    //}
 
-    char **keys;
-    size_t *key_sizes;
-    keys = new char *[usernames.size()];
-    key_sizes = new size_t[usernames.size()];
+    //char **keys;
+    //size_t *key_sizes;
+    //keys = new char *[usernames.size()];
+    //key_sizes = new size_t[usernames.size()];
     int idx = 0;
-    for (auto &username : usernames) {
-      std::string key_str = username + ":user_id";
-      keys[idx] = new char[key_str.length() + 1];
-      strcpy(keys[idx], key_str.c_str());
-      key_sizes[idx] = key_str.length();
-      idx++;
-    }
+    //for (auto &username : usernames) {
+      //std::string key_str = username + ":user_id";
+      //keys[idx] = new char[key_str.length() + 1];
+      //strcpy(keys[idx], key_str.c_str());
+      //key_sizes[idx] = key_str.length();
+      //idx++;
+    //}
 
-    auto get_span = opentracing::Tracer::Global()->StartSpan(
-        "compose_user_mentions_memcached_get_client",
-        {opentracing::ChildOf(&span->context())});
-    rc = memcached_mget(client, keys, key_sizes, usernames.size());
-    if (rc != MEMCACHED_SUCCESS) {
-      LOG(error) << "Cannot get usernames of request " << req_id << ": "
-                 << memcached_strerror(client, rc);
-      ServiceException se;
-      se.errorCode = ErrorCode::SE_MEMCACHED_ERROR;
-      se.message = memcached_strerror(client, rc);
-      memcached_pool_push(_memcached_client_pool, client);
-      get_span->Finish();
-      throw se;
-    }
+    //auto get_span = opentracing::Tracer::Global()->StartSpan(
+        //"compose_user_mentions_memcached_get_client",
+        //{opentracing::ChildOf(&span->context())});
+    //rc = memcached_mget(client, keys, key_sizes, usernames.size());
+    //if (rc != MEMCACHED_SUCCESS) {
+      //LOG(error) << "Cannot get usernames of request " << req_id << ": "
+                 //<< memcached_strerror(client, rc);
+      //ServiceException se;
+      //se.errorCode = ErrorCode::SE_MEMCACHED_ERROR;
+      //se.message = memcached_strerror(client, rc);
+      //memcached_pool_push(_memcached_client_pool, client);
+      //get_span->Finish();
+      //throw se;
+    //}
 
     char return_key[MEMCACHED_MAX_KEY];
     size_t return_key_length;
@@ -104,45 +104,45 @@ void UserMentionHandler::ComposeUserMentions(
     size_t return_value_length;
     uint32_t flags;
 
-    while (true) {
-      return_value = memcached_fetch(client, return_key, &return_key_length,
-                                     &return_value_length, &flags, &rc);
-      if (return_value == nullptr) {
-        LOG(debug) << "Memcached mget finished "
-                   << memcached_strerror(client, rc);
-        break;
-      }
-      if (rc != MEMCACHED_SUCCESS) {
-        free(return_value);
-        memcached_quit(client);
-        memcached_pool_push(_memcached_client_pool, client);
-        LOG(error) << "Cannot get components of request " << req_id;
-        ServiceException se;
-        se.errorCode = ErrorCode::SE_MEMCACHED_ERROR;
-        se.message =
-            "Cannot get usernames of request " + std::to_string(req_id);
-        get_span->Finish();
-        throw se;
-      }
-      UserMention new_user_mention;
-      std::string username(return_key, return_key + return_key_length);
-      username =
-          username.substr(0, username.length() - std::strlen(":user_id"));
-      new_user_mention.username = username;
-      new_user_mention.user_id = std::stoul(
-          std::string(return_value, return_value + return_value_length));
-      user_mentions.emplace_back(new_user_mention);
-      usernames_not_cached.erase(username);
-      free(return_value);
-    }
-    memcached_quit(client);
-    memcached_pool_push(_memcached_client_pool, client);
-    get_span->Finish();
-    for (int i = 0; i < usernames.size(); ++i) {
-      delete keys[i];
-    }
-    delete[] keys;
-    delete[] key_sizes;
+    //while (true) {
+      //return_value = memcached_fetch(client, return_key, &return_key_length,
+                                     //&return_value_length, &flags, &rc);
+      //if (return_value == nullptr) {
+        //LOG(debug) << "Memcached mget finished "
+                   //<< memcached_strerror(client, rc);
+        //break;
+      //}
+      //if (rc != MEMCACHED_SUCCESS) {
+        //free(return_value);
+        //memcached_quit(client);
+        //memcached_pool_push(_memcached_client_pool, client);
+        //LOG(error) << "Cannot get components of request " << req_id;
+        //ServiceException se;
+        //se.errorCode = ErrorCode::SE_MEMCACHED_ERROR;
+        //se.message =
+            //"Cannot get usernames of request " + std::to_string(req_id);
+        ////get_span->Finish();
+        //throw se;
+      //}
+      //UserMention new_user_mention;
+      //std::string username(return_key, return_key + return_key_length);
+      //username =
+          //username.substr(0, username.length() - std::strlen(":user_id"));
+      //new_user_mention.username = username;
+      //new_user_mention.user_id = std::stoul(
+          //std::string(return_value, return_value + return_value_length));
+      //user_mentions.emplace_back(new_user_mention);
+      //usernames_not_cached.erase(username);
+      //free(return_value);
+    //}
+    //memcached_quit(client);
+    //memcached_pool_push(_memcached_client_pool, client);
+    //get_span->Finish();
+    //for (int i = 0; i < usernames.size(); ++i) {
+      //delete keys[i];
+    //}
+    //delete[] keys;
+    //delete[] key_sizes;
 
     // Find the rest in MongoDB
     if (!usernames_not_cached.empty()) {
@@ -182,9 +182,9 @@ void UserMentionHandler::ComposeUserMentions(
       bson_append_array_end(&query_child_0, &query_username_list);
       bson_append_document_end(query, &query_child_0);
 
-      auto find_span = opentracing::Tracer::Global()->StartSpan(
-          "compose_user_mentions_mongo_find_client",
-          {opentracing::ChildOf(&span->context())});
+      //auto find_span = opentracing::Tracer::Global()->StartSpan(
+          //"compose_user_mentions_mongo_find_client",
+          //{opentracing::ChildOf(&span->context())});
       mongoc_cursor_t *cursor =
           mongoc_collection_find_with_opts(collection, query, nullptr, nullptr);
       const bson_t *doc;
@@ -202,7 +202,7 @@ void UserMentionHandler::ComposeUserMentions(
           mongoc_cursor_destroy(cursor);
           mongoc_collection_destroy(collection);
           mongoc_client_pool_push(_mongodb_client_pool, mongodb_client);
-          find_span->Finish();
+          //find_span->Finish();
           throw se;
         }
         if (bson_iter_init_find(&iter, doc, "username")) {
@@ -215,7 +215,7 @@ void UserMentionHandler::ComposeUserMentions(
           mongoc_cursor_destroy(cursor);
           mongoc_collection_destroy(collection);
           mongoc_client_pool_push(_mongodb_client_pool, mongodb_client);
-          find_span->Finish();
+          //find_span->Finish();
           throw se;
         }
         user_mentions.emplace_back(new_user_mention);
@@ -224,13 +224,13 @@ void UserMentionHandler::ComposeUserMentions(
       mongoc_cursor_destroy(cursor);
       mongoc_collection_destroy(collection);
       mongoc_client_pool_push(_mongodb_client_pool, mongodb_client);
-      find_span->Finish();
+      //find_span->Finish();
     }
   }
-  LOG(warning) << "ComposeUserMentions Finish";
+  //LOG(warning) << "ComposeUserMentions Finish";
 
   _return = user_mentions;
-  span->Finish();
+  //span->Finish();
 }
 
 }  // namespace social_network

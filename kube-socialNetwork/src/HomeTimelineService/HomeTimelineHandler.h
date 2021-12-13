@@ -67,20 +67,20 @@ void HomeTimelineHandler::WriteHomeTimeline(
     int64_t req_id, int64_t post_id, int64_t user_id, int64_t timestamp,
     const std::vector<int64_t> &user_mentions_id,
     const std::map<std::string, std::string> &carrier) {
-  LOG(warning) << "WriteHomeTimeline";
+  //LOG(warning) << "WriteHomeTimeline";
 
   // Initialize a span
-  TextMapReader reader(carrier);
-  auto parent_span = opentracing::Tracer::Global()->Extract(reader);
-  auto span = opentracing::Tracer::Global()->StartSpan(
-      "write_home_timeline_server", {opentracing::ChildOf(parent_span->get())});
+  //TextMapReader reader(carrier);
+  //auto parent_span = opentracing::Tracer::Global()->Extract(reader);
+  //auto span = opentracing::Tracer::Global()->StartSpan(
+      //"write_home_timeline_server", {opentracing::ChildOf(parent_span->get())});
 
   // Find followers of the user
-  auto followers_span = opentracing::Tracer::Global()->StartSpan(
-      "get_followers_client", {opentracing::ChildOf(&span->context())});
+  //auto followers_span = opentracing::Tracer::Global()->StartSpan(
+      //"get_followers_client", {opentracing::ChildOf(&span->context())});
   std::map<std::string, std::string> writer_text_map;
-  TextMapWriter writer(writer_text_map);
-  opentracing::Tracer::Global()->Inject(followers_span->context(), writer);
+  //TextMapWriter writer(writer_text_map);
+  //opentracing::Tracer::Global()->Inject(followers_span->context(), writer);
 
   auto social_graph_client_wrapper = _social_graph_client_pool->Pop();
   if (!social_graph_client_wrapper) {
@@ -100,94 +100,94 @@ void HomeTimelineHandler::WriteHomeTimeline(
     throw;
   }
   _social_graph_client_pool->Keepalive(social_graph_client_wrapper);
-  followers_span->Finish();
+  //followers_span->Finish();
 
   std::set<int64_t> followers_id_set(followers_id.begin(), followers_id.end());
   followers_id_set.insert(user_mentions_id.begin(), user_mentions_id.end());
 
   // Update Redis ZSet
   // Zset key: follower_id, Zset value: post_id_str, Zset score: timestamp_str
-  auto redis_span = opentracing::Tracer::Global()->StartSpan(
-      "write_home_timeline_redis_update_client",
-      {opentracing::ChildOf(&span->context())});
+  //auto redis_span = opentracing::Tracer::Global()->StartSpan(
+      //"write_home_timeline_redis_update_client",
+      //{opentracing::ChildOf(&span->context())});
   std::string post_id_str = std::to_string(post_id);
 
-  {
-    if (_redis_client_pool) {
-      auto pipe = _redis_client_pool->pipeline(false);
-      for (auto &follower_id : followers_id_set) {
-        pipe.zadd(std::to_string(follower_id), post_id_str, timestamp,
-                  UpdateType::NOT_EXIST);
-      }
-      try {
-        auto replies = pipe.exec();
-      } catch (const Error &err) {
-        LOG(error) << err.what();
-        throw err;
-      }
-    } else {
-      // TODO: Redis++ currently does not support pipeline with multiple
-      //       hashtags in cluster mode.
-      //       Currently, we send one request for each follower, which may
-      //       incur some performance overhead. We are following the updates
-      //       of Redis++ clients:
-      //       https://github.com/sewenew/redis-plus-plus/issues/212
-      try {
-        for (auto &follower_id : followers_id_set) {
-          _redis_cluster_client_pool->zadd(std::to_string(follower_id),
-                                           post_id_str, timestamp,
-                                           UpdateType::NOT_EXIST);
-        }
+  //{
+    //if (_redis_client_pool) {
+      //auto pipe = _redis_client_pool->pipeline(false);
+      //for (auto &follower_id : followers_id_set) {
+        //pipe.zadd(std::to_string(follower_id), post_id_str, timestamp,
+                  //UpdateType::NOT_EXIST);
+      //}
+      //try {
+        //auto replies = pipe.exec();
+      //} catch (const Error &err) {
+        //LOG(error) << err.what();
+        //throw err;
+      //}
+    //} else {
+      //// TODO: Redis++ currently does not support pipeline with multiple
+      ////       hashtags in cluster mode.
+      ////       Currently, we send one request for each follower, which may
+      ////       incur some performance overhead. We are following the updates
+      ////       of Redis++ clients:
+      ////       https://github.com/sewenew/redis-plus-plus/issues/212
+      //try {
+        //for (auto &follower_id : followers_id_set) {
+          //_redis_cluster_client_pool->zadd(std::to_string(follower_id),
+                                           //post_id_str, timestamp,
+                                           //UpdateType::NOT_EXIST);
+        //}
 
-      } catch (const Error &err) {
-        LOG(error) << err.what();
-        throw err;
-      }
-    }
-  }
-  LOG(warning) << "WriteHomeTimeline Finish";
+      //} catch (const Error &err) {
+        //LOG(error) << err.what();
+        //throw err;
+      //}
+    //}
+  //}
+  //LOG(warning) << "WriteHomeTimeline Finish";
 
-  redis_span->Finish();
+  //redis_span->Finish();
 }
 
 void HomeTimelineHandler::ReadHomeTimeline(
     std::vector<Post> &_return, int64_t req_id, int64_t user_id, int start_idx,
     int stop_idx, const std::map<std::string, std::string> &carrier) {
-  LOG(warning) << "ReadHomeTimeline";
+  //LOG(warning) << "ReadHomeTimeline";
 
   // Initialize a span
-  TextMapReader reader(carrier);
+  //TextMapReader reader(carrier);
   std::map<std::string, std::string> writer_text_map;
-  TextMapWriter writer(writer_text_map);
-  auto parent_span = opentracing::Tracer::Global()->Extract(reader);
-  auto span = opentracing::Tracer::Global()->StartSpan(
-      "read_home_timeline_server", {opentracing::ChildOf(parent_span->get())});
-  opentracing::Tracer::Global()->Inject(span->context(), writer);
+  //TextMapWriter writer(writer_text_map);
+  //auto parent_span = opentracing::Tracer::Global()->Extract(reader);
+  //auto span = opentracing::Tracer::Global()->StartSpan(
+      //"read_home_timeline_server", {opentracing::ChildOf(parent_span->get())});
+  //opentracing::Tracer::Global()->Inject(span->context(), writer);
 
   if (stop_idx <= start_idx || start_idx < 0) {
     return;
   }
 
-  auto redis_span = opentracing::Tracer::Global()->StartSpan(
-      "read_home_timeline_redis_find_client",
-      {opentracing::ChildOf(&span->context())});
+  //auto redis_span = opentracing::Tracer::Global()->StartSpan(
+      //"read_home_timeline_redis_find_client",
+      //{opentracing::ChildOf(&span->context())});
 
   std::vector<std::string> post_ids_str;
-  try {
-    if (_redis_client_pool) {
-      _redis_client_pool->zrevrange(std::to_string(user_id), start_idx,
-                                    stop_idx - 1,
-                                    std::back_inserter(post_ids_str));
-    } else {
-      _redis_cluster_client_pool->zrevrange(std::to_string(user_id), start_idx,
-                                            stop_idx - 1,
-                                            std::back_inserter(post_ids_str));
-    }
-  } catch (const Error &err) {
-    LOG(error) << err.what();
-    throw err;
-  }
-  redis_span->Finish();
+  //try {
+    //if (_redis_client_pool) {
+      //_redis_client_pool->zrevrange(std::to_string(user_id), start_idx,
+                                    //stop_idx - 1,
+                                    //std::back_inserter(post_ids_str));
+    //} else {
+      //_redis_cluster_client_pool->zrevrange(std::to_string(user_id), start_idx,
+                                            //stop_idx - 1,
+                                            //std::back_inserter(post_ids_str));
+    //}
+  //} catch (const Error &err) {
+    //LOG(error) << err.what();
+    //throw err;
+  //}
+  //redis_span->Finish();
 
   std::vector<int64_t> post_ids;
   for (auto &post_id_str : post_ids_str) {
@@ -210,9 +210,9 @@ void HomeTimelineHandler::ReadHomeTimeline(
     throw;
   }
   _post_client_pool->Keepalive(post_client_wrapper);
-  LOG(warning) << "ReadHomeTimeline Finish";
+  //LOG(warning) << "ReadHomeTimeline Finish";
 
-  span->Finish();
+  //span->Finish();
 }
 
 }  // namespace social_network
