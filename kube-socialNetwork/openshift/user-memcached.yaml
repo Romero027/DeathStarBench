@@ -9,7 +9,8 @@ metadata:
   namespace: social-network
 spec:
   ports:
-  - port: 11211
+    - name: tcp 
+      port: 11211
   selector:
     death-star-project: social-network
     app: user-memcached
@@ -30,11 +31,13 @@ spec:
       app: user-memcached
   template:
     metadata:
-      labels:
+      labels: 
+        sidecar.istio.io/inject: "false"
         death-star-project: social-network
         app: user-memcached
       name: user-memcached
     spec:
+      nodeName: h3.mesh.meshbench-pg0.clemson.cloudlab.us
       containers:
       - name: user-memcached
         image: memcached
