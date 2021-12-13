@@ -67,7 +67,7 @@ spec:
         app-name: jaeger
       name: jaeger-agent
     spec:
-     nodeName: h2.mesh.meshbench-pg0.clemson.cloudlab.us
+      nodeName: h2.mesh.meshbench-pg0.clemson.cloudlab.us
       containers:
       - name: jaeger-agent
         image: jaegertracing/all-in-one:latest
