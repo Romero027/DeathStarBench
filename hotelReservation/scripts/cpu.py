@@ -23,8 +23,8 @@ if __name__ == '__main__':
         cpu_overheads.append(cpu())
     
     print(cpu_overheads)
-
     overall = 0.0
     for c in cpu_overheads:
-        overall += (c['usr']+c['sys']+['soft'])
+        overall = overall+c['usr']+c['sys']+c['soft']
+        print(overall)
     print(overall/5)
