@@ -76,7 +76,6 @@ spec:
 # sudo perf script > out.perf
 # sudo ./stackcollapse-perf.pl out.perf > out.folded
 # ./flamegraph.pl out.folded > kernel.svg
-
 sudo su
 git clone https://github.com/brendangregg/FlameGraph.git
 cd FlameGraph
@@ -84,4 +83,13 @@ perf record -F 99 -a -g -- sleep 40
 perf script | ./stackcollapse-perf.pl | ./flamegraph.pl > perf.svg
 
 ./wrk/wrk -t1 -c1 -d400s -s ./wrk2/scripts/hotel-reservation/search_hotel_workload.lua http://10.96.7.56:5000 --latency
-k apply -f mongodb/mongodb-user-deployment.yaml;k apply -f deployment/consul-deployment.yaml; k apply -f deployment/frontend-deployment.yaml;k apply -f deployment/user-deployment.yaml
+
+# client-side throttling, not priority and fairness problem
+# Source: https://stackoverflow.com/questions/66339069/kubectl-get-all-command-return-throttling-request
+sudo chmod 777 -R ~/.kube/cache
+
+# Build and push docker image
+docker build -t xzhu0027/online_boutique_frontend:latest -f Dockerfile .
+docker push xzhu0027/online_boutique_frontend:latest 
+
+# Capture packet in a kubernetes podr
