@@ -26,5 +26,4 @@ if __name__ == '__main__':
     overall = 0.0
     for c in cpu_overheads:
         overall = overall+c['usr']+c['sys']+c['soft']
-        print(overall)
     print(overall/5)
