@@ -9,7 +9,7 @@ metadata:
     io.kompose.service: reservation
   name: reservation
 spec:
-  replicas: 1
+  replicas: 8
   selector:
     matchLabels:
       io.kompose.service: reservation
@@ -26,7 +26,7 @@ spec:
       labels:
         io.kompose.service: reservation
     spec:
-      nodeName: h2.baremental.meshbench-pg0.clemson.cloudlab.us
+      nodeName: h3.baremental.meshbench-pg0.clemson.cloudlab.us
       containers:
         - command:
             - reservation
@@ -34,8 +34,8 @@ spec:
           name: hotel-reserv-reservation
           ports:
             - containerPort: 8087
-          resources:
-            limits:
-              cpu: 1000m
+          # resources:
+          #   limits:
+          #     cpu: 1000m
       restartPolicy: Always
 status: {}

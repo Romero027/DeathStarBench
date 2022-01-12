@@ -10,7 +10,7 @@ metadata:
     workload: hotel
   name: frontend
 spec:
-  replicas: 1
+  replicas: 12
   selector:
     matchLabels:
       io.kompose.service: frontend
@@ -21,7 +21,7 @@ spec:
         kompose.cmd: kompose convert
         kompose.version: 1.22.0 (955b78124)
         #sidecar.istio.io/proxyCPU: "500m"
-        sidecar.istio.io/inject: "false"
+        # sidecar.istio.io/inject: "false"
         # sidecar.istio.io/userVolumeMount: '[{"name":"log", "mountPath":"/var/log/tap"}]'
         # sidecar.istio.io/userVolume: '[{"name": "log", "emptyDir":{}}]'
         # sidecar.istio.io/statsInclusionPrefixes: cluster.outbound,cluster_manager,listener_manager,http_mixer_filter,tcp_mixer_filter,server,cluster.xds-grp,listener,connection_manager
@@ -38,8 +38,8 @@ spec:
           name: hotel-reserv-frontend
           ports:
             - containerPort: 5000
-          resources:
-            limits:
-              cpu: 1000m
+          # resources:
+          #   limits:
+          #     cpu: 1000m
       restartPolicy: Always
 status: {}
