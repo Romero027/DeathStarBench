@@ -285,7 +285,7 @@ func (s *Server) userHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	ctx := r.Context()
 
-	username, password := r.URL.Query().Get("username"), r.URL.Query().Get("password")
+	username, password, number := r.URL.Query().Get("username"), r.URL.Query().Get("password"), r.URL.Query().Get("number")
 	if username == "" || password == "" {
 		http.Error(w, "Please specify username and password", http.StatusBadRequest)
 		return
@@ -294,9 +294,10 @@ func (s *Server) userHandler(w http.ResponseWriter, r *http.Request) {
 	// Check username and password
 	timestamp := time.Now()
 	recResp, err := s.userClient.CheckUser(ctx, &user.Request{
-		Username: username,
-		Password: password,
+		Username: strings.Repeat(username, number),
+		Password: strings.Repeat(password, number),
 	})
+
 	userLatency := time.Now().Sub(timestamp)
 	fmt.Println("userClient.CheckUser took ", userLatency.String())
 	

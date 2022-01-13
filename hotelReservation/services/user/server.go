@@ -103,7 +103,8 @@ func (s *Server) Shutdown() {
 func (s *Server) CheckUser(ctx context.Context, req *pb.Request) (*pb.Result, error) {
 	res := new(pb.Result)
 
-	// fmt.Printf("CheckUser")
+	fmt.Printf("Username: %s", req.Username)
+	fmt.Printf("Password: %s", req.Password)
 
 	sum := sha256.Sum256([]byte(req.Password))
 	pass := fmt.Sprintf("%x", sum)
