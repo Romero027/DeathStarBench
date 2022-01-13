@@ -8,6 +8,7 @@ import (
 	"github.com/harlow/go-micro-services/services/user/proto"
 	"net/http"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/harlow/go-micro-services/dialer"
@@ -290,6 +291,12 @@ func (s *Server) userHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Please specify username and password", http.StatusBadRequest)
 		return
 	}
+	
+	if number == "" {
+		number = "1"
+	}
+
+	scale :=  strconv.Atoi(number)
 
 	// Check username and password
 	timestamp := time.Now()
