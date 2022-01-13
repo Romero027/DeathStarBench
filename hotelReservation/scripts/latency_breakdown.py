@@ -103,9 +103,9 @@ if __name__ == '__main__':
         for app, envoy_process in envoy_info.items():
             if args.proxy == "tcp":
                 print("Running breakdown experiment for TCP proxy...")
-                result[app] = run_tcp_proxy_latency_breakdown(app, envoy_process, 15)
+                result[app] = run_tcp_proxy_latency_breakdown(app, envoy_process, 5)
             elif args.proxy == "http":
                 print("Running breakdown experiment for HTTP proxy...")
-                result[app] = run_http_proxy_latency_breakdown(app, envoy_process, 15)
+                result[app] = run_http_proxy_latency_breakdown(app, envoy_process, 5)
 
     print(result)
