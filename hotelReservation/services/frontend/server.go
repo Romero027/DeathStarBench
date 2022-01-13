@@ -301,8 +301,8 @@ func (s *Server) userHandler(w http.ResponseWriter, r *http.Request) {
 	// Check username and password
 	timestamp := time.Now()
 	recResp, err := s.userClient.CheckUser(ctx, &user.Request{
-		Username: strings.Repeat(username, number),
-		Password: strings.Repeat(password, number),
+		Username: strings.Repeat(username, scale),
+		Password: strings.Repeat(password, scale),
 	})
 
 	userLatency := time.Now().Sub(timestamp)
