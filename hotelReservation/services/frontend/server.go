@@ -190,30 +190,30 @@ func (s *Server) searchHandler(w http.ResponseWriter, r *http.Request) {
 		locale = "en"
 	}
 
-	timestamp = time.Now()
-	reservationResp, err := s.reservationClient.CheckAvailability(ctx, &reservation.Request{
-		CustomerName: "",
-		HotelId:      searchResp.HotelIds,
-		InDate:       inDate,
-		OutDate:      outDate,
-		RoomNumber:   1,
-	})
-	reservationLatency := time.Now().Sub(timestamp)
-	fmt.Println("reservationClient.CheckAvailability took ", reservationLatency.String())
+	//timestamp = time.Now()
+	//reservationResp, err := s.reservationClient.CheckAvailability(ctx, &reservation.Request{
+	//	CustomerName: "",
+	//	HotelId:      searchResp.HotelIds,
+	//	InDate:       inDate,
+	//	OutDate:      outDate,
+	//	RoomNumber:   1,
+	//})
+	//reservationLatency := time.Now().Sub(timestamp)
+	//fmt.Println("reservationClient.CheckAvailability took ", reservationLatency.String())
 
 
-	if err != nil {
-		fmt.Println("searchHandler CheckAvailability failed")
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
+	//if err != nil {
+	//	fmt.Println("searchHandler CheckAvailability failed")
+	//	http.Error(w, err.Error(), http.StatusInternalServerError)
+	//	return
+	//}
 
-	fmt.Printf("searchHandler gets reserveResp.HotelId = %s\n", reservationResp.HotelId)
+	//fmt.Printf("searchHandler gets reserveResp.HotelId = %s\n", reservationResp.HotelId)
 
 	// hotel profiles
 	timestamp = time.Now()
 	profileResp, err := s.profileClient.GetProfiles(ctx, &profile.Request{
-		HotelIds: reservationResp.HotelId,
+		HotelIds: []string{"39"},
 		Locale:   locale,
 	})
 	profileLatency := time.Now().Sub(timestamp)
