@@ -26,7 +26,7 @@ spec:
       labels:
         io.kompose.service: consul
     spec:
-      nodeName: h2.baremental.meshbench-pg0.clemson.cloudlab.us
+      nodeName: h2.amd.meshbench-pg0.clemson.cloudlab.us
       containers:
         - image: consul:latest
           name: consul
@@ -74,7 +74,7 @@ spec:
       labels:
         io.kompose.service: frontend
     spec:
-      nodeName: h2.baremental.meshbench-pg0.clemson.cloudlab.us
+      nodeName: h2.amd.meshbench-pg0.clemson.cloudlab.us
       containers:
         - command:
             - frontend
@@ -117,7 +117,7 @@ spec:
       labels:
         io.kompose.service: mongodb-user
     spec:
-      nodeName: h3.baremental.meshbench-pg0.clemson.cloudlab.us
+      nodeName: h2.amd.meshbench-pg0.clemson.cloudlab.us
       containers:
         - image: mongo
           name: hotel-reserv-user-mongo
@@ -135,50 +135,6 @@ spec:
         - name: user
           persistentVolumeClaim:
             claimName: user-pvc
-status: {}
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.version: 1.22.0 (955b78124)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: consul
-  name: consul
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      io.kompose.service: consul
-  strategy: {}
-  template:
-    metadata:
-      annotations:
-        kompose.cmd: kompose convert
-        kompose.version: 1.22.0 (955b78124)
-        sidecar.istio.io/inject: "false"
-        # sidecar.istio.io/statsInclusionPrefixes: cluster.outbound,cluster_manager,listener_manager,http_mixer_filter,tcp_mixer_filter,server,cluster.xds-grp,listener,connection_manager
-        # sidecar.istio.io/statsInclusionRegexps: http.*
-      creationTimestamp: null
-      labels:
-        io.kompose.service: consul
-    spec:
-      nodeName: h2.baremental.meshbench-pg0.clemson.cloudlab.us
-      containers:
-        - image: consul:latest
-          name: consul
-          ports:
-            - containerPort: 8300
-            - containerPort: 8400
-            - containerPort: 8500
-            - containerPort: 53
-              protocol: UDP
-          resources:
-            limits:
-              cpu: 1000m
-      restartPolicy: Always
 status: {}
 ---
 apiVersion: apps/v1
@@ -210,7 +166,7 @@ spec:
       labels:
         io.kompose.service: user
     spec:
-      nodeName: h2.baremental.meshbench-pg0.clemson.cloudlab.us
+      nodeName: h2.amd.meshbench-pg0.clemson.cloudlab.us
       containers:
         - command:
             - user
