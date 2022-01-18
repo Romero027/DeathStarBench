@@ -134,5 +134,5 @@ spec:
             - key: kubernetes.io/hostname
               operator: In
               values:
-                - h3.amd.meshbench-pg0.utah.cloudlab.us
+                - h2.amd.meshbench-pg0.utah.cloudlab.us
 ---
