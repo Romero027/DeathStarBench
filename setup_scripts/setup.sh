@@ -52,9 +52,10 @@ source <(kubectl completion bash)
 source <(kubectl completion bash | sed s/kubectl/k/g)
 
 # test hotel
-curl "http://10.244.1.113:5000/recommendations?require=rate&lat=38.0235&lon=-122.095" 
+curl "http://10.244.1.113:5000/recommendations?require=rate&lat=38.0235&lon=-122.095" # recommendation
 curl "http://localhost:5000/hotels?inDate=2015-04-10&outDate=2015-04-11&lat=38.0235&lon=-122.095" # search hotel
-curl "http://localhost:5000/user?username=Cornell_15&password=123654"
+curl "http://localhost:5000/user?username=Cornell_15&password=123654" # get suer
+curl "http://localhost:5000/reservation?inDate=2015-04-21&outDate=2015-04-23&lat=nil&lon=nil&hotelId=63&customerName=cornell123&username=cornell123&password=1234&number=1" # reserve
 
 # Get envoy config
 istioctl proxy-config listeners recommendationservice-7b57c9bd44-8bb5q --port 15006 -o json > OUTPUT
@@ -92,4 +93,6 @@ sudo chmod 777 -R ~/.kube/cache
 docker build -t xzhu0027/online_boutique_frontend:latest -f Dockerfile .
 docker push xzhu0027/online_boutique_frontend:latest 
 
-# Capture packet in a kubernetes podr
+# Capture packet in a kubernetes pod
+docker inspect <container-id> | grep Pid
+nsenter -t <pid> -n tcpdump -i any -w result.pcap

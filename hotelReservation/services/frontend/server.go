@@ -296,13 +296,13 @@ func (s *Server) userHandler(w http.ResponseWriter, r *http.Request) {
 		number = "1"
 	}
 
-	scale :=  strconv.Atoi(number)
+	scale, err :=  strconv.Atoi(number)
 
 	// Check username and password
 	timestamp := time.Now()
 	recResp, err := s.userClient.CheckUser(ctx, &user.Request{
-		Username: strings.Repeat(username, number),
-		Password: strings.Repeat(password, number),
+		Username: strings.Repeat(username, scale),
+		Password: strings.Repeat(password, scale),
 	})
 
 	userLatency := time.Now().Sub(timestamp)
@@ -391,9 +391,11 @@ func (s *Server) reservationHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+        fmt.Println(resResp.HotelId)
 	if len(resResp.HotelId) == 0 {
 		str = "Failed. Already reserved. "
 	}
+     
 
 	res := map[string]interface{}{
 		"message": str,

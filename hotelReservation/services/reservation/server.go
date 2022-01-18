@@ -109,7 +109,8 @@ func (s *Server) MakeReservation(ctx context.Context, req *pb.Request) (*pb.Resu
 	// 	panic(err)
 	// }
 	// defer session.Close()
-	session := s.MongoSession.Copy()
+	/*
+        session := s.MongoSession.Copy()
 	defer session.Close()
 
 	c := session.DB("reservation-db").C("reservation")
@@ -122,10 +123,10 @@ func (s *Server) MakeReservation(ctx context.Context, req *pb.Request) (*pb.Resu
 	outDate, _ := time.Parse(
 		time.RFC3339,
 		req.OutDate + "T12:00:00+00:00")
-	hotelId := req.HotelId[0]
 
 	indate := inDate.String()[0:10]
 
+	hotelId := req.HotelId[0]
 	memc_date_num_map := make(map[string] int)
 
 	for inDate.Before(outDate) {
@@ -221,6 +222,7 @@ func (s *Server) MakeReservation(ctx context.Context, req *pb.Request) (*pb.Resu
 	}
 
 	res.HotelId = append(res.HotelId, hotelId)
+        */
 
 	return res, nil
 }

@@ -5,13 +5,13 @@ metadata:
 spec:
   workloadSelector:
     labels:
-      io.kompose.service: frontend
+      io.kompose.service: user
   configPatches:
   - applyTo: HTTP_FILTER
     match:
       context: SIDECAR_INBOUND
       listener:
-        portNumber: 5000
+        portNumber: 8086
         filterChain:
           filter:
             name: "envoy.filters.network.http_connection_manager"
@@ -29,7 +29,7 @@ spec:
               numerator: 0
               denominator: HUNDRED
           delay:
-              fixedDelay: 0.02s
+              fixedDelay: 0.01s
               percentage:
                 numerator: 0
                 denominator: HUNDRED

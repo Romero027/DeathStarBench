@@ -5,13 +5,13 @@ metadata:
 spec:
   workloadSelector:
     labels:
-      io.kompose.service: frontend
+      io.kompose.service: user
   configPatches:
   - applyTo: HTTP_FILTER
     match:
       context: SIDECAR_INBOUND
       listener:
-        portNumber: 5000
+        portNumber: 8086
         filterChain:
           filter:
             name: "envoy.filters.network.http_connection_manager"
@@ -25,7 +25,7 @@ spec:
           "@type": "type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua"
           inlineCode: |
             function envoy_on_request(request_handle)            
-              os.execute("sleep " .. tonumber(2))
+              os.execute("sleep " .. tonumber(0.00002))
             end          
             function envoy_on_response(response_handle)
             end

@@ -102,9 +102,10 @@ func (s *Server) Shutdown() {
 // CheckUser returns whether the username and password are correct.
 func (s *Server) CheckUser(ctx context.Context, req *pb.Request) (*pb.Result, error) {
 	res := new(pb.Result)
+        fmt.Println("TEST!!")
 
-	fmt.Printf("Username: %s", req.Username)
-	fmt.Printf("Password: %s", req.Password)
+	fmt.Println("Username: ", req.Username)
+	fmt.Println("Password: ", req.Password)
 
 	sum := sha256.Sum256([]byte(req.Password))
 	pass := fmt.Sprintf("%x", sum)

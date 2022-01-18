@@ -24,9 +24,15 @@ spec:
        typed_config:
           "@type": "type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua"
           inlineCode: |
-            function envoy_on_request(request_handle)            
-              request_handle:headers():add("x-test-cohort", "dark-release")   
-            end          
-            function envoy_on_response(response_handle)
+            function envoy_on_request(handle)
+              handle:logWarn(" ============= envoy_on_request ============= ")
+              local headers = handle:headers()
+              handle:logWarn(authToken)
+              handle:logWarn(" ============================================= ")
             end
-
+            function envoy_on_response(handle)
+              handle:logWarn(" ============= envoy_on_response ============= ")
+              handle:headers():add("my-custom-header-response","my-header-value")
+              handle:logWarn("Custom header has been added to respose")
+              handle:logWarn(" ============================================= ")
+            end
