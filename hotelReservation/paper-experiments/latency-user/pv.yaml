@@ -42,7 +42,7 @@ spec:
             - key: kubernetes.io/hostname
               operator: In
               values:
-                - h2.amd.meshbench-pg0.clemson.cloudlab.us
+                - h2.amd.meshbench-pg0.utah.cloudlab.us
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -65,7 +65,7 @@ spec:
             - key: kubernetes.io/hostname
               operator: In
               values:
-                - h4.amd.meshbench-pg0.clemson.cloudlab.us
+                - h4.amd.meshbench-pg0.utah.cloudlab.us
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -88,7 +88,7 @@ spec:
             - key: kubernetes.io/hostname
               operator: In
               values:
-                - h2.amd.meshbench-pg0.clemson.cloudlab.us
+                - h2.amd.meshbench-pg0.utah.cloudlab.us
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -111,7 +111,7 @@ spec:
             - key: kubernetes.io/hostname
               operator: In
               values:
-                - h4.amd.meshbench-pg0.clemson.cloudlab.us
+                - h4.amd.meshbench-pg0.utah.cloudlab.us
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -134,5 +134,5 @@ spec:
             - key: kubernetes.io/hostname
               operator: In
               values:
-                - h3.amd.meshbench-pg0.clemson.cloudlab.us
+                - h3.amd.meshbench-pg0.utah.cloudlab.us
 ---
