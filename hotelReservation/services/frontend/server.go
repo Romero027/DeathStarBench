@@ -398,7 +398,7 @@ func (s *Server) reservationHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	fmt.Println(len(resResp.HotelId))
+	fmt.Println(len(resResp.HotelId[0]))
 
 
 	if len(resResp.HotelId) != 0 {
