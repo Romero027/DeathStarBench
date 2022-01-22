@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: echo
 spec:
-  clusterIP: 10.88.88.88
+  clusterIP: 10.96.88.88
   ports:
   - name: tcp-echo
     port: 80
@@ -23,7 +23,7 @@ spec:
       labels:
         app: echo
     spec:
-      nodeName: h1.baremental.meshbench-pg0.clemson.cloudlab.us
+      nodeName: h2.baremental.meshbench-pg0.clemson.cloudlab.us
       containers:
       - image: jmalloc/echo-server
         name: echoserver
