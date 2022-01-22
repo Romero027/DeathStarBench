@@ -329,11 +329,17 @@ func (s *Server) reservationHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	ctx := r.Context()
 
-	inDate, outDate := r.URL.Query().Get("inDate"), r.URL.Query().Get("outDate")
+	inDate, outDate, number := r.URL.Query().Get("inDate"), r.URL.Query().Get("outDate"), r.URL.Query().Get("number")
 	if inDate == "" || outDate == "" {
 		http.Error(w, "Please specify inDate/outDate params", http.StatusBadRequest)
 		return
 	}
+
+	if number == "" {
+		number = "1"
+	}
+
+	scale, err :=  strconv.Atoi(number)
 
 	if !checkDataFormat(inDate) || !checkDataFormat(outDate) {
 		http.Error(w, "Please check inDate/outDate format (YYYY-MM-DD)", http.StatusBadRequest)
@@ -382,17 +388,20 @@ func (s *Server) reservationHandler(w http.ResponseWriter, r *http.Request) {
 	// Make reservation
 	resResp, err := s.reservationClient.MakeReservation(ctx, &reservation.Request{
 		CustomerName: customerName,
-		HotelId:      []string{hotelId},
+		HotelId:      []string{strings.Repeat(hotelId, scale*2)},
 		InDate:       inDate,
 		OutDate:      outDate,
 		RoomNumber:   int32(numberOfRoom),
 	})
+
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-        fmt.Println(resResp.HotelId)
-	if len(resResp.HotelId) == 0 {
+	fmt.Println(len(resResp.HotelId))
+
+
+	if len(resResp.HotelId) != 0 {
 		str = "Failed. Already reserved. "
 	}
      
