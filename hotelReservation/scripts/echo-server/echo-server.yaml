@@ -5,7 +5,7 @@ metadata:
 spec:
   clusterIP: 10.96.88.88
   ports:
-  - name: http-echo
+  - name: tcp-echo
     port: 80
     targetPort: 8080
   selector:
@@ -16,7 +16,7 @@ kind: Deployment
 metadata:
   name: echo
 spec:
-  replicas: 1
+  replicas: 12
   template:
     metadata:
       name: echo
@@ -25,7 +25,7 @@ spec:
     spec:
       nodeName: h2.baremental.meshbench-pg0.clemson.cloudlab.us
       containers:
-      - image: jmalloc/echo-server
+      - image: xzhu0027/echo:in
         name: echoserver
   selector:
     matchLabels:

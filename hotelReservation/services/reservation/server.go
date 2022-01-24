@@ -21,7 +21,7 @@ import (
 	"time"
 
 	"github.com/bradfitz/gomemcache/memcache"
-	// "strings"
+	"strings"
 	"strconv"
 )
 
@@ -103,7 +103,8 @@ func (s *Server) Shutdown() {
 func (s *Server) MakeReservation(ctx context.Context, req *pb.Request) (*pb.Result, error) {
 	res := new(pb.Result)
 	res.HotelId = make([]string, 0)
-	hotelId := req.HotelId[0]
+        scale := req.RoomNumber
+        hotelId := strings.Repeat(req.HotelId[0], int(scale))
 	res.HotelId = append(res.HotelId, hotelId)
 	fmt.Println(len(hotelId))
 	// session, err := mgo.Dial("mongodb-reservation")

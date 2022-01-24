@@ -1,0 +1,6 @@
+curl "http://10.96.7.56:5000/user?username=uw_1&password=123&number=1"
+curl "http://10.96.7.56:5000/user?username=uw_600&password=123&number=600"
+curl "http://10.96.7.56:5000/user?username=uw_1100&password=123&number=1100"
+curl "http://10.96.7.56:5000/user?username=uw_1600&password=123&number=1600"
+curl "http://10.96.7.56:5000/user?username=uw_2100&password=123&number=2100"
+curl "http://10.96.7.56:5000/user?username=uw_2600&password=123&number=2600"

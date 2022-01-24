@@ -8,7 +8,8 @@ math.random(); math.random(); math.random()
 
 local function user_login()
   local method = "GET"
-  local path = "http://localhost:5000/user?username=uw_5&password=123&number=5"
+  -- local path = "http://localhost:5000/user?username=uw_1100&password=123&number=1100"
+  local path = "http://localhost:5000/user?username=uw_70000&password=123&number=70000"
   local headers = {}
   -- headers["Content-Type"] = "application/x-www-form-urlencoded"
   return wrk.format(method, path, headers, nil)
