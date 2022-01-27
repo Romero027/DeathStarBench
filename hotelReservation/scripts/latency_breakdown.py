@@ -47,17 +47,21 @@ def get_envoy_info():
 
 def run_funclatency(func, duration, pid=None, delta_min=0):
     # funclatency_path = "/mnt/bcc/tools/funclatency.py"
+    delta_min = 0
     funclatency_path = "./funclatency.py"
 
+    #cmd = ['python3', funclatency_path, '-p '+str(pid), func, '-d '+str(duration), '-t '+str(delta_min), '-n '+str(130000)]
     cmd = ['python3', funclatency_path, '-p '+str(pid), func, '-d '+str(duration), '-t '+str(delta_min)]
     print("Running cmd: " + " ".join(cmd))
     result = subprocess.run(cmd, stdout=subprocess.PIPE)
 
     # extract avg latency from output    
+    #result = result.stdout.decode("utf-8").split('\n')
     result = result.stdout.decode("utf-8").split('\n')[-4]
     
     # parse avg latency string
     avg_latency = re.findall(r'\d+', result)[0]
+    #avg_latency = result[-6].split()[-1]
 
     return int(avg_latency)
 
@@ -103,9 +107,9 @@ if __name__ == '__main__':
         for app, envoy_process in envoy_info.items():
             if args.proxy == "tcp":
                 print("Running breakdown experiment for TCP proxy...")
-                result[app] = run_tcp_proxy_latency_breakdown(app, envoy_process, 5)
+                result[app] = run_tcp_proxy_latency_breakdown(app, envoy_process, 50)
             elif args.proxy == "http":
                 print("Running breakdown experiment for HTTP proxy...")
-                result[app] = run_http_proxy_latency_breakdown(app, envoy_process, 5)
+                result[app] = run_http_proxy_latency_breakdown(app, envoy_process, 15)
 
     print(result)

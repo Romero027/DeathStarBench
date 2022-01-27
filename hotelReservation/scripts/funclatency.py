@@ -28,6 +28,7 @@ from bcc import BPF
 from time import sleep, strftime
 import argparse
 import signal
+import pickle
 
 # arguments
 examples = """examples:
@@ -50,6 +51,8 @@ parser.add_argument("-p", "--pid", type=int,
     help="trace this PID only")
 parser.add_argument("-t", "--threshold", type=int,
     help="exclude executions below this threshold")
+parser.add_argument("-n", "--number", type=int,
+    help="number of calls of the function") # used by getting the latency of top n calss
 parser.add_argument("-i", "--interval", type=int,
     help="summary interval, in seconds")
 parser.add_argument("-d", "--duration", type=int,
@@ -117,6 +120,7 @@ typedef struct hist_key {
 TYPEDEF
 
 BPF_ARRAY(avg, u64, 2);
+BPF_HISTOGRAM(latency_table, u64, 1024000);
 STORAGE
 FUNCTION
 
@@ -147,6 +151,7 @@ int trace_func_return(struct pt_regs *ctx)
     u32 cnt = 1;
     avg.atomic_increment(lat, delta);
     avg.atomic_increment(cnt);
+    latency_table.atomic_increment((int)delta);
 
     FACTOR
 
@@ -285,7 +290,7 @@ static inline int stack_push(func_stack_t *stack, func_cache_t *cache) {
     hist_key_t key;
     key.key.ip  = ip;
     key.key.pid = %s;
-    key.slot    = bpf_log2l(delta);
+    key.slot    = bpf_log2l(key);
     dist.atomic_increment(key);
 
     if (stack->head == 0) {
@@ -380,6 +385,7 @@ def print_section(key):
 exiting = 0 if args.interval else 1
 seconds = 0
 dist = b.get_table("dist")
+latency = b.get_table("latency_table")
 while (1):
     try:
         sleep(args.interval)
@@ -400,6 +406,26 @@ while (1):
             bucket_fn=lambda k: (k.ip, k.pid))
     else:
         dist.print_log2_hist(label)
+
+    ######
+    vals = [0] * 1024000
+    for k, v in latency.items():
+        if k.value >= 1024000:
+            continue
+        vals[k.value] = v.value
+    #with open("onWriteReady_distr.pkl", "wb") as fout:
+    #    pickle.dump(vals, fout)
+
+    if args.number:
+
+        num_calls = args.number
+        count = 0
+        for i, e in reversed(list(enumerate(vals))):
+            if count + e > num_calls:
+                print("The threshold should be: " + str(i))
+                break
+            count += e
+    ######
 
     total  = b['avg'][0].value
     counts = b['avg'][1].value
