@@ -61,11 +61,12 @@ def run_funclatency(func, duration, pid=None, delta_min=0, num_calls=0):
     print("Running cmd: " + " ".join(cmd))
     result = subprocess.run(cmd, stdout=subprocess.PIPE)
 
-    # extract avg latency from output    
-    # result = result.stdout.decode("utf-8").split('\n')
-
+    
     # extract median based on num_calls
-    result = result.stdout.decode("utf-8").split('\n')[-4]
+    result = result.stdout.decode("utf-8").split('\n')
+
+    # extract avg latency from output    
+    # result = result.stdout.decode("utf-8").split('\n')[-4]
     print(result)
     
     # parse avg latency string
