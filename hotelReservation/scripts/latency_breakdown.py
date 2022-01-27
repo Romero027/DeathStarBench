@@ -69,8 +69,8 @@ def run_funclatency(func, duration, pid=None, delta_min=0, num_calls=0):
     print(result)
     
     # parse avg latency string
-    # median_latency = re.findall(r'\d+', result)[0]
-    avg_latency = result[-6].split()[-1]
+    # avg_latency = re.findall(r'\d+', result)[0]
+    median_latency = result[-6].split()[-1]
 
     return float(median_latency)
 
