@@ -151,7 +151,7 @@ int trace_func_return(struct pt_regs *ctx)
     u32 cnt = 1;
     avg.atomic_increment(lat, delta);
     avg.atomic_increment(cnt);
-    latency_table.atomic_increment((int)delta);
+    latency_table.atomic_increment((int)(delta/1000));
 
     FACTOR
 
