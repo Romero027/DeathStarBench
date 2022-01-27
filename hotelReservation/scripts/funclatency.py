@@ -409,12 +409,13 @@ while (1):
     else:
         dist.print_log2_hist(label)
 
-    ######
-    vals = [0] * 1024000
+    ###### 
+    vals = [0] * 1024000 # nanosecond 
     for k, v in latency.items():
         if k.value >= 1024000:
             continue
         vals[k.value] = v.value
+
     #with open("onWriteReady_distr.pkl", "wb") as fout:
     #    pickle.dump(vals, fout)
 
@@ -423,7 +424,7 @@ while (1):
         count = 0
         for i, e in reversed(list(enumerate(vals))):
             if count + e > num_calls:
-                print("The threshold should be: " + str(i))
+                print("The top "+ str(num_calls)+" latency is: " + str(i))
                 break
             count += e
 
@@ -443,8 +444,6 @@ while (1):
                 for _ in range(0, d):
                     temp_vals.append(i)
         print("The average latency for upper bound "+str(args.upperbound)+" is "+str(sum(temp_vals)/len(temp_vals)))
-
-
     ######
 
     total  = b['avg'][0].value
