@@ -52,10 +52,10 @@ source <(kubectl completion bash)
 source <(kubectl completion bash | sed s/kubectl/k/g)
 
 # test hotel
-curl "http://10.244.1.113:5000/recommendations?require=rate&lat=38.0235&lon=-122.095" # recommendation
+curl "http://localhost:5000/recommendations?require=rate&lat=38.0235&lon=-122.095" # recommendation
 curl "http://localhost:5000/hotels?inDate=2015-04-10&outDate=2015-04-11&lat=38.0235&lon=-122.095" # search hotel
 curl "http://localhost:5000/user?username=Cornell_15&password=123654" # get suer
-curl "http://localhost:5000/reservation?inDate=2015-04-21&outDate=2015-04-23&lat=nil&lon=nil&hotelId=63&customerName=cornell123&username=cornell123&password=1234&number=1" # reserve
+wr# reserve
 
 # Get envoy config
 istioctl proxy-config listeners recommendationservice-7b57c9bd44-8bb5q --port 15006 -o json > OUTPUT
@@ -96,3 +96,25 @@ docker push xzhu0027/online_boutique_frontend:latest
 # Capture packet in a kubernetes pod
 docker inspect <container-id> | grep Pid
 nsenter -t <pid> -n tcpdump -i any -w result.pcap
+
+
+# Get Envoy version in Istio
+kubectl exec -it user-964f65f95-8bh2g -c istio-proxy -n default  -- pilot-agent request GET server_info --log_as_json | grep "version"
+
+
+# strace 
+sudo strace -p <pid> -f -e readv -o <output file>
+
+
+
+
+
+
+
+
+Running cmd: python3 ./funclatency.py -p 569120 process_backlog -d 5 -t 0
+Running cmd: python3 ./funclatency.py -p 569120 do_readv -d 5 -t 0
+Running cmd: python3 ./funclatency.py -p 569120 do_writev -d 5 -t 0
+Running cmd: python3 ./funclatency.py -p 569120 ep_send_events_proc -d 5 -t 0
+Running cmd: python3 ./funclatency.py -p 569120 /proc/569120/root/usr/local/bin/envoy:*onReadReady* -d 5 -t 6592
+Running cmd: python3 ./funclatency.py -p 569120 /proc/569120/root/usr/local/bin/envoy:*onWriteReady* -d 5 -t 41332

@@ -49,10 +49,12 @@ parser = argparse.ArgumentParser(
     epilog=examples)
 parser.add_argument("-p", "--pid", type=int,
     help="trace this PID only")
-parser.add_argument("-t", "--threshold", type=int,
-    help="exclude executions below this threshold")
+parser.add_argument("-l", "--lowerbound", type=int,
+    help="exclude executions below this lowerbound")
+parser.add_argument("-b", "--upperbound", type=int,
+    help="exclude executions above this bound")
 parser.add_argument("-n", "--number", type=int,
-    help="number of calls of the function") # used by getting the latency of top n calss
+    help="number of calls of the function") # used by getting the latency of top n calls
 parser.add_argument("-i", "--interval", type=int,
     help="summary interval, in seconds")
 parser.add_argument("-d", "--duration", type=int,
@@ -336,12 +338,12 @@ bpf_text = bpf_text.replace('CALCULATE',
         return 0;   // missed start
     }
     delta = bpf_ktime_get_ns() - *tsp;
-    if (delta < THRESHOLD) {
-        return 0;   // exclude executions
-    }
+    # if (delta < THRESHOLD) {
+    #     return 0;   // exclude executions
+    # }
     start.delete(&pid);
                 """)
-bpf_text = bpf_text.replace('THRESHOLD', str(args.threshold))
+# bpf_text = bpf_text.replace('THRESHOLD', str(args.threshold))
 
 if args.verbose or args.ebpf:
     print(bpf_text)
@@ -417,7 +419,6 @@ while (1):
     #    pickle.dump(vals, fout)
 
     if args.number:
-
         num_calls = args.number
         count = 0
         for i, e in reversed(list(enumerate(vals))):
@@ -425,6 +426,25 @@ while (1):
                 print("The threshold should be: " + str(i))
                 break
             count += e
+
+    if args.lowerbound:
+        temp_vals = []
+        for i, d in enumerate(vals): # i is the latency and d is the number of times that latency appears in the trace
+            if i > args.lowerbound:
+                for _ in range(0, d):
+                    temp_vals.append(i)
+        print("The average latency for lower bound "+str(args.lowerbound)+" is "+str(sum(temp_vals)/len(temp_vals)))
+
+
+    if args.upperbound:
+        temp_vals = []
+        for i, d in enumerate(vals): # i is the latency and d is the number of times that latency appears in the trace
+            if i < args.upperbound:
+                for _ in range(0, d):
+                    temp_vals.append(i)
+        print("The average latency for upper bound "+str(args.upperbound)+" is "+str(sum(temp_vals)/len(temp_vals)))
+
+
     ######
 
     total  = b['avg'][0].value

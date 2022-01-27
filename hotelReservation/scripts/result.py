@@ -102,98 +102,199 @@
 
 
 
-s1=[
-{'user': {'loopback_latency': 10549, 'read_latency': 2479, 'write_latency': 7619, 'epoll_latency': 1408, 'http2_latency': 66611, 'envoy_latency': 134324, 'http_latency': 68356}},
-{'user': {'loopback_latency': 10534, 'read_latency': 2511, 'write_latency': 7767, 'epoll_latency': 1382, 'http2_latency': 65609, 'envoy_latency': 216866, 'http_latency': 193051}},
-{'user': {'loopback_latency': 10508, 'read_latency': 2535, 'write_latency': 8125, 'epoll_latency': 1398, 'http2_latency': 68788, 'envoy_latency': 146359, 'http_latency': 80284}}
-] #0.88
+# s1=[
+# {'user': {'loopback_latency': 10549, 'read_latency': 2479, 'write_latency': 7619, 'epoll_latency': 1408, 'http2_latency': 66611, 'envoy_latency': 134324, 'http_latency': 68356}},
+# {'user': {'loopback_latency': 10534, 'read_latency': 2511, 'write_latency': 7767, 'epoll_latency': 1382, 'http2_latency': 65609, 'envoy_latency': 216866, 'http_latency': 193051}},
+# {'user': {'loopback_latency': 10508, 'read_latency': 2535, 'write_latency': 8125, 'epoll_latency': 1398, 'http2_latency': 68788, 'envoy_latency': 146359, 'http_latency': 80284}}
+# ] #0.88
 
-s5000=[
-{'user': {'loopback_latency': 10744, 'read_latency': 4828, 'write_latency': 9210, 'epoll_latency': 1567, 'http2_latency': 82975, 'envoy_latency': 184952, 'http_latency': 117702}},
-{'user': {'loopback_latency': 11238, 'read_latency': 4862, 'write_latency': 8643, 'epoll_latency': 1709, 'http2_latency': 80541, 'envoy_latency': 212402, 'http_latency': 144440}},
-{'user': {'loopback_latency': 11460, 'read_latency': 4921, 'write_latency': 8403, 'epoll_latency': 1468, 'http2_latency': 78809, 'envoy_latency': 166373, 'http_latency': 67359}}
-] #1.28
+# s5000=[
+# {'user': {'loopback_latency': 10744, 'read_latency': 4828, 'write_latency': 9210, 'epoll_latency': 1567, 'http2_latency': 82975, 'envoy_latency': 184952, 'http_latency': 117702}},
+# {'user': {'loopback_latency': 11238, 'read_latency': 4862, 'write_latency': 8643, 'epoll_latency': 1709, 'http2_latency': 80541, 'envoy_latency': 212402, 'http_latency': 144440}},
+# {'user': {'loopback_latency': 11460, 'read_latency': 4921, 'write_latency': 8403, 'epoll_latency': 1468, 'http2_latency': 78809, 'envoy_latency': 166373, 'http_latency': 67359}}
+# ] #1.28
 
-s10000=[
-{'user': {'loopback_latency': 11902, 'read_latency': 5197, 'write_latency': 9349, 'epoll_latency': 1501, 'http2_latency': 87527, 'envoy_latency': 192853, 'http_latency': 136619}},
-{'user': {'loopback_latency': 11762, 'read_latency': 5230, 'write_latency': 9524, 'epoll_latency': 1574, 'http2_latency': 86696, 'envoy_latency': 202769, 'http_latency': 145295}},
-{'user': {'loopback_latency': 12012, 'read_latency': 5189, 'write_latency': 9516, 'epoll_latency': 1501, 'http2_latency': 86338, 'envoy_latency': 192275, 'http_latency': 136632}}
-] #1.50
-
-
-s15000=[
-{'user': {'loopback_latency': 11960, 'read_latency': 5670, 'write_latency': 10140, 'epoll_latency': 1502, 'http2_latency': 88260, 'envoy_latency': 220646, 'http_latency': 168553}},
-{'user': {'loopback_latency': 11890, 'read_latency': 5711, 'write_latency': 10191, 'epoll_latency': 1614, 'http2_latency': 88711, 'envoy_latency': 192747, 'http_latency': 131258}},
-{'user': {'loopback_latency': 11951, 'read_latency': 5579, 'write_latency': 9765, 'epoll_latency': 1462, 'http2_latency': 87853, 'envoy_latency': 190976, 'http_latency': 122234}}
-] # 1.57
-
-s20000=[
-{'user': {'loopback_latency': 10645, 'read_latency': 5824, 'write_latency': 11651, 'epoll_latency': 1404, 'http2_latency': 64285, 'envoy_latency': 198197, 'http_latency': 119890}},
-{'user': {'loopback_latency': 10133, 'read_latency': 5367, 'write_latency': 11634, 'epoll_latency': 1398, 'http2_latency': 64159, 'envoy_latency': 197151, 'http_latency': 83790}},
-{'user': {'loopback_latency': 10836, 'read_latency': 5755, 'write_latency': 10880, 'epoll_latency': 1417, 'http2_latency': 64371, 'envoy_latency': 196401, 'http_latency': 86527}}
-] #1.65
-
-s25000=[
-{'user': {'loopback_latency': 10362, 'read_latency': 5730, 'write_latency': 11879, 'epoll_latency': 1381, 'http2_latency': 63527, 'envoy_latency': 198975, 'http_latency': 123816}},
-{'user': {'loopback_latency': 10630, 'read_latency': 5731, 'write_latency': 11534, 'epoll_latency': 1400, 'http2_latency': 61863, 'envoy_latency': 195310, 'http_latency': 117317}},
-{'user': {'loopback_latency': 10807, 'read_latency': 5964, 'write_latency': 11547, 'epoll_latency': 1432, 'http2_latency': 65304, 'envoy_latency': 201750, 'http_latency': 143406}}
-] # 1.69
-
-s30000=[
-{'user': {'loopback_latency': 11078, 'read_latency': 6146, 'write_latency': 11717, 'epoll_latency': 1468, 'http2_latency': 66369, 'envoy_latency': 207461, 'http_latency': 134875}},
-{'user': {'loopback_latency': 10939, 'read_latency': 6182, 'write_latency': 12572, 'epoll_latency': 1455, 'http2_latency': 65815, 'envoy_latency': 231774, 'http_latency': 174538}},
-{'user': {'loopback_latency': 11002, 'read_latency': 5638, 'write_latency': 12223, 'epoll_latency': 1507, 'http2_latency': 67033, 'envoy_latency': 199981, 'http_latency': 119149}}
-] # 1.77
-
-s35000=[
-{'user': {'loopback_latency': 10907, 'read_latency': 6712, 'write_latency': 13674, 'epoll_latency': 1413, 'http2_latency': 57170, 'envoy_latency': 204354, 'http_latency': 143298}},
-{'user': {'loopback_latency': 10743, 'read_latency': 6240, 'write_latency': 13876, 'epoll_latency': 1433, 'http2_latency': 58466, 'envoy_latency': 219864, 'http_latency': 122736}},
-{'user': {'loopback_latency': 10985, 'read_latency': 5278, 'write_latency': 13545, 'epoll_latency': 1480, 'http2_latency': 59112, 'envoy_latency': 217826, 'http_latency': 135867}}
-] # 1.86
-
-s40000=[
-{'user': {'loopback_latency': 10777, 'read_latency': 6880, 'write_latency': 13234, 'epoll_latency': 1419, 'http2_latency': 58297, 'envoy_latency': 215621, 'http_latency': 117565}},
-{'user': {'loopback_latency': 10882, 'read_latency': 7202, 'write_latency': 13769, 'epoll_latency': 1481, 'http2_latency': 59271, 'envoy_latency': 211682, 'http_latency': 118604}},
-{'user': {'loopback_latency': 10284, 'read_latency': 6953, 'write_latency': 14326, 'epoll_latency': 1501, 'http2_latency': 58995, 'envoy_latency': 219741, 'http_latency': 157503}}
-] # 1.92
-
-s45000=[
-{'user': {'loopback_latency': 10668, 'read_latency': 7036, 'write_latency': 14157, 'epoll_latency': 1432, 'http2_latency': 57826, 'envoy_latency': 213540, 'http_latency': 163698}},
-{'user': {'loopback_latency': 10511, 'read_latency': 6885, 'write_latency': 13947, 'epoll_latency': 1440, 'http2_latency': 58126, 'envoy_latency': 221231, 'http_latency': 159828}},
-{'user': {'loopback_latency': 10548, 'read_latency': 6994, 'write_latency': 13949, 'epoll_latency': 1491, 'http2_latency': 59798, 'envoy_latency': 214174, 'http_latency': 153997}}
-] # 1.98
-
-s50000=[
-{'user': {'loopback_latency': 10831, 'read_latency': 6989, 'write_latency': 14334, 'epoll_latency': 1466, 'http2_latency': 53578, 'envoy_latency': 207252, 'http_latency': 118086}},
-{'user': {'loopback_latency': 11018, 'read_latency': 7422, 'write_latency': 13677, 'epoll_latency': 1476, 'http2_latency': 53254, 'envoy_latency': 220999, 'http_latency': 129501}},
-{'user': {'loopback_latency': 11097, 'read_latency': 6904, 'write_latency': 14455, 'epoll_latency': 1442, 'http2_latency': 53332, 'envoy_latency': 222266, 'http_latency': 154357}}
-] # 2.01
-
-s55000=[
-{'user': {'loopback_latency': 11017, 'read_latency': 7495, 'write_latency': 15023, 'epoll_latency': 1517, 'http2_latency': 55589, 'envoy_latency': 239635, 'http_latency': 168275}},
-{'user': {'loopback_latency': 10996, 'read_latency': 7023, 'write_latency': 14830, 'epoll_latency': 1491, 'http2_latency': 53811, 'envoy_latency': 214904, 'http_latency': 116068}},
-{'user': {'loopback_latency': 11060, 'read_latency': 7284, 'write_latency': 14607, 'epoll_latency': 1477, 'http2_latency': 55135, 'envoy_latency': 258033, 'http_latency': 192771}}
-] # 2.06
-
-s60000=[
-{'user': {'loopback_latency': 11202, 'read_latency': 7603, 'write_latency': 15032, 'epoll_latency': 1527, 'http2_latency': 56252, 'envoy_latency': 218421, 'http_latency': 124258}},
-{'user': {'loopback_latency': 11213, 'read_latency': 7535, 'write_latency': 14919, 'epoll_latency': 1541, 'http2_latency': 55346, 'envoy_latency': 231432, 'http_latency': 122122}},
-{'user': {'loopback_latency': 11430, 'read_latency': 7672, 'write_latency': 14612, 'epoll_latency': 1501, 'http2_latency': 56104, 'envoy_latency': 226183, 'http_latency': 132122}}
-] # 2.10
-
-s65000=[
-{'user': {'loopback_latency': 10233, 'read_latency': 7458, 'write_latency': 19701, 'epoll_latency': 1572, 'http2_latency': 51840, 'envoy_latency': 230969, 'http_latency': 100740}},
-{'user': {'loopback_latency': 10377, 'read_latency': 7241, 'write_latency': 19010, 'epoll_latency': 1585, 'http2_latency': 52066, 'envoy_latency': 238450, 'http_latency': 128498}},
-{'user': {'loopback_latency': 10528, 'read_latency': 7540, 'write_latency': 19293, 'epoll_latency': 1518, 'http2_latency': 53229, 'envoy_latency': 230446, 'http_latency': 139484}}
-] # 2.21
-
-s = [s5000, s10000, s15000, s20000, s25000, s30000, s35000]
+# s10000=[
+# {'user': {'loopback_latency': 11902, 'read_latency': 5197, 'write_latency': 9349, 'epoll_latency': 1501, 'http2_latency': 87527, 'envoy_latency': 192853, 'http_latency': 136619}},
+# {'user': {'loopback_latency': 11762, 'read_latency': 5230, 'write_latency': 9524, 'epoll_latency': 1574, 'http2_latency': 86696, 'envoy_latency': 202769, 'http_latency': 145295}},
+# {'user': {'loopback_latency': 12012, 'read_latency': 5189, 'write_latency': 9516, 'epoll_latency': 1501, 'http2_latency': 86338, 'envoy_latency': 192275, 'http_latency': 136632}}
+# ] #1.50
 
 
-result = []
-for res in s:
-    temp = 0
-    for t in res:
-        temp += t['user']['envoy_latency']
-    result.append(temp/3000)
-print(result)
+# s15000=[
+# {'user': {'loopback_latency': 11960, 'read_latency': 5670, 'write_latency': 10140, 'epoll_latency': 1502, 'http2_latency': 88260, 'envoy_latency': 220646, 'http_latency': 168553}},
+# {'user': {'loopback_latency': 11890, 'read_latency': 5711, 'write_latency': 10191, 'epoll_latency': 1614, 'http2_latency': 88711, 'envoy_latency': 192747, 'http_latency': 131258}},
+# {'user': {'loopback_latency': 11951, 'read_latency': 5579, 'write_latency': 9765, 'epoll_latency': 1462, 'http2_latency': 87853, 'envoy_latency': 190976, 'http_latency': 122234}}
+# ] # 1.57
+
+# s20000=[
+# {'user': {'loopback_latency': 10645, 'read_latency': 5824, 'write_latency': 11651, 'epoll_latency': 1404, 'http2_latency': 64285, 'envoy_latency': 198197, 'http_latency': 119890}},
+# {'user': {'loopback_latency': 10133, 'read_latency': 5367, 'write_latency': 11634, 'epoll_latency': 1398, 'http2_latency': 64159, 'envoy_latency': 197151, 'http_latency': 83790}},
+# {'user': {'loopback_latency': 10836, 'read_latency': 5755, 'write_latency': 10880, 'epoll_latency': 1417, 'http2_latency': 64371, 'envoy_latency': 196401, 'http_latency': 86527}}
+# ] #1.65
+
+# s25000=[
+# {'user': {'loopback_latency': 10362, 'read_latency': 5730, 'write_latency': 11879, 'epoll_latency': 1381, 'http2_latency': 63527, 'envoy_latency': 198975, 'http_latency': 123816}},
+# {'user': {'loopback_latency': 10630, 'read_latency': 5731, 'write_latency': 11534, 'epoll_latency': 1400, 'http2_latency': 61863, 'envoy_latency': 195310, 'http_latency': 117317}},
+# {'user': {'loopback_latency': 10807, 'read_latency': 5964, 'write_latency': 11547, 'epoll_latency': 1432, 'http2_latency': 65304, 'envoy_latency': 201750, 'http_latency': 143406}}
+# ] # 1.69
+
+# s30000=[
+# {'user': {'loopback_latency': 11078, 'read_latency': 6146, 'write_latency': 11717, 'epoll_latency': 1468, 'http2_latency': 66369, 'envoy_latency': 207461, 'http_latency': 134875}},
+# {'user': {'loopback_latency': 10939, 'read_latency': 6182, 'write_latency': 12572, 'epoll_latency': 1455, 'http2_latency': 65815, 'envoy_latency': 231774, 'http_latency': 174538}},
+# {'user': {'loopback_latency': 11002, 'read_latency': 5638, 'write_latency': 12223, 'epoll_latency': 1507, 'http2_latency': 67033, 'envoy_latency': 199981, 'http_latency': 119149}}
+# ] # 1.77
+
+# s35000=[
+# {'user': {'loopback_latency': 10907, 'read_latency': 6712, 'write_latency': 13674, 'epoll_latency': 1413, 'http2_latency': 57170, 'envoy_latency': 204354, 'http_latency': 143298}},
+# {'user': {'loopback_latency': 10743, 'read_latency': 6240, 'write_latency': 13876, 'epoll_latency': 1433, 'http2_latency': 58466, 'envoy_latency': 219864, 'http_latency': 122736}},
+# {'user': {'loopback_latency': 10985, 'read_latency': 5278, 'write_latency': 13545, 'epoll_latency': 1480, 'http2_latency': 59112, 'envoy_latency': 217826, 'http_latency': 135867}}
+# ] # 1.86
+
+# s40000=[
+# {'user': {'loopback_latency': 10777, 'read_latency': 6880, 'write_latency': 13234, 'epoll_latency': 1419, 'http2_latency': 58297, 'envoy_latency': 215621, 'http_latency': 117565}},
+# {'user': {'loopback_latency': 10882, 'read_latency': 7202, 'write_latency': 13769, 'epoll_latency': 1481, 'http2_latency': 59271, 'envoy_latency': 211682, 'http_latency': 118604}},
+# {'user': {'loopback_latency': 10284, 'read_latency': 6953, 'write_latency': 14326, 'epoll_latency': 1501, 'http2_latency': 58995, 'envoy_latency': 219741, 'http_latency': 157503}}
+# ] # 1.92
+
+# s45000=[
+# {'user': {'loopback_latency': 10668, 'read_latency': 7036, 'write_latency': 14157, 'epoll_latency': 1432, 'http2_latency': 57826, 'envoy_latency': 213540, 'http_latency': 163698}},
+# {'user': {'loopback_latency': 10511, 'read_latency': 6885, 'write_latency': 13947, 'epoll_latency': 1440, 'http2_latency': 58126, 'envoy_latency': 221231, 'http_latency': 159828}},
+# {'user': {'loopback_latency': 10548, 'read_latency': 6994, 'write_latency': 13949, 'epoll_latency': 1491, 'http2_latency': 59798, 'envoy_latency': 214174, 'http_latency': 153997}}
+# ] # 1.98
+
+# s50000=[
+# {'user': {'loopback_latency': 10831, 'read_latency': 6989, 'write_latency': 14334, 'epoll_latency': 1466, 'http2_latency': 53578, 'envoy_latency': 207252, 'http_latency': 118086}},
+# {'user': {'loopback_latency': 11018, 'read_latency': 7422, 'write_latency': 13677, 'epoll_latency': 1476, 'http2_latency': 53254, 'envoy_latency': 220999, 'http_latency': 129501}},
+# {'user': {'loopback_latency': 11097, 'read_latency': 6904, 'write_latency': 14455, 'epoll_latency': 1442, 'http2_latency': 53332, 'envoy_latency': 222266, 'http_latency': 154357}}
+# ] # 2.01
+
+# s55000=[
+# {'user': {'loopback_latency': 11017, 'read_latency': 7495, 'write_latency': 15023, 'epoll_latency': 1517, 'http2_latency': 55589, 'envoy_latency': 239635, 'http_latency': 168275}},
+# {'user': {'loopback_latency': 10996, 'read_latency': 7023, 'write_latency': 14830, 'epoll_latency': 1491, 'http2_latency': 53811, 'envoy_latency': 214904, 'http_latency': 116068}},
+# {'user': {'loopback_latency': 11060, 'read_latency': 7284, 'write_latency': 14607, 'epoll_latency': 1477, 'http2_latency': 55135, 'envoy_latency': 258033, 'http_latency': 192771}}
+# ] # 2.06
+
+# s60000=[
+# {'user': {'loopback_latency': 11202, 'read_latency': 7603, 'write_latency': 15032, 'epoll_latency': 1527, 'http2_latency': 56252, 'envoy_latency': 218421, 'http_latency': 124258}},
+# {'user': {'loopback_latency': 11213, 'read_latency': 7535, 'write_latency': 14919, 'epoll_latency': 1541, 'http2_latency': 55346, 'envoy_latency': 231432, 'http_latency': 122122}},
+# {'user': {'loopback_latency': 11430, 'read_latency': 7672, 'write_latency': 14612, 'epoll_latency': 1501, 'http2_latency': 56104, 'envoy_latency': 226183, 'http_latency': 132122}}
+# ] # 2.10
+
+# s65000=[
+# {'user': {'loopback_latency': 10233, 'read_latency': 7458, 'write_latency': 19701, 'epoll_latency': 1572, 'http2_latency': 51840, 'envoy_latency': 230969, 'http_latency': 100740}},
+# {'user': {'loopback_latency': 10377, 'read_latency': 7241, 'write_latency': 19010, 'epoll_latency': 1585, 'http2_latency': 52066, 'envoy_latency': 238450, 'http_latency': 128498}},
+# {'user': {'loopback_latency': 10528, 'read_latency': 7540, 'write_latency': 19293, 'epoll_latency': 1518, 'http2_latency': 53229, 'envoy_latency': 230446, 'http_latency': 139484}}
+# ] # 2.21
+
+# s = [s5000, s10000, s15000, s20000, s25000, s30000, s35000]
+
+
+# result = []
+# for res in s:
+#     temp = 0
+#     for t in res:
+#         temp += t['user']['envoy_latency']
+#     result.append(temp/3000)
+# print(result)
+
+
+
+
+Runing scale 1
+     50%  156.00us
+     50%  155.00us
+     50%  148.00us
+     50%  148.00us
+     50%  155.00us
+Runing scale 2
+     50%  159.00us
+     50%  149.00us
+     50%  153.00us
+     50%  160.00us
+     50%  154.00us
+Runing scale 4
+     50%  166.00us
+     50%  168.00us
+     50%  178.00us
+     50%  168.00us
+     50%  172.00us
+Runing scale 8
+     50%  193.00us
+     50%  193.00us
+     50%  194.00us
+     50%  191.00us
+     50%  190.00us
+Runing scale 16
+     50%  243.00us
+     50%  237.00us
+     50%  234.00us
+     50%  238.00us
+     50%  235.00us
+Runing scale 32
+     50%  249.00us
+     50%  249.00us
+     50%  246.00us
+     50%  249.00us
+     50%  251.00us
+Runing scale 64
+     50%  344.00us
+     50%  333.00us
+     50%  353.00us
+     50%  328.00us
+     50%  323.00us
+Runing scale 128
+     50%  433.00us
+     50%  441.00us
+     50%  446.00us
+     50%  439.00us
+     50%  444.00us
+
+Runing scale 1
+     50%   76.00us
+     50%   70.00us
+     50%   71.00us
+     50%   72.00us
+     50%   72.00us
+Runing scale 2
+     50%   73.00us
+     50%   73.00us
+     50%   74.00us
+     50%   76.00us
+     50%   74.00us
+Runing scale 4
+     50%   86.00us
+     50%   87.00us
+     50%   89.00us
+     50%   88.00us
+     50%   91.00us
+Runing scale 8
+     50%  117.00us
+     50%  116.00us
+     50%  111.00us
+     50%  111.00us
+     50%  110.00us
+Runing scale 16
+     50%  159.00us
+     50%  158.00us
+     50%  160.00us
+     50%  162.00us
+     50%  163.00us
+Runing scale 32
+     50%  171.00us
+     50%  168.00us
+     50%  166.00us
+     50%  166.00us
+     50%  165.00us
+Runing scale 64
+     50%  213.00us
+     50%  217.00us
+     50%  215.00us
+     50%  225.00us
+     50%  219.00us
+Runing scale 128
+     50%  299.00us
+     50%  313.00us
+     50%  301.00us
+     50%  323.00us
+     50%  330.00us
