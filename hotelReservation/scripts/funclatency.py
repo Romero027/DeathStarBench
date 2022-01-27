@@ -153,7 +153,7 @@ int trace_func_return(struct pt_regs *ctx)
     u32 cnt = 1;
     avg.atomic_increment(lat, delta);
     avg.atomic_increment(cnt);
-    latency_table.atomic_increment((int)(delta/1000));
+    latency_table.atomic_increment((int)delta);
 
     FACTOR
 
@@ -338,9 +338,9 @@ bpf_text = bpf_text.replace('CALCULATE',
         return 0;   // missed start
     }
     delta = bpf_ktime_get_ns() - *tsp;
-    # if (delta < THRESHOLD) {
-    #     return 0;   // exclude executions
-    # }
+    //if (delta < THRESHOLD) {
+    //     return 0;   // exclude executions
+    // }
     start.delete(&pid);
                 """)
 # bpf_text = bpf_text.replace('THRESHOLD', str(args.threshold))
@@ -430,7 +430,7 @@ while (1):
     if args.lowerbound:
         temp_vals = []
         for i, d in enumerate(vals): # i is the latency and d is the number of times that latency appears in the trace
-            if i > args.lowerbound:
+            if d != 0 and i > args.lowerbound:
                 for _ in range(0, d):
                     temp_vals.append(i)
         print("The average latency for lower bound "+str(args.lowerbound)+" is "+str(sum(temp_vals)/len(temp_vals)))
@@ -439,7 +439,7 @@ while (1):
     if args.upperbound:
         temp_vals = []
         for i, d in enumerate(vals): # i is the latency and d is the number of times that latency appears in the trace
-            if i < args.upperbound:
+            if d != 0 and i < args.upperbound:
                 for _ in range(0, d):
                     temp_vals.append(i)
         print("The average latency for upper bound "+str(args.upperbound)+" is "+str(sum(temp_vals)/len(temp_vals)))

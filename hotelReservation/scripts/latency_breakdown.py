@@ -47,11 +47,10 @@ def get_envoy_info():
 
 def run_funclatency(func, duration, pid=None, delta_min=0):
     # funclatency_path = "/mnt/bcc/tools/funclatency.py"
-    delta_min = 0
     funclatency_path = "./funclatency.py"
 
     #cmd = ['python3', funclatency_path, '-p '+str(pid), func, '-d '+str(duration), '-t '+str(delta_min), '-n '+str(130000)]
-    cmd = ['python3', funclatency_path, '-p '+str(pid), func, '-d '+str(duration), '-t '+str(delta_min)]
+    cmd = ['python3', funclatency_path, '-p '+str(pid), func, '-d '+str(duration), '-w '+str(delta_min)]
     print("Running cmd: " + " ".join(cmd))
     result = subprocess.run(cmd, stdout=subprocess.PIPE)
 
@@ -63,20 +62,23 @@ def run_funclatency(func, duration, pid=None, delta_min=0):
     avg_latency = re.findall(r'\d+', result)[0]
     #avg_latency = result[-6].split()[-1]
 
-    return int(avg_latency)
+    print(avg_latency)
+
+    return float(avg_latency)
 
 # write, read, loopback, epoll, and Envoy userspace
 def run_tcp_proxy_latency_breakdown(app, envoy_process, duration):
     print("Running " + str(app) + " latency breakdown...")
     breakdown = {}
-    breakdown['loopback_latency'] = run_funclatency('process_backlog', duration, envoy_process['envoy_pid'])
+    #breakdown['loopback_latency'] = run_funclatency('process_backlog', duration, envoy_process['envoy_pid'])
     breakdown['read_latency'] = run_funclatency('do_readv', duration, envoy_process['envoy_pid'])
-    breakdown['write_latency'] = run_funclatency('do_writev', duration, envoy_process['envoy_pid']) - breakdown['loopback_latency']
-    breakdown['epoll_latency'] = run_funclatency('ep_send_events_proc', duration, envoy_process['envoy_pid'])
+    #breakdown['write_latency'] = run_funclatency('do_writev', duration, envoy_process['envoy_pid']) - breakdown['loopback_latency']
+    breakdown['write_latency'] = run_funclatency('do_writev', duration, envoy_process['envoy_pid'])
+    #breakdown['epoll_latency'] = run_funclatency('ep_send_events_proc', duration, envoy_process['envoy_pid'])
     breakdown['envoy_latency'] = run_funclatency(envoy_process['envoy_binary_path']+':*onReadReady*', 
                         duration, envoy_process['envoy_pid'], delta_min=breakdown['read_latency']) - breakdown['read_latency']
-    breakdown['envoy_latency'] += run_funclatency(envoy_process['envoy_binary_path']+':*onWriteReady*', 
-                        duration, envoy_process['envoy_pid'], delta_min=breakdown['write_latency']) - breakdown['write_latency']
+    #breakdown['envoy_latency'] += run_funclatency(envoy_process['envoy_binary_path']+':*onWriteReady*', 
+    #                    duration, envoy_process['envoy_pid'], delta_min=breakdown['write_latency']) - breakdown['write_latency']
 
     return breakdown
 
@@ -107,7 +109,7 @@ if __name__ == '__main__':
         for app, envoy_process in envoy_info.items():
             if args.proxy == "tcp":
                 print("Running breakdown experiment for TCP proxy...")
-                result[app] = run_tcp_proxy_latency_breakdown(app, envoy_process, 50)
+                result[app] = run_tcp_proxy_latency_breakdown(app, envoy_process, 20)
             elif args.proxy == "http":
                 print("Running breakdown experiment for HTTP proxy...")
                 result[app] = run_http_proxy_latency_breakdown(app, envoy_process, 15)
