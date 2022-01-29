@@ -1,0 +1,316 @@
+Running scale 100
+765740
+[{'usr': 5.4848, 'sys': 5.1456, 'soft': 1.7216}, {'usr': 5.1648000000000005, 'sys': 4.864, 'soft': 1.6128}, {'usr': 5.4528, 'sys': 5.107200000000001, 'soft': 1.7152}, {'usr': 5.472, 'sys': 4.9472000000000005, 'soft': 1.6128}, {'usr': 5.3312, 'sys': 5.056, 'soft': 1.6832}]
+Overall CPU Usage is :12.074240000000001
+run_wrk_user_cpu.sh: line 8: 765740 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+766114
+[{'usr': 5.472, 'sys': 5.1648000000000005, 'soft': 1.7088}, {'usr': 4.9856, 'sys': 4.6080000000000005, 'soft': 1.5744}, {'usr': 5.3952, 'sys': 5.0304, 'soft': 1.6768}, {'usr': 5.3888, 'sys': 5.056, 'soft': 1.6640000000000001}, {'usr': 5.1776, 'sys': 4.736000000000001, 'soft': 1.5808000000000002}]
+Overall CPU Usage is :11.843840000000002
+run_wrk_user_cpu.sh: line 8: 766114 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+766500
+[{'usr': 4.6208, 'sys': 4.2496, 'soft': 1.4208}, {'usr': 4.3839999999999995, 'sys': 4.0, 'soft': 1.376}, {'usr': 4.2432, 'sys': 3.8144, 'soft': 1.2992}, {'usr': 4.4032, 'sys': 3.9424, 'soft': 1.3568}, {'usr': 4.2688, 'sys': 3.872, 'soft': 1.3184}]
+Overall CPU Usage is :9.713919999999998
+run_wrk_user_cpu.sh: line 8: 766500 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+766875
+[{'usr': 4.2688, 'sys': 3.9680000000000004, 'soft': 1.2608}, {'usr': 4.2944, 'sys': 3.904, 'soft': 1.248}, {'usr': 3.8976, 'sys': 3.616, 'soft': 1.1520000000000001}, {'usr': 4.064, 'sys': 3.6927999999999996, 'soft': 1.1456}, {'usr': 3.9552, 'sys': 3.5839999999999996, 'soft': 1.1776}]
+Overall CPU Usage is :9.045760000000001
+run_wrk_user_cpu.sh: line 8: 766875 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+767267
+[{'usr': 3.4368000000000003, 'sys': 3.0976, 'soft': 1.12}, {'usr': 3.6224000000000003, 'sys': 3.2256, 'soft': 1.088}, {'usr': 3.648, 'sys': 3.2127999999999997, 'soft': 1.0368000000000002}, {'usr': 3.5136000000000003, 'sys': 3.1424000000000003, 'soft': 1.056}, {'usr': 3.3024, 'sys': 2.9312, 'soft': 1.0368000000000002}]
+Overall CPU Usage is :7.69408
+run_wrk_user_cpu.sh: line 8: 767267 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+Running scale 200
+767635
+[{'usr': 3.6351999999999998, 'sys': 3.2127999999999997, 'soft': 1.12}, {'usr': 3.3728, 'sys': 3.0528, 'soft': 1.0432}, {'usr': 3.3983999999999996, 'sys': 3.1424000000000003, 'soft': 1.0816}, {'usr': 3.5328, 'sys': 3.3024, 'soft': 1.1264}, {'usr': 3.4944, 'sys': 3.2256, 'soft': 1.1136}]
+Overall CPU Usage is :7.77088
+run_wrk_user_cpu.sh: line 8: 767635 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+768012
+[{'usr': 3.4495999999999998, 'sys': 3.0463999999999998, 'soft': 1.0688}, {'usr': 3.3280000000000003, 'sys': 2.9375999999999998, 'soft': 1.0944}, {'usr': 3.2319999999999998, 'sys': 2.8608, 'soft': 1.0624}, {'usr': 3.3088, 'sys': 2.8032, 'soft': 1.0304}, {'usr': 3.2384, 'sys': 2.9632, 'soft': 1.0624}]
+Overall CPU Usage is :7.297280000000001
+run_wrk_user_cpu.sh: line 8: 768012 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+768379
+[{'usr': 3.3088, 'sys': 2.8095999999999997, 'soft': 1.0944}, {'usr': 2.9183999999999997, 'sys': 2.5728, 'soft': 1.0688}, {'usr': 3.2256, 'sys': 2.8288, 'soft': 1.1648}, {'usr': 3.1872000000000003, 'sys': 2.8160000000000003, 'soft': 1.1456}, {'usr': 3.1936, 'sys': 2.7968, 'soft': 1.12}]
+Overall CPU Usage is :7.05024
+run_wrk_user_cpu.sh: line 8: 768379 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+768763
+[{'usr': 2.8992, 'sys': 2.5344, 'soft': 1.0112}, {'usr': 2.9183999999999997, 'sys': 2.5664, 'soft': 0.9984000000000001}, {'usr': 2.9056, 'sys': 2.4896000000000003, 'soft': 1.0048000000000001}, {'usr': 2.752, 'sys': 2.3552, 'soft': 0.9536}, {'usr': 2.9632, 'sys': 2.5152, 'soft': 1.0432}]
+Overall CPU Usage is :6.38208
+run_wrk_user_cpu.sh: line 8: 768763 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+769140
+[{'usr': 2.9888, 'sys': 2.5856, 'soft': 1.1840000000000002}, {'usr': 2.8095999999999997, 'sys': 2.4128000000000003, 'soft': 1.0944}, {'usr': 3.0912, 'sys': 2.6048000000000004, 'soft': 1.1328}, {'usr': 2.9760000000000004, 'sys': 2.5728, 'soft': 1.1328}, {'usr': 2.8992, 'sys': 2.4704, 'soft': 1.1456}]
+Overall CPU Usage is :6.62016
+run_wrk_user_cpu.sh: line 8: 769140 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+Running scale 300
+769511
+[{'usr': 2.8416, 'sys': 2.5344, 'soft': 1.2096}, {'usr': 2.8480000000000003, 'sys': 2.5344, 'soft': 1.2416}, {'usr': 3.1296, 'sys': 2.7712, 'soft': 1.2864}, {'usr': 3.1552, 'sys': 2.8352, 'soft': 1.3632}, {'usr': 3.1424000000000003, 'sys': 2.7456, 'soft': 1.28}]
+Overall CPU Usage is :6.983680000000001
+run_wrk_user_cpu.sh: line 8: 769511 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+769889
+[{'usr': 3.3664, 'sys': 2.9056, 'soft': 1.2288}, {'usr': 3.2768, 'sys': 2.9632, 'soft': 1.2992}, {'usr': 3.4816000000000003, 'sys': 3.0784, 'soft': 1.2992}, {'usr': 3.4176, 'sys': 3.1104000000000003, 'soft': 1.3056}, {'usr': 3.52, 'sys': 3.2127999999999997, 'soft': 1.4336000000000002}]
+Overall CPU Usage is :7.77984
+run_wrk_user_cpu.sh: line 8: 769889 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+770293
+[{'usr': 3.5712, 'sys': 3.168, 'soft': 1.5104}, {'usr': 3.6608, 'sys': 3.264, 'soft': 1.536}, {'usr': 3.7632, 'sys': 3.36, 'soft': 1.4848}, {'usr': 3.6288, 'sys': 3.3407999999999998, 'soft': 1.504}, {'usr': 3.4560000000000004, 'sys': 3.1232, 'soft': 1.3568}]
+Overall CPU Usage is :8.345600000000001
+run_wrk_user_cpu.sh: line 8: 770293 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+770668
+[{'usr': 3.6032, 'sys': 3.2896, 'soft': 1.536}, {'usr': 3.6736000000000004, 'sys': 3.264, 'soft': 1.5104}, {'usr': 3.5456000000000003, 'sys': 3.1104000000000003, 'soft': 1.4336000000000002}, {'usr': 3.5968, 'sys': 3.2192000000000003, 'soft': 1.504}, {'usr': 3.9680000000000004, 'sys': 3.4624, 'soft': 1.6512}]
+Overall CPU Usage is :8.473600000000001
+run_wrk_user_cpu.sh: line 8: 770668 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+771039
+[{'usr': 3.8656, 'sys': 3.5648000000000004, 'soft': 1.6128}, {'usr': 3.8207999999999998, 'sys': 3.4560000000000004, 'soft': 1.5488}, {'usr': 3.8976, 'sys': 3.6608, 'soft': 1.6576}, {'usr': 3.7696, 'sys': 3.3856, 'soft': 1.5424000000000002}, {'usr': 3.4624, 'sys': 3.2192000000000003, 'soft': 1.4528}]
+Overall CPU Usage is :8.78336
+run_wrk_user_cpu.sh: line 8: 771039 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+Running scale 400
+771419
+[{'usr': 3.5968, 'sys': 3.2064, 'soft': 1.3824}, {'usr': 3.648, 'sys': 3.2319999999999998, 'soft': 1.4208}, {'usr': 3.4560000000000004, 'sys': 3.1168, 'soft': 1.376}, {'usr': 3.9168000000000003, 'sys': 3.4432, 'soft': 1.5168000000000001}, {'usr': 3.648, 'sys': 3.2960000000000003, 'soft': 1.4464}]
+Overall CPU Usage is :8.340480000000001
+run_wrk_user_cpu.sh: line 8: 771419 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+771798
+[{'usr': 4.307200000000001, 'sys': 3.8783999999999996, 'soft': 1.7280000000000002}, {'usr': 4.3008, 'sys': 3.9360000000000004, 'soft': 1.7919999999999998}, {'usr': 4.1728, 'sys': 3.9488, 'soft': 1.7536000000000003}, {'usr': 4.2432, 'sys': 3.9295999999999998, 'soft': 1.7280000000000002}, {'usr': 4.4096, 'sys': 4.1408, 'soft': 1.8688}]
+Overall CPU Usage is :10.027519999999999
+run_wrk_user_cpu.sh: line 8: 771798 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+772175
+[{'usr': 4.0704, 'sys': 3.8336, 'soft': 1.5616}, {'usr': 4.2048000000000005, 'sys': 3.9295999999999998, 'soft': 1.5744}, {'usr': 4.4096, 'sys': 3.8848000000000003, 'soft': 1.6256000000000002}, {'usr': 4.3584, 'sys': 3.9552, 'soft': 1.5552000000000001}, {'usr': 4.2624, 'sys': 3.9232, 'soft': 1.6063999999999998}]
+Overall CPU Usage is :9.75104
+run_wrk_user_cpu.sh: line 8: 772175 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+772548
+[{'usr': 4.7552, 'sys': 4.307200000000001, 'soft': 1.8304}, {'usr': 4.5312, 'sys': 4.1983999999999995, 'soft': 1.8304}, {'usr': 4.6592, 'sys': 4.352, 'soft': 1.8688}, {'usr': 4.7808, 'sys': 4.5248, 'soft': 1.9456}, {'usr': 4.448, 'sys': 4.1536, 'soft': 1.8688}]
+Overall CPU Usage is :10.81088
+run_wrk_user_cpu.sh: line 8: 772548 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+772915
+[{'usr': 4.5568, 'sys': 4.192, 'soft': 1.7856}, {'usr': 4.5824, 'sys': 4.2816, 'soft': 1.7536000000000003}, {'usr': 4.6336, 'sys': 4.1983999999999995, 'soft': 1.7792}, {'usr': 4.6592, 'sys': 4.3328, 'soft': 1.7984}, {'usr': 4.8192, 'sys': 4.3456, 'soft': 1.7856}]
+Overall CPU Usage is :10.7008
+run_wrk_user_cpu.sh: line 8: 772915 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+Running scale 500
+773285
+[{'usr': 4.2816, 'sys': 3.9680000000000004, 'soft': 1.6576}, {'usr': 4.0704, 'sys': 3.616, 'soft': 1.504}, {'usr': 3.9744, 'sys': 3.6032, 'soft': 1.504}, {'usr': 4.2112, 'sys': 3.7824, 'soft': 1.6}, {'usr': 4.032, 'sys': 3.68, 'soft': 1.5808000000000002}]
+Overall CPU Usage is :9.413120000000003
+run_wrk_user_cpu.sh: line 8: 773285 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+773661
+[{'usr': 4.864, 'sys': 4.5056, 'soft': 1.8752000000000002}, {'usr': 4.8832, 'sys': 4.5312, 'soft': 1.8624}, {'usr': 4.5376, 'sys': 4.2752, 'soft': 1.7024000000000001}, {'usr': 4.7424, 'sys': 4.4288, 'soft': 1.7408000000000001}, {'usr': 4.307200000000001, 'sys': 3.9552, 'soft': 1.568}]
+Overall CPU Usage is :10.755840000000001
+run_wrk_user_cpu.sh: line 8: 773661 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+774035
+[{'usr': 4.6464, 'sys': 4.2752, 'soft': 1.7344}, {'usr': 4.736000000000001, 'sys': 4.352, 'soft': 1.7664}, {'usr': 4.972799999999999, 'sys': 4.6336, 'soft': 1.8688}, {'usr': 4.5248, 'sys': 4.3456, 'soft': 1.7728000000000002}, {'usr': 4.6912, 'sys': 4.416, 'soft': 1.7216}]
+Overall CPU Usage is :10.891520000000002
+run_wrk_user_cpu.sh: line 8: 774035 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+774408
+[{'usr': 4.2432, 'sys': 3.84, 'soft': 1.5488}, {'usr': 4.4992, 'sys': 4.0896, 'soft': 1.7088}, {'usr': 4.4672, 'sys': 3.9936000000000003, 'soft': 1.6448}, {'usr': 4.6464, 'sys': 4.3008, 'soft': 1.8175999999999999}, {'usr': 4.6656, 'sys': 4.2816, 'soft': 1.7664}]
+Overall CPU Usage is :10.302719999999999
+run_wrk_user_cpu.sh: line 8: 774408 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+774780
+[{'usr': 4.8768, 'sys': 4.5248, 'soft': 1.8304}, {'usr': 4.8192, 'sys': 4.4992, 'soft': 1.8112000000000001}, {'usr': 4.7168, 'sys': 4.4224000000000006, 'soft': 1.7344}, {'usr': 4.9152, 'sys': 4.512, 'soft': 1.8048}, {'usr': 5.0624, 'sys': 4.6912, 'soft': 1.8112000000000001}]
+Overall CPU Usage is :11.2064
+run_wrk_user_cpu.sh: line 8: 774780 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+Running scale 600
+775195
+[{'usr': 4.5888, 'sys': 4.2752, 'soft': 1.6576}, {'usr': 4.64, 'sys': 4.2176, 'soft': 1.6512}, {'usr': 4.672, 'sys': 4.3136, 'soft': 1.7088}, {'usr': 4.512, 'sys': 4.1536, 'soft': 1.6128}, {'usr': 4.6144, 'sys': 4.192, 'soft': 1.6512}]
+Overall CPU Usage is :10.49216
+run_wrk_user_cpu.sh: line 8: 775195 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+775651
+[{'usr': 4.4608, 'sys': 4.128, 'soft': 1.5552000000000001}, {'usr': 4.5056, 'sys': 4.1408, 'soft': 1.632}, {'usr': 4.8, 'sys': 4.364800000000001, 'soft': 1.6768}, {'usr': 4.6528, 'sys': 4.3712, 'soft': 1.6576}, {'usr': 4.4096, 'sys': 4.1152, 'soft': 1.5616}]
+Overall CPU Usage is :10.406400000000001
+run_wrk_user_cpu.sh: line 8: 775651 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+776019
+[{'usr': 4.4544, 'sys': 3.9552, 'soft': 1.6}, {'usr': 4.4096, 'sys': 4.0704, 'soft': 1.5744}, {'usr': 4.288, 'sys': 3.7568, 'soft': 1.5104}, {'usr': 4.3839999999999995, 'sys': 4.0, 'soft': 1.5936000000000001}, {'usr': 4.2176, 'sys': 3.9360000000000004, 'soft': 1.4912}]
+Overall CPU Usage is :9.84832
+run_wrk_user_cpu.sh: line 8: 776019 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+776396
+[{'usr': 4.6528, 'sys': 4.2816, 'soft': 1.6256000000000002}, {'usr': 4.544, 'sys': 4.1792, 'soft': 1.6448}, {'usr': 4.544, 'sys': 4.2048000000000005, 'soft': 1.6}, {'usr': 4.8896, 'sys': 4.5568, 'soft': 1.7536000000000003}, {'usr': 4.8192, 'sys': 4.3776, 'soft': 1.6896000000000002}]
+Overall CPU Usage is :10.672640000000001
+run_wrk_user_cpu.sh: line 8: 776396 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+776772
+[{'usr': 4.8576, 'sys': 4.5056, 'soft': 1.6448}, {'usr': 4.832, 'sys': 4.4736, 'soft': 1.7216}, {'usr': 4.8896, 'sys': 4.48, 'soft': 1.6703999999999999}, {'usr': 4.5184, 'sys': 4.1216, 'soft': 1.6063999999999998}, {'usr': 4.3968, 'sys': 4.0768, 'soft': 1.5808000000000002}]
+Overall CPU Usage is :10.6752
+run_wrk_user_cpu.sh: line 8: 776772 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+Running scale 700
+777145
+[{'usr': 4.4544, 'sys': 4.1856, 'soft': 1.6512}, {'usr': 4.6080000000000005, 'sys': 4.224, 'soft': 1.6576}, {'usr': 4.4672, 'sys': 4.1664, 'soft': 1.6448}, {'usr': 4.48, 'sys': 4.1408, 'soft': 1.5872}, {'usr': 4.0512, 'sys': 3.7119999999999997, 'soft': 1.472}]
+Overall CPU Usage is :10.100480000000001
+run_wrk_user_cpu.sh: line 8: 777145 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+777526
+[{'usr': 4.4864, 'sys': 4.1408, 'soft': 1.6063999999999998}, {'usr': 4.32, 'sys': 4.0064, 'soft': 1.5808000000000002}, {'usr': 4.5056, 'sys': 4.128, 'soft': 1.6576}, {'usr': 4.5696, 'sys': 4.2112, 'soft': 1.6512}, {'usr': 4.288, 'sys': 3.9424, 'soft': 1.5808000000000002}]
+Overall CPU Usage is :10.13504
+run_wrk_user_cpu.sh: line 8: 777526 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+777891
+[{'usr': 4.7296, 'sys': 4.4608, 'soft': 1.7728000000000002}, {'usr': 4.4864, 'sys': 4.1664, 'soft': 1.6896000000000002}, {'usr': 4.5056, 'sys': 4.1408, 'soft': 1.6832}, {'usr': 4.512, 'sys': 4.16, 'soft': 1.6768}, {'usr': 4.6592, 'sys': 4.1536, 'soft': 1.7088}]
+Overall CPU Usage is :10.501119999999997
+run_wrk_user_cpu.sh: line 8: 777891 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+778263
+[{'usr': 4.4544, 'sys': 3.9552, 'soft': 1.5424000000000002}, {'usr': 4.4864, 'sys': 4.1856, 'soft': 1.6}, {'usr': 4.7168, 'sys': 4.4416, 'soft': 1.6256000000000002}, {'usr': 4.3968, 'sys': 4.0127999999999995, 'soft': 1.6256000000000002}, {'usr': 4.4736, 'sys': 4.147200000000001, 'soft': 1.5424000000000002}]
+Overall CPU Usage is :10.24128
+run_wrk_user_cpu.sh: line 8: 778263 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+778652
+[{'usr': 4.0512, 'sys': 3.6992000000000003, 'soft': 1.4656}, {'usr': 4.2496, 'sys': 3.8528, 'soft': 1.5296}, {'usr': 4.0576, 'sys': 3.68, 'soft': 1.4591999999999998}, {'usr': 4.1728, 'sys': 3.8783999999999996, 'soft': 1.5231999999999999}, {'usr': 3.8144, 'sys': 3.6416000000000004, 'soft': 1.4528}]
+Overall CPU Usage is :9.3056
+run_wrk_user_cpu.sh: line 8: 778652 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+Running scale 800
+779025
+[{'usr': 4.2752, 'sys': 3.8976, 'soft': 1.4080000000000001}, {'usr': 4.3839999999999995, 'sys': 3.9808, 'soft': 1.5231999999999999}, {'usr': 4.1152, 'sys': 3.7312000000000003, 'soft': 1.3888}, {'usr': 4.2496, 'sys': 3.8848000000000003, 'soft': 1.4208}, {'usr': 4.256, 'sys': 3.9168000000000003, 'soft': 1.4591999999999998}]
+Overall CPU Usage is :9.57824
+run_wrk_user_cpu.sh: line 8: 779025 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+779399
+[{'usr': 4.307200000000001, 'sys': 3.9936000000000003, 'soft': 1.536}, {'usr': 4.2752, 'sys': 4.0192000000000005, 'soft': 1.472}, {'usr': 4.16, 'sys': 3.7760000000000002, 'soft': 1.5168000000000001}, {'usr': 4.2752, 'sys': 3.9552, 'soft': 1.504}, {'usr': 4.4864, 'sys': 4.128, 'soft': 1.5488}]
+Overall CPU Usage is :9.790719999999999
+run_wrk_user_cpu.sh: line 8: 779399 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+779770
+[{'usr': 4.1344, 'sys': 3.7760000000000002, 'soft': 1.6192}, {'usr': 4.2112, 'sys': 3.8016000000000005, 'soft': 1.6063999999999998}, {'usr': 4.096, 'sys': 3.8592000000000004, 'soft': 1.6}, {'usr': 4.0512, 'sys': 3.7056, 'soft': 1.5808000000000002}, {'usr': 4.2688, 'sys': 3.9295999999999998, 'soft': 1.6063999999999998}]
+Overall CPU Usage is :9.569280000000001
+run_wrk_user_cpu.sh: line 8: 779770 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+780158
+[{'usr': 4.0512, 'sys': 3.7824, 'soft': 1.4912}, {'usr': 4.32, 'sys': 4.0832, 'soft': 1.5808000000000002}, {'usr': 4.2944, 'sys': 3.9744, 'soft': 1.5424000000000002}, {'usr': 4.2624, 'sys': 3.904, 'soft': 1.5616}, {'usr': 4.1536, 'sys': 3.9295999999999998, 'soft': 1.5296}]
+Overall CPU Usage is :9.69216
+run_wrk_user_cpu.sh: line 8: 780158 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+780523
+[{'usr': 4.2688, 'sys': 3.9295999999999998, 'soft': 1.4208}, {'usr': 3.8656, 'sys': 3.5136000000000003, 'soft': 1.3632}, {'usr': 4.1024, 'sys': 3.7888, 'soft': 1.3632}, {'usr': 4.064, 'sys': 3.7439999999999998, 'soft': 1.4144}, {'usr': 4.0256, 'sys': 3.616, 'soft': 1.3952000000000002}]
+Overall CPU Usage is :9.17504
+run_wrk_user_cpu.sh: line 8: 780523 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+Running scale 900
+780902
+[{'usr': 3.9616000000000002, 'sys': 3.5904000000000003, 'soft': 1.3504}, {'usr': 4.0127999999999995, 'sys': 3.6351999999999998, 'soft': 1.376}, {'usr': 3.872, 'sys': 3.5072000000000005, 'soft': 1.3888}, {'usr': 3.7376, 'sys': 3.3664, 'soft': 1.3632}, {'usr': 3.8080000000000003, 'sys': 3.5263999999999998, 'soft': 1.3824}]
+Overall CPU Usage is :8.77568
+run_wrk_user_cpu.sh: line 8: 780902 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+781275
+[{'usr': 3.8016000000000005, 'sys': 3.4560000000000004, 'soft': 1.504}, {'usr': 3.6608, 'sys': 3.392, 'soft': 1.4912}, {'usr': 3.4624, 'sys': 3.2, 'soft': 1.4912}, {'usr': 3.6992000000000003, 'sys': 3.4495999999999998, 'soft': 1.5744}, {'usr': 3.9360000000000004, 'sys': 3.6672000000000002, 'soft': 1.7152}]
+Overall CPU Usage is :8.70016
+run_wrk_user_cpu.sh: line 8: 781275 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+781645
+[{'usr': 4.0896, 'sys': 3.7504000000000004, 'soft': 1.7536000000000003}, {'usr': 3.8848000000000003, 'sys': 3.52, 'soft': 1.7152}, {'usr': 4.0064, 'sys': 3.5648000000000004, 'soft': 1.76}, {'usr': 3.8144, 'sys': 3.4752, 'soft': 1.7472}, {'usr': 3.9744, 'sys': 3.488, 'soft': 1.7344}]
+Overall CPU Usage is :9.255680000000002
+run_wrk_user_cpu.sh: line 8: 781645 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+782027
+[{'usr': 4.1856, 'sys': 3.8976, 'soft': 1.8432}, {'usr': 4.3904000000000005, 'sys': 4.1024, 'soft': 1.9456}, {'usr': 4.1983999999999995, 'sys': 3.8783999999999996, 'soft': 1.8624}, {'usr': 4.3904000000000005, 'sys': 4.0384, 'soft': 1.9264}, {'usr': 4.236800000000001, 'sys': 3.8656, 'soft': 1.8496000000000001}]
+Overall CPU Usage is :10.122240000000001
+run_wrk_user_cpu.sh: line 8: 782027 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+782394
+[{'usr': 3.8656, 'sys': 3.5648000000000004, 'soft': 1.9328}, {'usr': 3.8016000000000005, 'sys': 3.5392, 'soft': 1.8880000000000001}, {'usr': 4.0512, 'sys': 3.5776, 'soft': 1.9840000000000002}, {'usr': 3.8976, 'sys': 3.5072000000000005, 'soft': 1.9328}, {'usr': 4.0, 'sys': 3.7376, 'soft': 2.1568}]
+Overall CPU Usage is :9.487359999999999
+run_wrk_user_cpu.sh: line 8: 782394 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+Running scale 1000
+782770
+[{'usr': 4.1024, 'sys': 3.7312000000000003, 'soft': 2.016}, {'usr': 3.872, 'sys': 3.6351999999999998, 'soft': 1.92}, {'usr': 3.9872000000000005, 'sys': 3.648, 'soft': 1.952}, {'usr': 4.0256, 'sys': 3.7376, 'soft': 1.9584000000000001}, {'usr': 3.9616000000000002, 'sys': 3.6927999999999996, 'soft': 1.9328}]
+Overall CPU Usage is :9.634559999999999
+run_wrk_user_cpu.sh: line 8: 782770 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+783140
+[{'usr': 3.8848000000000003, 'sys': 3.5008, 'soft': 1.9136000000000002}, {'usr': 4.096, 'sys': 3.7119999999999997, 'soft': 2.0672}, {'usr': 4.0448, 'sys': 3.7184, 'soft': 2.08}, {'usr': 4.2816, 'sys': 3.9744, 'soft': 2.0672}, {'usr': 4.3392, 'sys': 4.0384, 'soft': 2.0608}]
+Overall CPU Usage is :9.95584
+run_wrk_user_cpu.sh: line 8: 783140 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+783507
+[{'usr': 4.4096, 'sys': 3.9616000000000002, 'soft': 2.1056}, {'usr': 4.1536, 'sys': 3.7824, 'soft': 1.9456}, {'usr': 4.6144, 'sys': 4.1728, 'soft': 2.1376}, {'usr': 4.32, 'sys': 4.1088000000000005, 'soft': 2.0544000000000002}, {'usr': 4.6336, 'sys': 4.256, 'soft': 2.1312}]
+Overall CPU Usage is :10.557440000000001
+run_wrk_user_cpu.sh: line 8: 783507 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+783882
+[{'usr': 4.8384, 'sys': 4.6848, 'soft': 2.3552}, {'usr': 4.512, 'sys': 4.1983999999999995, 'soft': 2.0864}, {'usr': 4.6592, 'sys': 4.3264, 'soft': 2.2208}, {'usr': 4.5952, 'sys': 4.2752, 'soft': 2.144}, {'usr': 4.6464, 'sys': 4.307200000000001, 'soft': 2.1824000000000003}]
+Overall CPU Usage is :11.206399999999999
+run_wrk_user_cpu.sh: line 8: 783882 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+784268
+[{'usr': 5.088, 'sys': 4.8512, 'soft': 2.2976}, {'usr': 5.12, 'sys': 4.8576, 'soft': 2.2016}, {'usr': 5.1264, 'sys': 4.9088, 'soft': 2.2656}, {'usr': 4.9664, 'sys': 4.6656, 'soft': 2.1952000000000003}, {'usr': 5.203200000000001, 'sys': 4.9664, 'soft': 2.2656}]
+Overall CPU Usage is :12.19584
+run_wrk_user_cpu.sh: line 8: 784268 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+Running scale 1100
+784647
+[{'usr': 5.081600000000001, 'sys': 4.8128, 'soft': 2.1312}, {'usr': 4.8768, 'sys': 4.6016, 'soft': 2.0991999999999997}, {'usr': 4.8, 'sys': 4.4672, 'soft': 1.9840000000000002}, {'usr': 5.3952, 'sys': 5.0304, 'soft': 2.1888}, {'usr': 5.344, 'sys': 4.921600000000001, 'soft': 2.1888}]
+Overall CPU Usage is :11.984640000000002
+run_wrk_user_cpu.sh: line 8: 784647 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+785014
+[{'usr': 4.8576, 'sys': 4.5056, 'soft': 1.9328}, {'usr': 5.312, 'sys': 5.0304, 'soft': 2.1056}, {'usr': 5.024, 'sys': 4.7232, 'soft': 2.0864}, {'usr': 5.1392, 'sys': 4.921600000000001, 'soft': 2.016}, {'usr': 5.2928, 'sys': 4.8768, 'soft': 2.1056}]
+Overall CPU Usage is :11.98592
+run_wrk_user_cpu.sh: line 8: 785014 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+785402
+[{'usr': 5.5104, 'sys': 5.2224, 'soft': 2.2272}, {'usr': 5.4016, 'sys': 5.0944, 'soft': 2.1056}, {'usr': 5.6000000000000005, 'sys': 5.260800000000001, 'soft': 2.1312}, {'usr': 5.4592, 'sys': 5.1392, 'soft': 2.1248}, {'usr': 5.6896, 'sys': 5.3312, 'soft': 2.176}]
+Overall CPU Usage is :12.894720000000001
+run_wrk_user_cpu.sh: line 8: 785402 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+785769
+[{'usr': 6.0288, 'sys': 5.7088, 'soft': 2.3040000000000003}, {'usr': 5.9392, 'sys': 5.7152, 'soft': 2.2208}, {'usr': 6.144, 'sys': 5.849600000000001, 'soft': 2.3104}, {'usr': 5.849600000000001, 'sys': 5.632000000000001, 'soft': 2.2144}, {'usr': 6.08, 'sys': 5.8432, 'soft': 2.2976}]
+Overall CPU Usage is :14.02752
+run_wrk_user_cpu.sh: line 8: 785769 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+786142
+[{'usr': 6.016, 'sys': 5.696000000000001, 'soft': 2.2464}, {'usr': 5.312, 'sys': 5.1456, 'soft': 2.048}, {'usr': 6.112000000000001, 'sys': 5.7472, 'soft': 2.3040000000000003}, {'usr': 5.7984, 'sys': 5.580800000000001, 'soft': 2.2592}, {'usr': 6.207999999999999, 'sys': 5.9967999999999995, 'soft': 2.3104}]
+Overall CPU Usage is :13.75616
+run_wrk_user_cpu.sh: line 8: 786142 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+Running scale 1200
+786514
+[{'usr': 5.7536000000000005, 'sys': 5.324800000000001, 'soft': 2.1376}, {'usr': 5.5168, 'sys': 5.216, 'soft': 2.0224}, {'usr': 5.6128, 'sys': 5.2928, 'soft': 2.0928}, {'usr': 5.4912, 'sys': 5.0368, 'soft': 2.0288}, {'usr': 5.6064, 'sys': 5.1264, 'soft': 2.048}]
+Overall CPU Usage is :12.861439999999998
+run_wrk_user_cpu.sh: line 8: 786514 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+786880
+[{'usr': 5.324800000000001, 'sys': 5.0048, 'soft': 2.08}, {'usr': 5.504, 'sys': 5.1968, 'soft': 2.2016}, {'usr': 5.5552, 'sys': 5.2352, 'soft': 2.0736000000000003}, {'usr': 5.4336, 'sys': 5.107200000000001, 'soft': 2.1248}, {'usr': 5.7472, 'sys': 5.4016, 'soft': 2.2208}]
+Overall CPU Usage is :12.84224
+run_wrk_user_cpu.sh: line 8: 786880 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+787278
+[{'usr': 6.2912, 'sys': 6.0288, 'soft': 2.2848}, {'usr': 6.08, 'sys': 5.8688, 'soft': 2.24}, {'usr': 5.952000000000001, 'sys': 5.574400000000001, 'soft': 2.2336}, {'usr': 6.3872, 'sys': 6.0736, 'soft': 2.3872}, {'usr': 5.888, 'sys': 5.574400000000001, 'soft': 2.1952000000000003}]
+Overall CPU Usage is :14.21184
+run_wrk_user_cpu.sh: line 8: 787278 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+787652
+[{'usr': 6.0224, 'sys': 5.5424, 'soft': 2.2464}, {'usr': 5.7408, 'sys': 5.44, 'soft': 2.1248}, {'usr': 5.728, 'sys': 5.4016, 'soft': 2.1568}, {'usr': 5.6064, 'sys': 5.2863999999999995, 'soft': 2.1952000000000003}, {'usr': 5.7791999999999994, 'sys': 5.478400000000001, 'soft': 2.1568}]
+Overall CPU Usage is :13.38112
+run_wrk_user_cpu.sh: line 8: 787652 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+788021
+[{'usr': 5.9072000000000005, 'sys': 5.561599999999999, 'soft': 2.1632}, {'usr': 5.9904, 'sys': 5.5360000000000005, 'soft': 2.1504}, {'usr': 5.8048, 'sys': 5.344, 'soft': 2.1312}, {'usr': 5.894400000000001, 'sys': 5.5296, 'soft': 2.1312}, {'usr': 5.9008, 'sys': 5.5552, 'soft': 2.2144}]
+Overall CPU Usage is :13.562880000000002
+run_wrk_user_cpu.sh: line 8: 788021 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+Running scale 1300
+788412
+[{'usr': 5.8688, 'sys': 5.5872, 'soft': 2.1568}, {'usr': 5.9584, 'sys': 5.6000000000000005, 'soft': 2.2464}, {'usr': 5.6832, 'sys': 5.3888, 'soft': 2.0928}, {'usr': 6.1184, 'sys': 5.7984, 'soft': 2.2912}, {'usr': 5.7024, 'sys': 5.3952, 'soft': 2.176}]
+Overall CPU Usage is :13.612800000000002
+run_wrk_user_cpu.sh: line 8: 788412 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+788787
+[{'usr': 5.420800000000001, 'sys': 5.1392, 'soft': 1.9968000000000001}, {'usr': 5.638400000000001, 'sys': 5.312, 'soft': 2.0288}, {'usr': 5.7088, 'sys': 5.2863999999999995, 'soft': 2.1056}, {'usr': 5.6064, 'sys': 5.1648000000000005, 'soft': 2.048}, {'usr': 5.574400000000001, 'sys': 5.305599999999999, 'soft': 2.0544000000000002}]
+Overall CPU Usage is :12.87808
+run_wrk_user_cpu.sh: line 8: 788787 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+789206
+[{'usr': 6.265599999999999, 'sys': 5.9072000000000005, 'soft': 2.3040000000000003}, {'usr': 5.9584, 'sys': 5.561599999999999, 'soft': 2.2656}, {'usr': 6.1312, 'sys': 5.8432, 'soft': 2.3616}, {'usr': 6.0736, 'sys': 5.664, 'soft': 2.272}, {'usr': 5.7472, 'sys': 5.324800000000001, 'soft': 2.0864}]
+Overall CPU Usage is :13.953279999999998
+run_wrk_user_cpu.sh: line 8: 789206 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+789654
+[{'usr': 5.849600000000001, 'sys': 5.465599999999999, 'soft': 2.208}, {'usr': 5.9712000000000005, 'sys': 5.574400000000001, 'soft': 2.208}, {'usr': 5.6128, 'sys': 5.3376, 'soft': 2.1504}, {'usr': 5.6896, 'sys': 5.3376, 'soft': 2.0864}, {'usr': 5.7791999999999994, 'sys': 5.3504, 'soft': 2.1888}]
+Overall CPU Usage is :13.361919999999998
+run_wrk_user_cpu.sh: line 8: 789654 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+790033
+[{'usr': 5.4079999999999995, 'sys': 5.0944, 'soft': 2.1568}, {'usr': 5.4976, 'sys': 5.107200000000001, 'soft': 2.1376}, {'usr': 5.2544, 'sys': 4.8384, 'soft': 2.0224}, {'usr': 5.7088, 'sys': 5.260800000000001, 'soft': 2.2336}, {'usr': 5.3696, 'sys': 5.081600000000001, 'soft': 2.1248}]
+Overall CPU Usage is :12.659200000000002
+run_wrk_user_cpu.sh: line 8: 790033 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+Running scale 1400
+790399
+[{'usr': 5.1328, 'sys': 4.8896, 'soft': 2.144}, {'usr': 5.2928, 'sys': 5.0112000000000005, 'soft': 2.1952000000000003}, {'usr': 5.081600000000001, 'sys': 4.7936000000000005, 'soft': 2.1248}, {'usr': 5.3312, 'sys': 4.9792000000000005, 'soft': 2.2464}, {'usr': 5.1648000000000005, 'sys': 4.896, 'soft': 2.2144}]
+Overall CPU Usage is :12.29952
+run_wrk_user_cpu.sh: line 8: 790399 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+790771
+[{'usr': 5.216, 'sys': 4.9856, 'soft': 2.3744}, {'usr': 4.7488, 'sys': 4.5056, 'soft': 2.0032}, {'usr': 4.7488, 'sys': 4.5760000000000005, 'soft': 2.1248}, {'usr': 4.8192, 'sys': 4.48, 'soft': 2.1568}, {'usr': 4.8832, 'sys': 4.5696, 'soft': 2.208}]
+Overall CPU Usage is :11.680000000000001
+run_wrk_user_cpu.sh: line 8: 790771 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+791177
+[{'usr': 4.6208, 'sys': 4.416, 'soft': 2.176}, {'usr': 5.0048, 'sys': 4.6848, 'soft': 2.2592}, {'usr': 4.7808, 'sys': 4.6208, 'soft': 2.2656}, {'usr': 4.4224000000000006, 'sys': 4.2432, 'soft': 2.0608}, {'usr': 4.3584, 'sys': 4.0256, 'soft': 2.0736000000000003}]
+Overall CPU Usage is :11.20256
+run_wrk_user_cpu.sh: line 8: 791177 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+791544
+[{'usr': 4.6848, 'sys': 4.2688, 'soft': 2.1184000000000003}, {'usr': 4.8192, 'sys': 4.3712, 'soft': 2.1184000000000003}, {'usr': 4.704, 'sys': 4.32, 'soft': 2.176}, {'usr': 4.5632, 'sys': 4.192, 'soft': 2.0928}, {'usr': 4.3776, 'sys': 4.0512, 'soft': 2.08}]
+Overall CPU Usage is :10.98752
+run_wrk_user_cpu.sh: line 8: 791544 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+791906
+[{'usr': 4.1728, 'sys': 3.8336, 'soft': 2.0288}, {'usr': 4.1344, 'sys': 3.7824, 'soft': 2.112}, {'usr': 4.0512, 'sys': 3.7376, 'soft': 2.08}, {'usr': 4.1728, 'sys': 3.7696, 'soft': 2.016}, {'usr': 4.16, 'sys': 3.8336, 'soft': 2.0672}]
+Overall CPU Usage is :9.990399999999998
+run_wrk_user_cpu.sh: line 8: 791906 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+Running scale 1500
+792281
+[{'usr': 4.1024, 'sys': 3.8016000000000005, 'soft': 2.016}, {'usr': 4.1344, 'sys': 3.8080000000000003, 'soft': 1.9840000000000002}, {'usr': 4.2688, 'sys': 3.7632, 'soft': 2.1056}, {'usr': 3.8144, 'sys': 3.3792000000000004, 'soft': 1.8368000000000002}, {'usr': 3.9936000000000003, 'sys': 3.68, 'soft': 1.92}]
+Overall CPU Usage is :9.721599999999999
+run_wrk_user_cpu.sh: line 8: 792281 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+792650
+[{'usr': 4.064, 'sys': 3.6864, 'soft': 1.8432}, {'usr': 4.0512, 'sys': 3.6416000000000004, 'soft': 1.824}, {'usr': 4.16, 'sys': 3.8336, 'soft': 1.7984}, {'usr': 3.8144, 'sys': 3.6032, 'soft': 1.7792}, {'usr': 4.192, 'sys': 3.9232, 'soft': 1.9264}]
+Overall CPU Usage is :9.628160000000003
+run_wrk_user_cpu.sh: line 8: 792650 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+793043
+[{'usr': 4.1728, 'sys': 3.8976, 'soft': 1.9776}, {'usr': 4.1152, 'sys': 3.872, 'soft': 1.8304}, {'usr': 4.2944, 'sys': 3.8464, 'soft': 1.8688}, {'usr': 3.9168000000000003, 'sys': 3.6672000000000002, 'soft': 1.8368000000000002}, {'usr': 4.0064, 'sys': 3.7248, 'soft': 1.8432}]
+Overall CPU Usage is :9.774080000000001
+run_wrk_user_cpu.sh: line 8: 793043 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+793414
+[{'usr': 4.0704, 'sys': 3.6992000000000003, 'soft': 1.8048}, {'usr': 4.128, 'sys': 3.68, 'soft': 1.8112000000000001}, {'usr': 4.0512, 'sys': 3.6672000000000002, 'soft': 1.7856}, {'usr': 3.9295999999999998, 'sys': 3.5839999999999996, 'soft': 1.7024000000000001}, {'usr': 3.84, 'sys': 3.4432, 'soft': 1.7344}]
+Overall CPU Usage is :9.386239999999997
+run_wrk_user_cpu.sh: line 8: 793414 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+793785
+[{'usr': 4.0127999999999995, 'sys': 3.6224000000000003, 'soft': 1.7024000000000001}, {'usr': 4.236800000000001, 'sys': 3.8848000000000003, 'soft': 1.7344}, {'usr': 3.84, 'sys': 3.4752, 'soft': 1.5616}, {'usr': 3.8464, 'sys': 3.5328, 'soft': 1.536}, {'usr': 4.064, 'sys': 3.7568, 'soft': 1.6768}]
+Overall CPU Usage is :9.29664
+run_wrk_user_cpu.sh: line 8: 793785 Killed                  ./wrk2/wrk -t2 -c100 -d300s -s echo-server/wrk-script/request_b/echo_workload_$.lua http://10.96.88.88:80 -R 40000 > /dev/null 2>&1
+Running scale 0
