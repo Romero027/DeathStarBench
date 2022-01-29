@@ -1,0 +1,101 @@
+Running scale 1000
+{'user': {'loopback_latency': 13034.0, 'read_latency': 5063.0, 'write_latency': 9259.0, 'epoll_latency': 1923.0, 'http2_latency': 196675.0, 'envoy_latency': 168053.0}}
+{'user': {'loopback_latency': 13237.0, 'read_latency': 5270.0, 'write_latency': 9261.0, 'epoll_latency': 1841.0, 'http2_latency': 159387.0, 'envoy_latency': 161461.0}}
+{'user': {'loopback_latency': 13780.0, 'read_latency': 5030.0, 'write_latency': 9149.0, 'epoll_latency': 1933.0, 'http2_latency': 151273.0, 'envoy_latency': 168132.0}}
+{'user': {'loopback_latency': 13274.0, 'read_latency': 5114.0, 'write_latency': 9467.0, 'epoll_latency': 1870.0, 'http2_latency': 185862.0, 'envoy_latency': 162145.0}}
+{'user': {'loopback_latency': 13246.0, 'read_latency': 4964.0, 'write_latency': 9643.0, 'epoll_latency': 1850.0, 'http2_latency': 172465.0, 'envoy_latency': 164357.0}}
+Running scale 2000
+68525
+{'user': {'loopback_latency': 15091.0, 'read_latency': 5758.0, 'write_latency': 12044.0, 'epoll_latency': 1770.0, 'http2_latency': 162936.0, 'envoy_latency': 177536.0}}
+{'user': {'loopback_latency': 15109.0, 'read_latency': 5662.0, 'write_latency': 13905.0, 'epoll_latency': 1814.0, 'http2_latency': 159803.0, 'envoy_latency': 178437.0}}
+{'user': {'loopback_latency': 15209.0, 'read_latency': 5648.0, 'write_latency': 11008.0, 'epoll_latency': 1851.0, 'http2_latency': 158669.0, 'envoy_latency': 177684.0}}
+{'user': {'loopback_latency': 14711.0, 'read_latency': 5519.0, 'write_latency': 13999.0, 'epoll_latency': 1860.0, 'http2_latency': 167123.0, 'envoy_latency': 171164.0}}
+{'user': {'loopback_latency': 15211.0, 'read_latency': 5858.0, 'write_latency': 13650.0, 'epoll_latency': 1788.0, 'http2_latency': 156479.0, 'envoy_latency': 175478.0}}
+Running scale 3000
+{'user': {'loopback_latency': 15003.0, 'read_latency': 21761.0, 'write_latency': 11165.0, 'epoll_latency': 1777.0, 'http2_latency': 181310.0, 'envoy_latency': 178340.0}}
+{'user': {'loopback_latency': 14873.0, 'read_latency': 21626.0, 'write_latency': 9200.0, 'epoll_latency': 1751.0, 'http2_latency': 171406.0, 'envoy_latency': 187007.0}}
+{'user': {'loopback_latency': 15100.0, 'read_latency': 21731.0, 'write_latency': 10985.0, 'epoll_latency': 1755.0, 'http2_latency': 157634.0, 'envoy_latency': 181239.0}}
+{'user': {'loopback_latency': 14959.0, 'read_latency': 21836.0, 'write_latency': 10716.0, 'epoll_latency': 1783.0, 'http2_latency': 179930.0, 'envoy_latency': 169728.0}}
+{'user': {'loopback_latency': 14907.0, 'read_latency': 21651.0, 'write_latency': 10872.0, 'epoll_latency': 1902.0, 'http2_latency': 169364.0, 'envoy_latency': 185593.0}}
+Running scale 4000
+{'user': {'loopback_latency': 15585.0, 'read_latency': 22159.0, 'write_latency': 14301.0, 'epoll_latency': 1911.0, 'http2_latency': 205641.0, 'envoy_latency': 218200.0}}
+{'user': {'loopback_latency': 15581.0, 'read_latency': 22125.0, 'write_latency': 14168.0, 'epoll_latency': 1965.0, 'http2_latency': 179945.0, 'envoy_latency': 219935.0}}
+{'user': {'loopback_latency': 15407.0, 'read_latency': 22219.0, 'write_latency': 14570.0, 'epoll_latency': 1866.0, 'http2_latency': 206830.0, 'envoy_latency': 218333.0}}
+{'user': {'loopback_latency': 15525.0, 'read_latency': 22092.0, 'write_latency': 14490.0, 'epoll_latency': 1838.0, 'http2_latency': 206261.0, 'envoy_latency': 214385.0}}
+{'user': {'loopback_latency': 15633.0, 'read_latency': 22188.0, 'write_latency': 13204.0, 'epoll_latency': 1898.0, 'http2_latency': 206240.0, 'envoy_latency': 218904.0}}
+Running scale 5000
+{'user': {'loopback_latency': 15453.0, 'read_latency': 22696.0, 'write_latency': 14237.0, 'epoll_latency': 1874.0, 'http2_latency': 206475.0, 'envoy_latency': 214318.0}}
+{'user': {'loopback_latency': 15435.0, 'read_latency': 22689.0, 'write_latency': 14528.0, 'epoll_latency': 1898.0, 'http2_latency': 206108.0, 'envoy_latency': 220500.0}}
+{'user': {'loopback_latency': 15591.0, 'read_latency': 22572.0, 'write_latency': 13958.0, 'epoll_latency': 1866.0, 'http2_latency': 203867.0, 'envoy_latency': 218789.0}}
+{'user': {'loopback_latency': 15506.0, 'read_latency': 22784.0, 'write_latency': 14310.0, 'epoll_latency': 1952.0, 'http2_latency': 207390.0, 'envoy_latency': 215459.0}}
+{'user': {'loopback_latency': 15410.0, 'read_latency': 22640.0, 'write_latency': 11389.0, 'epoll_latency': 1901.0, 'http2_latency': 207137.0, 'envoy_latency': 218608.0}}
+Running scale 6000
+{'user': {'loopback_latency': 15564.0, 'read_latency': 22717.0, 'write_latency': 14271.0, 'epoll_latency': 1961.0, 'http2_latency': 200580.0, 'envoy_latency': 175977.0}}
+{'user': {'loopback_latency': 15820.0, 'read_latency': 22747.0, 'write_latency': 14063.0, 'epoll_latency': 1982.0, 'http2_latency': 206494.0, 'envoy_latency': 218628.0}}
+{'user': {'loopback_latency': 15576.0, 'read_latency': 22793.0, 'write_latency': 13866.0, 'epoll_latency': 1873.0, 'http2_latency': 176553.0, 'envoy_latency': 214474.0}}
+{'user': {'loopback_latency': 15255.0, 'read_latency': 22640.0, 'write_latency': 14675.0, 'epoll_latency': 1823.0, 'http2_latency': 200035.0, 'envoy_latency': 146964.0}}
+{'user': {'loopback_latency': 15374.0, 'read_latency': 22884.0, 'write_latency': 12807.0, 'epoll_latency': 1976.0, 'http2_latency': 206584.0, 'envoy_latency': 217347.0}}
+Running scale 7000
+{'user': {'loopback_latency': 15240.0, 'read_latency': 22757.0, 'write_latency': 14537.0, 'epoll_latency': 1863.0, 'http2_latency': 206894.0, 'envoy_latency': 205983.0}}
+{'user': {'loopback_latency': 15421.0, 'read_latency': 22565.0, 'write_latency': 12513.0, 'epoll_latency': 1848.0, 'http2_latency': 207520.0, 'envoy_latency': 219837.0}}
+{'user': {'loopback_latency': 15396.0, 'read_latency': 22924.0, 'write_latency': 14628.0, 'epoll_latency': 1832.0, 'http2_latency': 207927.0, 'envoy_latency': 219067.0}}
+{'user': {'loopback_latency': 16081.0, 'read_latency': 22841.0, 'write_latency': 13987.0, 'epoll_latency': 1880.0, 'http2_latency': 207352.0, 'envoy_latency': 219370.0}}
+{'user': {'loopback_latency': 15389.0, 'read_latency': 22914.0, 'write_latency': 14537.0, 'epoll_latency': 1887.0, 'http2_latency': 201099.0, 'envoy_latency': 213202.0}}
+Running scale 8000
+{'user': {'loopback_latency': 15439.0, 'read_latency': 22976.0, 'write_latency': 14864.0, 'epoll_latency': 1882.0, 'http2_latency': 207772.0, 'envoy_latency': 218808.0}}
+{'user': {'loopback_latency': 15764.0, 'read_latency': 14119.0, 'write_latency': 14318.0, 'epoll_latency': 1824.0, 'http2_latency': 207977.0, 'envoy_latency': 225317.0}}
+{'user': {'loopback_latency': 15499.0, 'read_latency': 23155.0, 'write_latency': 14805.0, 'epoll_latency': 1844.0, 'http2_latency': 207649.0, 'envoy_latency': 219541.0}}
+{'user': {'loopback_latency': 15473.0, 'read_latency': 23125.0, 'write_latency': 14785.0, 'epoll_latency': 1852.0, 'http2_latency': 208261.0, 'envoy_latency': 217342.0}}
+{'user': {'loopback_latency': 15413.0, 'read_latency': 23113.0, 'write_latency': 13573.0, 'epoll_latency': 1870.0, 'http2_latency': 207977.0, 'envoy_latency': 220667.0}}
+Running scale 9000
+{'user': {'loopback_latency': 15577.0, 'read_latency': 23482.0, 'write_latency': 14996.0, 'epoll_latency': 1819.0, 'http2_latency': 208747.0, 'envoy_latency': 212157.0}}
+{'user': {'loopback_latency': 15814.0, 'read_latency': 22540.0, 'write_latency': 11331.0, 'epoll_latency': 1800.0, 'http2_latency': 207624.0, 'envoy_latency': 219214.0}}
+{'user': {'loopback_latency': 15272.0, 'read_latency': 23505.0, 'write_latency': 14938.0, 'epoll_latency': 1853.0, 'http2_latency': 207505.0, 'envoy_latency': 160224.0}}
+{'user': {'loopback_latency': 15281.0, 'read_latency': 20471.0, 'write_latency': 12198.0, 'epoll_latency': 1720.0, 'http2_latency': 154008.0, 'envoy_latency': 156687.0}}
+{'user': {'loopback_latency': 15760.0, 'read_latency': 23570.0, 'write_latency': 14859.0, 'epoll_latency': 1838.0, 'http2_latency': 208440.0, 'envoy_latency': 219946.0}}
+Running scale 10000
+91184
+{'user': {'loopback_latency': 15538.0, 'read_latency': 23624.0, 'write_latency': 14992.0, 'epoll_latency': 1800.0, 'http2_latency': 208321.0, 'envoy_latency': 217849.0}}
+{'user': {'loopback_latency': 15837.0, 'read_latency': 23662.0, 'write_latency': 13089.0, 'epoll_latency': 1787.0, 'http2_latency': 207191.0, 'envoy_latency': 220441.0}}
+{'user': {'loopback_latency': 15605.0, 'read_latency': 23725.0, 'write_latency': 15022.0, 'epoll_latency': 1832.0, 'http2_latency': 207490.0, 'envoy_latency': 177253.0}}
+{'user': {'loopback_latency': 15436.0, 'read_latency': 23704.0, 'write_latency': 15055.0, 'epoll_latency': 1818.0, 'http2_latency': 208963.0, 'envoy_latency': 215889.0}}
+{'user': {'loopback_latency': 16203.0, 'read_latency': 23636.0, 'write_latency': 12841.0, 'epoll_latency': 1851.0, 'http2_latency': 207828.0, 'envoy_latency': 218485.0}}
+Running scale 11000
+{'user': {'loopback_latency': 15651.0, 'read_latency': 23846.0, 'write_latency': 13577.0, 'epoll_latency': 1845.0, 'http2_latency': 207911.0, 'envoy_latency': 217609.0}}
+{'user': {'loopback_latency': 15526.0, 'read_latency': 23686.0, 'write_latency': 14071.0, 'epoll_latency': 1844.0, 'http2_latency': 205967.0, 'envoy_latency': 217421.0}}
+{'user': {'loopback_latency': 16078.0, 'read_latency': 23361.0, 'write_latency': 14459.0, 'epoll_latency': 1872.0, 'http2_latency': 206706.0, 'envoy_latency': 217657.0}}
+{'user': {'loopback_latency': 15592.0, 'read_latency': 23855.0, 'write_latency': 14092.0, 'epoll_latency': 1814.0, 'http2_latency': 168346.0, 'envoy_latency': 216752.0}}
+{'user': {'loopback_latency': 15710.0, 'read_latency': 23879.0, 'write_latency': 13344.0, 'epoll_latency': 1891.0, 'http2_latency': 205549.0, 'envoy_latency': 222084.0}}
+Running scale 12000
+{'user': {'loopback_latency': 15590.0, 'read_latency': 23928.0, 'write_latency': 15244.0, 'epoll_latency': 2002.0, 'http2_latency': 205450.0, 'envoy_latency': 215586.0}}
+{'user': {'loopback_latency': 15519.0, 'read_latency': 24031.0, 'write_latency': 14185.0, 'epoll_latency': 1791.0, 'http2_latency': 208279.0, 'envoy_latency': 218513.0}}
+{'user': {'loopback_latency': 15445.0, 'read_latency': 24064.0, 'write_latency': 12546.0, 'epoll_latency': 1751.0, 'http2_latency': 205333.0, 'envoy_latency': 220646.0}}
+{'user': {'loopback_latency': 16322.0, 'read_latency': 23861.0, 'write_latency': 14424.0, 'epoll_latency': 1855.0, 'http2_latency': 208431.0, 'envoy_latency': 216702.0}}
+{'user': {'loopback_latency': 15407.0, 'read_latency': 23901.0, 'write_latency': 14552.0, 'epoll_latency': 1824.0, 'http2_latency': 208705.0, 'envoy_latency': 217475.0}}
+Running scale 13000
+{'user': {'loopback_latency': 15760.0, 'read_latency': 26215.0, 'write_latency': 14975.0, 'epoll_latency': 1984.0, 'http2_latency': 205676.0, 'envoy_latency': 186421.0}}
+{'user': {'loopback_latency': 15807.0, 'read_latency': 26277.0, 'write_latency': 14985.0, 'epoll_latency': 1940.0, 'http2_latency': 179739.0, 'envoy_latency': 214948.0}}
+{'user': {'loopback_latency': 15720.0, 'read_latency': 26285.0, 'write_latency': 13102.0, 'epoll_latency': 1976.0, 'http2_latency': 209575.0, 'envoy_latency': 174965.0}}
+{'user': {'loopback_latency': 16200.0, 'read_latency': 21160.0, 'write_latency': 13567.0, 'epoll_latency': 1925.0, 'http2_latency': 201498.0, 'envoy_latency': 221831.0}}
+{'user': {'loopback_latency': 15787.0, 'read_latency': 26311.0, 'write_latency': 13972.0, 'epoll_latency': 1935.0, 'http2_latency': 204165.0, 'envoy_latency': 215563.0}}
+Running scale 14000
+{'user': {'loopback_latency': 15483.0, 'read_latency': 26676.0, 'write_latency': 13911.0, 'epoll_latency': 1958.0, 'http2_latency': 203986.0, 'envoy_latency': 210068.0}}
+{'user': {'loopback_latency': 15995.0, 'read_latency': 25009.0, 'write_latency': 12635.0, 'epoll_latency': 1889.0, 'http2_latency': 192720.0, 'envoy_latency': 188379.0}}
+{'user': {'loopback_latency': 16064.0, 'read_latency': 23839.0, 'write_latency': 12514.0, 'epoll_latency': 1927.0, 'http2_latency': 205582.0, 'envoy_latency': 220034.0}}
+{'user': {'loopback_latency': 16127.0, 'read_latency': 25732.0, 'write_latency': 11988.0, 'epoll_latency': 1844.0, 'http2_latency': 195919.0, 'envoy_latency': 187515.0}}
+{'user': {'loopback_latency': 15692.0, 'read_latency': 26773.0, 'write_latency': 13612.0, 'epoll_latency': 1952.0, 'http2_latency': 204511.0, 'envoy_latency': 189849.0}}
+Running scale 15000
+105080
+Running breakdown experiment for HTTP proxy...
+{'user': {'loopback_latency': 16137.0, 'read_latency': 26150.0, 'write_latency': 12390.0, 'epoll_latency': 1911.0, 'http2_latency': 205816.0, 'envoy_latency': 218591.0}}
+{'user': {'loopback_latency': 16691.0, 'read_latency': 26349.0, 'write_latency': 12563.0, 'epoll_latency': 2042.0, 'http2_latency': 204259.0, 'envoy_latency': 217478.0}}
+{'user': {'loopback_latency': 15465.0, 'read_latency': 26627.0, 'write_latency': 12854.0, 'epoll_latency': 1955.0, 'http2_latency': 203662.0, 'envoy_latency': 204278.0}}
+{'user': {'loopback_latency': 15603.0, 'read_latency': 26518.0, 'write_latency': 13578.0, 'epoll_latency': 1955.0, 'http2_latency': 205776.0, 'envoy_latency': 218092.0}}
+{'user': {'loopback_latency': 15779.0, 'read_latency': 26594.0, 'write_latency': 13742.0, 'epoll_latency': 1953.0, 'http2_latency': 205166.0, 'envoy_latency': 217370.0}}
+Running scale 16000
+{'user': {'loopback_latency': 15971.0, 'read_latency': 25739.0, 'write_latency': 13051.0, 'epoll_latency': 2024.0, 'http2_latency': 204676.0, 'envoy_latency': 220783.0}}
+{'user': {'loopback_latency': 16941.0, 'read_latency': 24674.0, 'write_latency': 12745.0, 'epoll_latency': 1958.0, 'http2_latency': 210082.0, 'envoy_latency': 221155.0}}
+{'user': {'loopback_latency': 15754.0, 'read_latency': 26924.0, 'write_latency': 15753.0, 'epoll_latency': 1963.0, 'http2_latency': 208501.0, 'envoy_latency': 215385.0}}
+{'user': {'loopback_latency': 15770.0, 'read_latency': 26932.0, 'write_latency': 14932.0, 'epoll_latency': 2019.0, 'http2_latency': 210417.0, 'envoy_latency': 218043.0}}
+{'user': {'loopback_latency': 15706.0, 'read_latency': 26816.0, 'write_latency': 13290.0, 'epoll_latency': 2035.0, 'http2_latency': 210508.0, 'envoy_latency': 220786.0}}
+Running scale 0
