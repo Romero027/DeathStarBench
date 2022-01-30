@@ -91,7 +91,7 @@ def run_tcp_proxy_latency_breakdown(app, envoy_process, duration, num_calls=0):
 
     return breakdown
 
-def run_http_proxy_latency_breakdown(app, envoy_process, duration, num_calls):
+def run_grpc_proxy_latency_breakdown(app, envoy_process, duration, num_calls):
     print("Running " + str(app) + " latency breakdown...")
     breakdown = {}
     breakdown['loopback_latency'] = run_funclatency('process_backlog', duration, envoy_process['envoy_pid'], num_calls=num_calls)
@@ -101,6 +101,22 @@ def run_http_proxy_latency_breakdown(app, envoy_process, duration, num_calls):
     breakdown['http2_latency'] = run_funclatency(envoy_process['envoy_binary_path']+':*nghttp2_session_mem_recv*', duration, envoy_process['envoy_pid'], num_calls=num_calls)
     breakdown['http2_latency'] += run_funclatency(envoy_process['envoy_binary_path']+':*nghttp2_session_send*', duration, envoy_process['envoy_pid'], num_calls=num_calls)
     # breakdown['http_latency'] = breakdown['envoy_latency'] = run_funclatency(envoy_process['envoy_binary_path']+':*http_parser_execute*', duration, envoy_process['envoy_pid'])
+    breakdown['envoy_latency'] = run_funclatency(envoy_process['envoy_binary_path']+':*onReadReady*', 
+                        duration, envoy_process['envoy_pid'], num_calls=num_calls) - breakdown['read_latency']
+    breakdown['envoy_latency'] += run_funclatency(envoy_process['envoy_binary_path']+':*onWriteReady*', 
+                        duration, envoy_process['envoy_pid'], num_calls=num_calls) - breakdown['write_latency']
+    return breakdown
+
+def run_grpc_proxy_latency_breakdown(app, envoy_process, duration, num_calls):
+    print("Running " + str(app) + " latency breakdown...")
+    breakdown = {}
+    breakdown['loopback_latency'] = run_funclatency('process_backlog', duration, envoy_process['envoy_pid'], num_calls=num_calls)
+    breakdown['read_latency'] = run_funclatency('do_readv', duration, envoy_process['envoy_pid'], num_calls=num_calls)
+    breakdown['write_latency'] = run_funclatency('do_writev', duration, envoy_process['envoy_pid'], num_calls=num_calls) - breakdown['loopback_latency']
+    breakdown['epoll_latency'] = run_funclatency('ep_send_events_proc', duration, envoy_process['envoy_pid'], num_calls=num_calls)
+    # breakdown['http2_latency'] = run_funclatency(envoy_process['envoy_binary_path']+':*nghttp2_session_mem_recv*', duration, envoy_process['envoy_pid'], num_calls=num_calls)
+    # breakdown['http2_latency'] += run_funclatency(envoy_process['envoy_binary_path']+':*nghttp2_session_send*', duration, envoy_process['envoy_pid'], num_calls=num_calls)
+    breakdown['http_latency'] = breakdown['envoy_latency'] = run_funclatency(envoy_process['envoy_binary_path']+':*http_parser_execute*', duration, envoy_process['envoy_pid'])
     breakdown['envoy_latency'] = run_funclatency(envoy_process['envoy_binary_path']+':*onReadReady*', 
                         duration, envoy_process['envoy_pid'], num_calls=num_calls) - breakdown['read_latency']
     breakdown['envoy_latency'] += run_funclatency(envoy_process['envoy_binary_path']+':*onWriteReady*', 
@@ -119,8 +135,10 @@ if __name__ == '__main__':
             if args.proxy == "tcp":
                 print("Running breakdown experiment for TCP proxy...")
                 result[app] = run_tcp_proxy_latency_breakdown(app, envoy_process, args.duration, args.num_calls)
+            elif args.proxy == "grpc":
+                print("Running breakdown experiment for gRPC proxy...")
+                result[app] = run_grpc_proxy_latency_breakdown(app, envoy_process, args.duration, args.num_calls)
             elif args.proxy == "http":
                 print("Running breakdown experiment for HTTP proxy...")
                 result[app] = run_http_proxy_latency_breakdown(app, envoy_process, args.duration, args.num_calls)
-
     print(result)
