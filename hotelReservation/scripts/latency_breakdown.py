@@ -116,7 +116,7 @@ def run_http_proxy_latency_breakdown(app, envoy_process, duration, num_calls):
     breakdown['epoll_latency'] = run_funclatency('ep_send_events_proc', duration, envoy_process['envoy_pid'], num_calls=num_calls)
     # breakdown['http2_latency'] = run_funclatency(envoy_process['envoy_binary_path']+':*nghttp2_session_mem_recv*', duration, envoy_process['envoy_pid'], num_calls=num_calls)
     # breakdown['http2_latency'] += run_funclatency(envoy_process['envoy_binary_path']+':*nghttp2_session_send*', duration, envoy_process['envoy_pid'], num_calls=num_calls)
-    breakdown['http_latency'] = breakdown['envoy_latency'] = run_funclatency(envoy_process['envoy_binary_path']+':*http_parser_execute*', duration, envoy_process['envoy_pid'])
+    breakdown['http_latency'] = breakdown['envoy_latency'] = run_funclatency(envoy_process['envoy_binary_path']+':*http_parser_execute*', duration, envoy_process['envoy_pid'], num_calls=num_calls)
     breakdown['envoy_latency'] = run_funclatency(envoy_process['envoy_binary_path']+':*onReadReady*', 
                         duration, envoy_process['envoy_pid'], num_calls=num_calls) - breakdown['read_latency']
     breakdown['envoy_latency'] += run_funclatency(envoy_process['envoy_binary_path']+':*onWriteReady*', 
