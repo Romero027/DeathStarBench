@@ -107,7 +107,7 @@ def run_grpc_proxy_latency_breakdown(app, envoy_process, duration, num_calls):
                         duration, envoy_process['envoy_pid'], num_calls=num_calls) - breakdown['write_latency']
     return breakdown
 
-def run_grpc_proxy_latency_breakdown(app, envoy_process, duration, num_calls):
+def run_http_proxy_latency_breakdown(app, envoy_process, duration, num_calls):
     print("Running " + str(app) + " latency breakdown...")
     breakdown = {}
     breakdown['loopback_latency'] = run_funclatency('process_backlog', duration, envoy_process['envoy_pid'], num_calls=num_calls)
