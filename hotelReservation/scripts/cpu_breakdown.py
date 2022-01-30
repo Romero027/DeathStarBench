@@ -59,13 +59,13 @@ def get_cpu_breakdown(virtual_cores):
     print("Caculating CPU breakdown...")
     breakdown = {}
     breakdown['read'] = virtual_cores*get_cpu_percentage(">readv (")*0.01
-    breakdown['write'] = virtual_cores*get_cpu_percentage(">writev (")*0.01
     breakdown['loopback'] = virtual_cores*get_cpu_percentage(">process_backlog (")*0.01
+    breakdown['write'] = virtual_cores*get_cpu_percentage(">writev (")*0.01 - breakdown['loopback']
     breakdown['epoll'] = virtual_cores*get_cpu_percentage(">epoll_wait (")*0.01
     breakdown['envoy'] = virtual_cores*get_cpu_percentage(">wrk:worker_0 (")*0.01+virtual_cores*get_cpu_percentage(">wrk:worker_1 (")*0.01
     breakdown['envoy'] = breakdown['envoy']-(breakdown['read']+breakdown['write']+breakdown['loopback']+breakdown['epoll'])
-    breakdown['app'] = virtual_cores*get_cpu_percentage(">frontend (")*0.01
-    breakdown['http'] = virtual_cores*get_cpu_percentage(">Envoy::Network::FilterManagerImpl::onContinueReading(")*0.01
+    breakdown['app'] = virtual_cores*get_cpu_percentage(">echo-server (")*0.01
+    #breakdown['http'] = virtual_cores*get_cpu_percentage(">Envoy::Network::FilterManagerImpl::onContinueReading(")*0.01
     breakdown['others'] = virtual_cores-(breakdown['read']+breakdown['write']+breakdown['loopback']+breakdown['epoll']+breakdown['envoy']+breakdown['app'])
     return breakdown
 
