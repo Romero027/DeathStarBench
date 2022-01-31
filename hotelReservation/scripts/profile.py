@@ -104,7 +104,7 @@ parser.add_argument("-I", "--include-idle", action="store_true",
     help="include CPU idle stacks")
 parser.add_argument("-f", "--folded", action="store_true",
     help="output folded format, one line per stack (for flame graphs)")
-parser.add_argument("--stack-storage-size", default=16384,
+parser.add_argument("--stack-storage-size", default=2000000,   # xz: was 16484
     type=positive_nonzero_int,
     help="the number of unique stack traces that can be stored and "
         "displayed (default %(default)s)")

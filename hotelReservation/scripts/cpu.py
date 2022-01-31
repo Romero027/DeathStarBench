@@ -4,7 +4,7 @@ import subprocess
 
 
 def cpu():
-    cmd = ['mpstat', '1', '15']
+    cmd = ['mpstat', '1', '5']
     output = {}
     result = subprocess.run(cmd, stdout=subprocess.PIPE)
     result_average = result.stdout.decode("utf-8").split('\n')[-2].split()
@@ -26,4 +26,4 @@ if __name__ == '__main__':
     overall = 0.0
     for c in cpu_overheads:
         overall = overall+c['usr']+c['sys']+c['soft']
-    print(overall/5)
+    print("Overall CPU Usage is :"+str(overall/5))

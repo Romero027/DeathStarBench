@@ -53,7 +53,7 @@ def generate_flamegraph():
     
     cmd2 = ['./flamegraph.pl', './result/out.profile-folded']
     print("Running cmd: " + " ".join(cmd2))
-    with open("./result/profile.svg", "wb") as outfile2:
+    with open("./result/profile_nosm.svg", "wb") as outfile2:
         result = subprocess.run(cmd2, stdout=outfile2)
 
 def get_cpu_breakdown(virtual_cores, proxy, app):
@@ -69,7 +69,10 @@ def get_cpu_breakdown(virtual_cores, proxy, app):
     breakdown['app'] = virtual_cores*get_cpu_percentage(">"+app+" (")*0.01
     if proxy == 'http' or proxy =='grpc':
         breakdown['http'] = virtual_cores*get_cpu_percentage(">Envoy::Network::FilterManagerImpl::onContinueReading(")*0.01
-    breakdown['others'] = virtual_cores-(breakdown['read']+breakdown['write']+breakdown['loopback']+breakdown['epoll']+breakdown['envoy']+breakdown['app'])
+    if proxy != "none":
+        breakdown['others'] = virtual_cores-(breakdown['read']+breakdown['write']+breakdown['loopback']+breakdown['epoll']+breakdown['envoy']+breakdown['app'])
+    else:
+        breakdown['others'] = virtual_cores-breakdown['app']
     return breakdown
 
 if __name__ == '__main__':
