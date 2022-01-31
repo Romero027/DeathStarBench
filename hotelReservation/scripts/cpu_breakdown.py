@@ -6,7 +6,8 @@ from pathlib import Path
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--proxy', type=str, default='tcp', help='proxy type (tcp, http or grpc')
+    parser.add_argument('--proxy', type=str, default='tcp', help='proxy type (none, tcp, http or grpc)')
+    parser.add_argument('--app', type=str, help='the name of the application', required=True)
     parser.add_argument("-v", "--verbose", action="store_true", help="print the command executed (for debugging purposes)")
     return parser.parse_args()
 
@@ -55,17 +56,19 @@ def generate_flamegraph():
     with open("./result/profile.svg", "wb") as outfile2:
         result = subprocess.run(cmd2, stdout=outfile2)
 
-def get_cpu_breakdown(virtual_cores):
+def get_cpu_breakdown(virtual_cores, proxy, app):
     print("Caculating CPU breakdown...")
     breakdown = {}
-    breakdown['read'] = virtual_cores*get_cpu_percentage(">readv (")*0.01
-    breakdown['write'] = virtual_cores*get_cpu_percentage(">writev (")*0.01
-    breakdown['loopback'] = virtual_cores*get_cpu_percentage(">process_backlog (")*0.01
-    breakdown['epoll'] = virtual_cores*get_cpu_percentage(">epoll_wait (")*0.01
-    breakdown['envoy'] = virtual_cores*get_cpu_percentage(">wrk:worker_0 (")*0.01+virtual_cores*get_cpu_percentage(">wrk:worker_1 (")*0.01
-    breakdown['envoy'] = breakdown['envoy']-(breakdown['read']+breakdown['write']+breakdown['loopback']+breakdown['epoll'])
-    breakdown['app'] = virtual_cores*get_cpu_percentage(">frontend (")*0.01
-    breakdown['http'] = virtual_cores*get_cpu_percentage(">Envoy::Network::FilterManagerImpl::onContinueReading(")*0.01
+    if proxy != "none":
+        breakdown['read'] = virtual_cores*get_cpu_percentage(">readv (")*0.01
+        breakdown['loopback'] = virtual_cores*get_cpu_percentage(">process_backlog (")*0.01
+        breakdown['write'] = virtual_cores*get_cpu_percentage(">writev (")*0.01 - breakdown['loopback']
+        breakdown['epoll'] = virtual_cores*get_cpu_percentage(">epoll_wait (")*0.01
+        breakdown['envoy'] = virtual_cores*get_cpu_percentage(">wrk:worker_0 (")*0.01+virtual_cores*get_cpu_percentage(">wrk:worker_1 (")*0.01
+        breakdown['envoy'] = breakdown['envoy']-(breakdown['read']+breakdown['write']+breakdown['loopback']+breakdown['epoll'])
+    breakdown['app'] = virtual_cores*get_cpu_percentage(">"+app+" (")*0.01
+    if proxy == 'http' or proxy =='grpc':
+        breakdown['http'] = virtual_cores*get_cpu_percentage(">Envoy::Network::FilterManagerImpl::onContinueReading(")*0.01
     breakdown['others'] = virtual_cores-(breakdown['read']+breakdown['write']+breakdown['loopback']+breakdown['epoll']+breakdown['envoy']+breakdown['app'])
     return breakdown
 
@@ -74,6 +77,6 @@ if __name__ == '__main__':
     Path("./result").mkdir(parents=True, exist_ok=True)
     virtual_cores = get_virtual_cores()
     generate_flamegraph()
-    breakdown = get_cpu_breakdown(virtual_cores)
+    breakdown = get_cpu_breakdown(virtual_cores, args.proxy, args.app)
     print(breakdown)
 
