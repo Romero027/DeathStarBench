@@ -105,16 +105,3 @@ kubectl exec -it user-964f65f95-8bh2g -c istio-proxy -n default  -- pilot-agent 
 # strace 
 sudo strace -p <pid> -f -e readv -o <output file>
 
-
-
-
-
-
-
-
-Running cmd: python3 ./funclatency.py -p 569120 process_backlog -d 5 -t 0
-Running cmd: python3 ./funclatency.py -p 569120 do_readv -d 5 -t 0
-Running cmd: python3 ./funclatency.py -p 569120 do_writev -d 5 -t 0
-Running cmd: python3 ./funclatency.py -p 569120 ep_send_events_proc -d 5 -t 0
-Running cmd: python3 ./funclatency.py -p 569120 /proc/569120/root/usr/local/bin/envoy:*onReadReady* -d 5 -t 6592
-Running cmd: python3 ./funclatency.py -p 569120 /proc/569120/root/usr/local/bin/envoy:*onWriteReady* -d 5 -t 41332
