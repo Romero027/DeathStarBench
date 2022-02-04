@@ -52,11 +52,30 @@ sudo apt-mark hold kubelet kubeadm kubectl
 sudo swapoff -a
 
 
+### Kubeadmin 
+
+# Note: This dropin only works with kubeadm and kubelet v1.11+
+[Service]
+Environment="KUBELET_KUBECONFIG_ARGS=--bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --kubeconfig=/etc/kubernetes/kubelet.conf --eviction-hard=nodefs.available<0.00005%"
+Environment="KUBELET_CONFIG_ARGS=--config=/var/lib/kubelet/config.yaml"
+# This is a file that "kubeadm init" and "kubeadm join" generates at runtime, populating the KUBELET_KUBEADM_ARGS variable dynamically
+EnvironmentFile=-/var/lib/kubelet/kubeadm-flags.env
+# This is a file that the user can use for overrides of the kubelet args as a last resort. Preferably, the user should use
+# the .NodeRegistration.KubeletExtraArgs object in the configuration files instead. KUBELET_EXTRA_ARGS should be sourced from this file.
+EnvironmentFile=-/etc/default/kubelet
+ExecStart=
+ExecStart=/usr/bin/kubelet $KUBELET_KUBECONFIG_ARGS $KUBELET_CONFIG_ARGS $KUBELET_KUBEADM_ARGS $KUBELET_EXTRA_ARGS
+
+# Then run:
+systemctl daemon-reload
+systemctl restart kubelet
+
+
 # for control plane
 sudo kubeadm init --pod-network-cidr 10.244.0.0/17 # check the output and execute command to setup the cluster
 
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 
-# dataplane
+# for data plane
 kubeadm join 130.127.133.237:6443 --token kdg6hx.t3d1mpxjj6ifwej0 \
 	--discovery-token-ca-cert-hash sha256:8ad8fdaf414ebf81b21c48b3316341718f39d4d9861a3db748abbba7b79455d3
