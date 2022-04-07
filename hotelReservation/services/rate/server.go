@@ -1,15 +1,15 @@
 package rate
 
 import (
-	"encoding/json"
+	// "encoding/json"
 	"fmt"
 	"gopkg.in/mgo.v2"
-	"gopkg.in/mgo.v2/bson"
+	// "gopkg.in/mgo.v2/bson"
 	// "io/ioutil"
 	"log"
 	"net"
 	// "os"
-	"sort"
+	// "sort"
 	"time"
 
 	"github.com/google/uuid"
@@ -23,7 +23,7 @@ import (
 	"google.golang.org/grpc/keepalive"
 
 	"github.com/bradfitz/gomemcache/memcache"
-	"strings"
+	// "strings"
 )
 
 const name = "srv-rate"
