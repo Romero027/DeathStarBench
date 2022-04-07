@@ -102,78 +102,78 @@ func (s *Server) Shutdown() {
 func (s *Server) GetRates(ctx context.Context, req *pb.Request) (*pb.Result, error) {
 	fmt.Printf("-----------------------------------\n")
 	res := new(pb.Result)
-	// session, err := mgo.Dial("mongodb-rate")
-	// if err != nil {
-	// 	panic(err)
+	// // session, err := mgo.Dial("mongodb-rate")
+	// // if err != nil {
+	// // 	panic(err)
+	// // }
+	// // defer session.Close()
+
+	// ratePlans := make(RatePlans, 0)
+
+	// for _, hotelID := range req.HotelIds {
+	// 	// first check memcached
+	// 	fmt.Printf("Sending a request to Memcached!\n")
+	// 	timestamp := time.Now()
+	// 	item, err := s.MemcClient.Get(hotelID)
+	// 	memLatency := time.Now().Sub(timestamp)
+	// 	fmt.Println("MemcClient.Get took", memLatency)
+	// 	if err == nil {
+	// 		// memcached hit
+	// 		rate_strs := strings.Split(string(item.Value), "\n")
+	// 		fmt.Printf("Memcached hit!!! Should not go here!!!!!!!!\n")
+	// 		// fmt.Printf("memc hit, hotelId = %s\n", hotelID)
+	// 		// fmt.Println(rate_strs)
+
+	// 		for _, rate_str := range rate_strs {
+	// 			if len(rate_str) != 0 {
+	// 				rate_p := new(pb.RatePlan)
+	// 				json.Unmarshal([]byte(rate_str), rate_p)
+	// 				ratePlans = append(ratePlans, rate_p)
+	// 			}
+	// 		}
+	// 	} else if err == memcache.ErrCacheMiss {
+
+	// 		fmt.Printf("memcached miss, hotelId = %s, searching in mongoDB\n", hotelID)
+
+	// 		// memcached miss, set up mongo connection
+	// 		session := s.MongoSession.Copy()
+	// 		defer session.Close()
+	// 		c := session.DB("rate-db").C("inventory")
+
+	// 		memc_str := ""
+
+	// 		tmpRatePlans := make(RatePlans, 0)
+	// 		fmt.Printf("Sending a request to MongoDB!\n")
+	// 		timestamp = time.Now()
+	// 		err := c.Find(&bson.M{"hotelId": hotelID}).All(&tmpRatePlans)
+	// 		mongoLatency := time.Now().Sub(timestamp)
+	// 		fmt.Println("Mongo took", mongoLatency)
+	// 		if err != nil {
+	// 			panic(err)
+	// 		} else {
+	// 			for _, r := range tmpRatePlans {
+	// 				ratePlans = append(ratePlans, r)
+	// 				rate_json , err := json.Marshal(r)
+	// 				if err != nil {
+	// 					fmt.Printf("json.Marshal err = %s\n", err)
+	// 				}
+	// 				memc_str = memc_str + string(rate_json) + "\n"
+	// 			}
+	// 		}
+
+	// 		// write to memcached
+	// 		//s.MemcClient.Set(&memcache.Item{Key: hotelID, Value: []byte(memc_str)})
+
+	// 	} else {
+	// 		fmt.Printf("Memmcached error = %s\n", err)
+	// 		panic(err)
+	// 	}
 	// }
-	// defer session.Close()
 
-	ratePlans := make(RatePlans, 0)
+	// sort.Sort(ratePlans)
+	// res.RatePlans = ratePlans
 
-	for _, hotelID := range req.HotelIds {
-		// first check memcached
-		fmt.Printf("Sending a request to Memcached!\n")
-		timestamp := time.Now()
-		item, err := s.MemcClient.Get(hotelID)
-		memLatency := time.Now().Sub(timestamp)
-		fmt.Println("MemcClient.Get took", memLatency)
-		if err == nil {
-			// memcached hit
-			rate_strs := strings.Split(string(item.Value), "\n")
-			fmt.Printf("Memcached hit!!! Should not go here!!!!!!!!\n")
-			// fmt.Printf("memc hit, hotelId = %s\n", hotelID)
-			// fmt.Println(rate_strs)
-
-			for _, rate_str := range rate_strs {
-				if len(rate_str) != 0 {
-					rate_p := new(pb.RatePlan)
-					json.Unmarshal([]byte(rate_str), rate_p)
-					ratePlans = append(ratePlans, rate_p)
-				}
-			}
-		} else if err == memcache.ErrCacheMiss {
-
-			fmt.Printf("memcached miss, hotelId = %s, searching in mongoDB\n", hotelID)
-
-			// memcached miss, set up mongo connection
-			session := s.MongoSession.Copy()
-			defer session.Close()
-			c := session.DB("rate-db").C("inventory")
-
-			memc_str := ""
-
-			tmpRatePlans := make(RatePlans, 0)
-			fmt.Printf("Sending a request to MongoDB!\n")
-			timestamp = time.Now()
-			err := c.Find(&bson.M{"hotelId": hotelID}).All(&tmpRatePlans)
-			mongoLatency := time.Now().Sub(timestamp)
-			fmt.Println("Mongo took", mongoLatency)
-			if err != nil {
-				panic(err)
-			} else {
-				for _, r := range tmpRatePlans {
-					ratePlans = append(ratePlans, r)
-					rate_json , err := json.Marshal(r)
-					if err != nil {
-						fmt.Printf("json.Marshal err = %s\n", err)
-					}
-					memc_str = memc_str + string(rate_json) + "\n"
-				}
-			}
-
-			// write to memcached
-			//s.MemcClient.Set(&memcache.Item{Key: hotelID, Value: []byte(memc_str)})
-
-		} else {
-			fmt.Printf("Memmcached error = %s\n", err)
-			panic(err)
-		}
-	}
-
-	sort.Sort(ratePlans)
-	res.RatePlans = ratePlans
-
-	fmt.Printf("-----------------------------------\n")
+	// fmt.Printf("-----------------------------------\n")
 	return res, nil
 }
 
